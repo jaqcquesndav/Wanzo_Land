@@ -1,0 +1,178 @@
+/* Système de couleurs */
+:root {
+  /* Couleurs principales */
+  --color-primary: #197ca8;
+  --color-primary-hover: #1e90c3;
+  --color-success: #015730;
+  --color-warning: #ee872b;
+
+  /* Variantes de couleurs */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #197ca8;
+  --color-primary-600: #1e90c3;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #015730;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+
+  --color-warning-50: #fff7ed;
+  --color-warning-100: #ffedd5;
+  --color-warning-200: #fed7aa;
+  --color-warning-300: #fdba74;
+  --color-warning-400: #fb923c;
+  --color-warning-500: #ee872b;
+  --color-warning-600: #ea580c;
+  --color-warning-700: #c2410c;
+  --color-warning-800: #9a3412;
+  --color-warning-900: #7c2d12;
+
+  /* Couleurs neutres */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+
+  /* Espacement */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 250ms;
+  --transition-slow: 350ms;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* Composants */
+@layer components {
+  /* Boutons */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .btn-success {
+    background-color: var(--color-success);
+    color: white;
+  }
+
+  .btn-warning {
+    background-color: var(--color-warning);
+    color: white;
+  }
+
+  /* Cartes */
+  .card {
+    @apply bg-white rounded-xl shadow-sm p-6;
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+
+  .card-hover:hover {
+    @apply shadow-lg -translate-y-1;
+    border-color: var(--color-primary-200);
+  }
+
+  /* Textes */
+  .heading-1 {
+    @apply text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl;
+    color: var(--color-gray-900);
+  }
+
+  .heading-2 {
+    @apply text-3xl font-bold tracking-tight sm:text-4xl;
+    color: var(--color-gray-900);
+  }
+
+  .heading-3 {
+    @apply text-2xl font-bold tracking-tight;
+    color: var(--color-gray-900);
+  }
+
+  .text-body {
+    @apply text-base leading-7;
+    color: var(--color-gray-600);
+  }
+
+  /* Formulaires */
+  .input {
+    @apply block w-full rounded-lg shadow-sm text-sm;
+    border: 1px solid var(--color-gray-300);
+    padding: 0.5rem 0.75rem;
+  }
+
+  .input:focus {
+    @apply outline-none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-100);
+  }
+
+  /* Modal */
+  .modal {
+    @apply relative rounded-xl bg-white shadow-xl p-6;
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .modal-header {
+    @apply flex items-center justify-between mb-4 pb-4;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .modal-title {
+    @apply text-lg font-semibold;
+    color: var(--color-gray-900);
+  }
+
+  /* Header */
+  .header {
+    @apply fixed w-full top-0 z-50 backdrop-blur-md;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  /* Footer */
+  .footer {
+    background-color: var(--color-gray-900);
+    color: var(--color-gray-100);
+  }
+}
