@@ -46,7 +46,7 @@ export function AuthCallback() {
 
         // Échanger le code contre des tokens via le service API
         console.log('Échange du code contre des tokens via apiService...');
-        const tokens = await apiService.exchangeAuthCode(code as string, codeVerifier, state as string);
+        const tokens = await apiService.exchangeAuthCode(code, codeVerifier, state || undefined);
         
         // Stocker les tokens
         console.log('Stockage des tokens...');
@@ -70,12 +70,41 @@ export function AuthCallback() {
         // Récupérer les informations de l'utilisateur
         await refreshUser();
 
-        // Rediriger vers la page d'accueil ou la page précédente
-        const returnTo = sessionStorage.getItem('auth_return_to') || '/dashboard';
+        // Rediriger vers la page appropriée en fonction du type d'utilisateur et de l'application
+        const userType = sessionStorage.getItem('auth_user_type') || 'sme';
+        const appId = sessionStorage.getItem('auth_app_id') || 'admin';
+        
+        // Nettoyer les informations d'application
+        sessionStorage.removeItem('auth_user_type');
+        sessionStorage.removeItem('auth_app_id');
+        
+        // Déterminer la redirection en fonction du type d'utilisateur et de l'application
+        let redirectPath = '/dashboard';
+        
+        if (userType === 'sme') {
+          switch (appId) {
+            case 'admin':
+              redirectPath = '/apps/admin';
+              break;
+            case 'accounting':
+              redirectPath = '/apps/accounting';
+              break;
+            case 'portfolio':
+              redirectPath = '/apps/portfolio';
+              break;
+            default:
+              redirectPath = '/dashboard';
+          }
+        } else if (userType === 'financial_institution') {
+          redirectPath = '/apps/financial';
+        }
+        
+        // Rediriger vers la page appropriée ou la page précédente
+        const returnTo = sessionStorage.getItem('auth_return_to');
         sessionStorage.removeItem('auth_return_to');
         
-        console.log('✅ Authentification réussie, redirection vers:', returnTo);
-        navigate(returnTo);
+        console.log('✅ Authentification réussie, redirection vers:', returnTo || redirectPath);
+        navigate(returnTo || redirectPath);
       } catch (err) {
         console.error('❌ Erreur lors du callback:', err);
         setError(err instanceof Error ? err.message : 'Une erreur est survenue');

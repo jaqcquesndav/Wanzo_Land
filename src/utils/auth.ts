@@ -55,6 +55,10 @@ export async function initiateAuth({ userType, appId, provider, email, password,
       sessionStorage.setItem('auth_return_to', returnTo);
     }
     
+    // Stocker le type d'utilisateur et l'ID de l'application pour la redirection après authentification
+    sessionStorage.setItem('auth_user_type', userType);
+    sessionStorage.setItem('auth_app_id', appId);
+    
     console.log('Valeurs stockées avec succès');
 
     // Calculer le code challenge
