@@ -36,10 +36,11 @@ interface AuthOptions {
   email?: string;
   password?: string;
   returnTo?: string;
+  isSignup?: boolean; // Nouveau paramètre pour différencier signup et login
 }
 
-export async function initiateAuth({ userType, appId, provider, email, password, returnTo }: AuthOptions) {
-  console.log('Démarrage de l\'authentification...', { userType, appId, provider });
+export async function initiateAuth({ userType, appId, provider, email, password, returnTo, isSignup = false }: AuthOptions) {
+  console.log(`Démarrage de l'${isSignup ? 'inscription' : 'authentification'}...`, { userType, appId, provider });
   
   try {
     // Générer et stocker le code verifier
@@ -58,6 +59,9 @@ export async function initiateAuth({ userType, appId, provider, email, password,
     // Stocker le type d'utilisateur et l'ID de l'application pour la redirection après authentification
     sessionStorage.setItem('auth_user_type', userType);
     sessionStorage.setItem('auth_app_id', appId);
+    
+    // Stocker si c'est un signup ou un login
+    sessionStorage.setItem('auth_is_signup', isSignup ? 'true' : 'false');
     
     console.log('Valeurs stockées avec succès');
 
@@ -85,6 +89,11 @@ export async function initiateAuth({ userType, appId, provider, email, password,
     if (email && password) {
       params.append('username', email);
       params.append('password', password);
+    }
+
+    // Si c'est un signup, ajouter le paramètre screen_hint
+    if (isSignup) {
+      params.append('screen_hint', 'signup');
     }
 
     const authUrl = `https://${AUTH0_CONFIG.domain}/authorize?${params.toString()}`;

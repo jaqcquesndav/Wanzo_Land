@@ -4,6 +4,7 @@ import { apiService } from '../../services/api';
 import { AuthLayout } from './components/AuthLayout';
 import { AuthHeader } from './components/AuthHeader';
 import { RegisterForm } from './components/RegisterForm';
+import { initiateAuth } from '../../utils/auth';
 
 export function Register() {
   const navigate = useNavigate();
@@ -17,9 +18,6 @@ export function Register() {
     firstName: string;
     lastName: string;
   }) => {
-
-     // Ajout d'un log pour voir les informations soumises
-     console.log('Données soumises par le formulaire:', formData);
     try {
       setIsLoading(true);
       setError(null);
@@ -35,6 +33,26 @@ export function Register() {
       console.error('Erreur lors de la création du compte:', err);
       setError(err instanceof Error ? err.message : 'Une erreur est survenue lors de la création du compte');
     } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleOAuthSignup = async (provider?: string) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      
+      // Initier l'authentification avec Auth0 en mode signup
+      await initiateAuth({
+        userType: 'sme', // Par défaut, on utilise le type PME
+        appId: 'admin', // Par défaut, on utilise l'application admin
+        provider,
+        returnTo: '/dashboard',
+        isSignup: true // Spécifier explicitement que c'est un signup
+      });
+    } catch (err) {
+      console.error('Erreur d\'inscription:', err);
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
       setIsLoading(false);
     }
   };
@@ -60,6 +78,7 @@ export function Register() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <RegisterForm 
           onSubmit={handleSubmit}
+          onOAuthSignup={handleOAuthSignup}
           isLoading={isLoading}
           error={error}
         />

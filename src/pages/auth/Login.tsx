@@ -1,69 +1,68 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate, Link, useLocation } from 'react-router-dom';
-import { initiateAuth } from '../../utils/auth';
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { Button } from '../../components/ui/Button';
+import { initiateAuth } from '../../utils/auth';
 import { AuthLayout } from './components/AuthLayout';
 import { AuthHeader } from './components/AuthHeader';
-import { LoginMethodToggle } from './components/LoginMethodToggle';
 import { LoginForm } from './components/LoginForm';
 import { OAuthLogin } from './components/OAuthLogin';
+import { LoginMethodToggle } from './components/LoginMethodToggle';
 
 export function Login() {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const location = useLocation();
   const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loginMethod, setLoginMethod] = useState<'oauth' | 'direct'>('oauth');
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const userType = searchParams.get('userType') || 'sme';
-  const appId = searchParams.get('appId') || 'admin';
-  const registered = searchParams.get('registered') === 'true';
-  const from = location.state?.from?.pathname || '/';
+  // Check if user just registered
+  useEffect(() => {
+    const registered = searchParams.get('registered');
+    if (registered === 'true') {
+      setSuccessMessage('Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.');
+    }
+  }, [searchParams]);
 
   const handleOAuthLogin = async (provider?: string) => {
     try {
       setIsLoading(true);
       setError(null);
       
-      // Initiate authentication with PKCE
+      // Récupérer l'URL de retour si elle existe dans l'état de navigation
+      const returnTo = location.state?.from || '/dashboard';
+      
+      // Initier l'authentification avec Auth0
       await initiateAuth({
-        userType,
-        appId,
-        provider
+        userType: 'sme', // Par défaut, on utilise le type PME
+        appId: 'admin', // Par défaut, on utilise l'application admin
+        provider,
+        returnTo,
+        isSignup: false // Spécifier explicitement que c'est un login
       });
     } catch (err) {
-      console.error('OAuth login error:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
+      console.error('Erreur de connexion:', err);
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
       setIsLoading(false);
     }
   };
 
   const handleDirectLogin = async (email: string, password: string) => {
-    if (!email || !password) {
-      setError('Please enter your email and password');
-      return;
-    }
-    
     try {
       setIsLoading(true);
       setError(null);
       
-      // Use the login function from useAuth hook
       const success = await login(email, password);
-      
       if (success) {
-        // Navigate to the page the user was trying to access, or to dashboard
-        navigate(from, { replace: true });
+        // La redirection est gérée dans le hook useAuth
       } else {
-        setError('Invalid credentials');
+        setError('Identifiants invalides');
       }
     } catch (err) {
-      console.error('Direct login error:', err);
-      setError(err instanceof Error ? err.message : 'Invalid credentials');
+      console.error('Erreur de connexion:', err);
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     } finally {
       setIsLoading(false);
     }
@@ -72,51 +71,41 @@ export function Login() {
   return (
     <AuthLayout>
       <AuthHeader 
-        title="Kiota Suit"
-        subtitle="Sign in to your account"
+        title="Connectez-vous à votre compte"
         error={error}
-        successMessage={registered ? "Registration successful! You can now log in." : null}
+        successMessage={successMessage}
       />
+      
+      <div className="mt-2 text-center">
+        <p className="text-sm text-gray-600">
+          Ou{' '}
+          <Link
+            to="/auth/register"
+            className="font-medium text-primary hover:text-primary-hover"
+          >
+            créez un nouveau compte
+          </Link>
+        </p>
+      </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <LoginMethodToggle 
-            loginMethod={loginMethod} 
-            onToggle={setLoginMethod} 
+            loginMethod={loginMethod}
+            onToggle={setLoginMethod}
           />
-
-          {loginMethod === 'direct' ? (
-            <LoginForm 
-              onSubmit={handleDirectLogin}
-              isLoading={isLoading}
-            />
-          ) : (
+          
+          {loginMethod === 'oauth' ? (
             <OAuthLogin 
               onLogin={handleOAuthLogin}
               isLoading={isLoading}
             />
+          ) : (
+            <LoginForm 
+              onSubmit={handleDirectLogin}
+              isLoading={isLoading}
+            />
           )}
-
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">Don't have an account?</span>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <Button
-                variant="secondary"
-                onClick={() => navigate('/auth/register')}
-                className="w-full"
-              >
-                Create an account
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </AuthLayout>

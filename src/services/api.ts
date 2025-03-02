@@ -189,6 +189,10 @@ class ApiService {
     console.log('Échange du code d\'autorisation contre des tokens');
     const url = `${this.baseUrl}${API_ENDPOINTS.auth.exchange}`;
     
+    // Vérifier si c'est un signup ou un login
+    const isSignup = sessionStorage.getItem('auth_is_signup') === 'true';
+    console.log(`Mode d'authentification: ${isSignup ? 'Inscription' : 'Connexion'}`);
+    
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -196,7 +200,8 @@ class ApiService {
         body: JSON.stringify({
           code,
           code_verifier: codeVerifier,
-          state
+          state,
+          is_signup: isSignup
         }),
         credentials: 'include'
       });
@@ -207,6 +212,9 @@ class ApiService {
     } catch (error) {
       console.error('Erreur lors de l\'échange du code:', error);
       throw error;
+    } finally {
+      // Nettoyer le flag is_signup
+      sessionStorage.removeItem('auth_is_signup');
     }
   }
 
@@ -227,8 +235,8 @@ class ApiService {
     const requestData = {
       adminName: `${signupData.firstName} ${signupData.lastName}`,
       adminEmail: signupData.email,
-      companyName: signupData.companyName,
       adminPassword: signupData.password,
+      companyName: signupData.companyName,
       companyDetails: {
         // Vous pouvez ajouter des détails supplémentaires ici si nécessaire
         industry: '',
@@ -285,9 +293,8 @@ class ApiService {
    * Invite un nouvel utilisateur dans l'entreprise
    */
   async inviteUser(inviteData: {
-
-    firstName: string;
     email: string;
+    firstName: string;
     lastName: string;
     role: string;
     permissions: string[];

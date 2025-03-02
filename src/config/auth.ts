@@ -1,7 +1,7 @@
 export const AUTH0_CONFIG = {
   domain: 'dev-tezmln0tk0g1gouf.eu.auth0.com',
   clientId: 'LmG0NAGcv37KBb1IZk4uQefrbmx7ANi3',
-  redirectUri: 'http://localhost:3000/auth/callback',
+  redirectUri: 'http://localhost:5173/auth/callback',
   //redirectUri: `${window.location.origin}/auth/callback`,
   scope: 'openid profile email offline_access',
   apiBaseUrl: 'http://localhost:3000',
