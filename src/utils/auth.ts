@@ -1,6 +1,8 @@
 import { AUTH0_CONFIG } from '../config/auth';
 
-// Fonction pour générer un code verifier aléatoire
+/**
+ * Génère un code verifier aléatoire pour PKCE
+ */
 function generateCodeVerifier(): string {
   console.log('Génération du code verifier...');
   const array = new Uint8Array(32);
@@ -10,15 +12,22 @@ function generateCodeVerifier(): string {
   return verifier;
 }
 
-// Fonction pour encoder en base64URL
-function base64URLEncode(buffer: ArrayBuffer): string {
-  return btoa(String.fromCharCode(...new Uint8Array(buffer)))
+/**
+ * Encodage base64 URL-safe (remplace + / et supprime =)
+ */
+function base64URLEncode(buffer: ArrayBuffer | Uint8Array): string {
+  // S'assurer qu'on traite un Uint8Array
+  const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+  let encoded = btoa(String.fromCharCode(...bytes))
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '');
+  return encoded;
 }
 
-// Fonction pour calculer le code challenge
+/**
+ * Calcule le code challenge en SHA-256 du code verifier
+ */
 async function generateCodeChallenge(codeVerifier: string): Promise<string> {
   console.log('Calcul du code challenge...');
   const encoder = new TextEncoder();
@@ -33,76 +42,89 @@ interface AuthOptions {
   userType: string;
   appId: string;
   provider?: string;
-  email?: string;
-  password?: string;
+  // ⚠️ Retiré email & password d'ici pour éviter qu'ils transitent dans l’URL
   returnTo?: string;
-  isSignup?: boolean; // Nouveau paramètre pour différencier signup et login
+  isSignup?: boolean; // permet de différencier signup et login
 }
 
-export async function initiateAuth({ userType, appId, provider, email, password, returnTo, isSignup = false }: AuthOptions) {
-  console.log(`Démarrage de l'${isSignup ? 'inscription' : 'authentification'}...`, { userType, appId, provider });
-  
+/**
+ * Lance la redirection vers Auth0 en mode PKCE
+ * - Stocke le code verifier et le state en sessionStorage
+ * - Construit l’URL d’auth en incluant le code_challenge
+ * - Redirige l’utilisateur
+ */
+export async function initiateAuth({
+  userType,
+  appId,
+  provider,
+  returnTo,
+  isSignup = false,
+}: AuthOptions) {
+  console.log(`Démarrage de l'${isSignup ? 'inscription' : 'authentification'}...`, {
+    userType,
+    appId,
+    provider,
+  });
+
   try {
-    // Nettoyer les valeurs précédentes pour éviter les conflits
+    // Nettoyer les valeurs précédentes
     sessionStorage.removeItem('code_verifier');
     sessionStorage.removeItem('auth_state');
-    
-    // Générer et stocker le code verifier
+
+    // 1. Générer et stocker le code verifier + state
     const codeVerifier = generateCodeVerifier();
     const state = crypto.randomUUID();
-    
+
     console.log('Stockage des valeurs dans sessionStorage...');
     sessionStorage.setItem('code_verifier', codeVerifier);
     sessionStorage.setItem('auth_state', state);
-    
-    // Stocker l'URL de retour si fournie
+
+    // 2. Stocker le retour si fourni
     if (returnTo) {
       sessionStorage.setItem('auth_return_to', returnTo);
     }
-    
-    // Stocker le type d'utilisateur et l'ID de l'application pour la redirection après authentification
+
+    // 3. Stocker le type d’utilisateur et l’ID de l’application
     sessionStorage.setItem('auth_user_type', userType);
     sessionStorage.setItem('auth_app_id', appId);
-    
-    // Stocker si c'est un signup ou un login
+
+    // 4. Savoir si c’est un signup ou un login
     sessionStorage.setItem('auth_is_signup', isSignup ? 'true' : 'false');
-    
+
     console.log('Valeurs stockées avec succès');
 
-    // Calculer le code challenge
+    // 5. Calculer le code challenge
     const codeChallenge = await generateCodeChallenge(codeVerifier);
 
-    // Construire l'URL d'autorisation
+    // 6. Construire l’URL d’autorisation
+    //    ⚠️ On inclut `offline_access` dans le scope pour récupérer un refresh_token
     const params = new URLSearchParams({
       client_id: AUTH0_CONFIG.clientId,
       redirect_uri: AUTH0_CONFIG.redirectUri,
       response_type: 'code',
-      scope: AUTH0_CONFIG.scope,
+      // Ajouter offline_access au scope si tu veux un refresh token
+      scope: `${AUTH0_CONFIG.scope} offline_access`,
       audience: AUTH0_CONFIG.audience,
       code_challenge: codeChallenge,
       code_challenge_method: 'S256',
-      state: state
+      state: state,
     });
 
-    // Ajouter le provider si spécifié
+    // Si on veut forcer un provider (ex: connection=github)
     if (provider) {
       params.append('connection', provider);
     }
 
-    // Ajouter les identifiants si fournis (pour le mode username-password-authentication)
-    if (email && password) {
-      params.append('username', email);
-      params.append('password', password);
-    }
-
-    // Si c'est un signup, ajouter le paramètre screen_hint
+    // 7. Mode signup ?
     if (isSignup) {
       params.append('screen_hint', 'signup');
     }
 
-    const authUrl = `https://${AUTH0_CONFIG.domain}/authorize?${params.toString()}`;
-    console.log('URL d\'autorisation générée:', authUrl);
-    
+    // 8. Construire l’URL final et rediriger
+    const domain = AUTH0_CONFIG.domain; // ex: "my-tenant.eu.auth0.com"
+    const authUrl = `https://${domain}/authorize?${params.toString()}`;
+    console.log("URL d'autorisation générée:", authUrl);
+
     console.log('Redirection vers Auth0...');
     window.location.href = authUrl;
   } catch (error) {
@@ -116,19 +138,17 @@ export async function initiateAuth({ userType, appId, provider, email, password,
  */
 export function isTokenValid(token: string): boolean {
   if (!token) return false;
-  
   try {
-    // Vérifier la structure du token
     const parts = token.split('.');
     if (parts.length !== 3) return false;
-    
-    // Décoder le payload
+
     const payload = JSON.parse(atob(parts[1]));
-    
+
     // Vérifier l'expiration
+    if (!payload.exp) return false; // pas d'exp => non valide
     const expiryTime = payload.exp * 1000; // Convertir en millisecondes
     if (Date.now() >= expiryTime) return false;
-    
+
     return true;
   } catch (error) {
     console.error('Erreur lors de la vérification du token:', error);
@@ -137,15 +157,13 @@ export function isTokenValid(token: string): boolean {
 }
 
 /**
- * Extrait les informations du token JWT
+ * Extrait le payload du token JWT
  */
 export function decodeToken(token: string): any {
   if (!token) return null;
-  
   try {
     const parts = token.split('.');
     if (parts.length !== 3) return null;
-    
     return JSON.parse(atob(parts[1]));
   } catch (error) {
     console.error('Erreur lors du décodage du token:', error);
@@ -154,15 +172,14 @@ export function decodeToken(token: string): any {
 }
 
 /**
- * Vérifie si un token expire bientôt (dans les 5 minutes)
+ * Vérifie si un token expire dans moins de 5 minutes
  */
 export function isTokenExpiringSoon(token: string): boolean {
   if (!token) return true;
-  
   try {
     const payload = JSON.parse(atob(token.split('.')[1]));
-    const expiryTime = payload.exp * 1000; // Convertir en millisecondes
-    return Date.now() >= expiryTime - 300000; // 5 minutes avant expiration
+    const expiryTime = payload.exp * 1000;
+    return Date.now() >= expiryTime - 300000; // 5 minutes
   } catch (error) {
     console.error('Erreur lors de la vérification du token:', error);
     return true;
