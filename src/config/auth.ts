@@ -5,7 +5,7 @@ export const AUTH0_CONFIG = {
   //redirectUri: `${window.location.origin}/auth/callback`,
   scope: 'openid profile email offline_access',
   apiBaseUrl: 'http://localhost:3000',
-  audience: 'https://dev-tezmln0tk0g1gouf.eu.auth0.com/api/v2/',
+  audience: 'https://api.kiota.com',
   applications: {
     sme: {
       admin: {
