@@ -22,6 +22,10 @@ export function AppSelection() {
   const apps = APPS_CONFIG[userType as keyof typeof APPS_CONFIG];
 
   const handleAppSelect = (appId: string) => {
+    // Stocker le type d'utilisateur et l'ID de l'application dans sessionStorage
+    sessionStorage.setItem('auth_user_type', userType);
+    sessionStorage.setItem('auth_app_id', appId);
+    
     // Rediriger vers la page de connexion avec les paramètres appropriés
     navigate(`/auth/login?userType=${userType}&appId=${appId}`);
   };

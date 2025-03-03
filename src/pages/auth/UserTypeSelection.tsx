@@ -6,6 +6,9 @@ export function UserTypeSelection() {
   const navigate = useNavigate();
 
   const handleUserTypeSelect = (type: string) => {
+    // Stocker le type d'utilisateur dans sessionStorage
+    sessionStorage.setItem('auth_user_type', type);
+    
     navigate(`/auth/apps/${type}`);
   };
 

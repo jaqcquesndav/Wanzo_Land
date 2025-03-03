@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { initiateAuth } from '../../utils/auth';
 import { AuthLayout } from './components/AuthLayout';
@@ -11,7 +11,6 @@ import { LoginMethodToggle } from './components/LoginMethodToggle';
 export function Login() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const location = useLocation();
   const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,6 +22,26 @@ export function Login() {
     const registered = searchParams.get('registered');
     if (registered === 'true') {
       setSuccessMessage('Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.');
+      
+      // Si l'utilisateur vient de s'inscrire, récupérer le type d'utilisateur et l'ID de l'application
+      const userType = searchParams.get('userType') || sessionStorage.getItem('auth_user_type') || 'sme';
+      const appId = searchParams.get('appId') || sessionStorage.getItem('auth_app_id') || 'admin';
+      
+      // Stocker ces valeurs dans sessionStorage pour les utiliser après la connexion
+      sessionStorage.setItem('auth_user_type', userType);
+      sessionStorage.setItem('auth_app_id', appId);
+      
+      // Initier automatiquement la connexion OAuth après un délai court
+      setTimeout(() => {
+        handleOAuthLogin();
+      }, 1500);
+    }
+    
+    // Check for auth errors
+    const authError = searchParams.get('error');
+    const errorDescription = searchParams.get('error_description');
+    if (authError) {
+      setError(errorDescription || `Erreur d'authentification: ${authError}`);
     }
   }, [searchParams]);
 
@@ -31,13 +50,35 @@ export function Login() {
       setIsLoading(true);
       setError(null);
       
-      // Récupérer l'URL de retour si elle existe dans l'état de navigation
-      const returnTo = location.state?.from || '/dashboard';
+      // Récupérer le type d'utilisateur et l'ID de l'application
+      const userType = searchParams.get('userType') || sessionStorage.getItem('auth_user_type') || 'sme';
+      const appId = searchParams.get('appId') || sessionStorage.getItem('auth_app_id') || 'admin';
+      
+      // Déterminer l'URL de retour en fonction du type d'utilisateur et de l'application
+      let returnTo = '/dashboard';
+      
+      if (userType === 'sme') {
+        switch (appId) {
+          case 'admin':
+            returnTo = '/apps/admin';
+            break;
+          case 'accounting':
+            returnTo = '/apps/accounting';
+            break;
+          case 'portfolio':
+            returnTo = '/apps/portfolio';
+            break;
+          default:
+            returnTo = '/dashboard';
+        }
+      } else if (userType === 'financial_institution') {
+        returnTo = '/apps/financial';
+      }
       
       // Initier l'authentification avec Auth0
       await initiateAuth({
-        userType: 'sme', // Par défaut, on utilise le type PME
-        appId: 'admin', // Par défaut, on utilise l'application admin
+        userType,
+        appId,
         provider,
         returnTo,
         isSignup: false // Spécifier explicitement que c'est un login

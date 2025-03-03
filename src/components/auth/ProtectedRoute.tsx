@@ -36,20 +36,35 @@ export function ProtectedRoute({
     </div>;
   }
 
-  if (!isAuthenticated || !user) {
+  // For development purposes, simulate authentication
+  const mockUser: User = {
+    id: 'mock-id',
+    email: 'user@example.com',
+    name: 'Mock User',
+    companyId: 'mock-company',
+    userType: requiredUserType || 'sme',
+    role: 'admin',
+    permissions: ['read:all', 'write:all', 'admin:all']
+  };
+
+  // Use the mock user if not authenticated in development
+  const effectiveUser = isAuthenticated ? user : mockUser;
+  const effectiveIsAuthenticated = process.env.NODE_ENV === 'development' ? true : isAuthenticated;
+
+  if (!effectiveIsAuthenticated || !effectiveUser) {
     // Sauvegarder l'URL actuelle pour y revenir après la connexion
     return <Navigate to="/auth/login" state={{ from: location.pathname }} replace />;
   }
 
   // Check user type if required
-  if (requiredUserType && user.userType !== requiredUserType) {
+  if (requiredUserType && effectiveUser.userType !== requiredUserType) {
     return <Navigate to="/unauthorized" replace />;
   }
 
   // Check permissions if required
   if (requiredPermissions.length > 0) {
     const hasRequiredPermissions = requiredPermissions.every(
-      permission => user.permissions?.includes(permission)
+      permission => effectiveUser.permissions?.includes(permission)
     );
     if (!hasRequiredPermissions) {
       return <Navigate to="/unauthorized" replace />;

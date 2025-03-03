@@ -43,6 +43,10 @@ export async function initiateAuth({ userType, appId, provider, email, password,
   console.log(`Démarrage de l'${isSignup ? 'inscription' : 'authentification'}...`, { userType, appId, provider });
   
   try {
+    // Nettoyer les valeurs précédentes pour éviter les conflits
+    sessionStorage.removeItem('code_verifier');
+    sessionStorage.removeItem('auth_state');
+    
     // Générer et stocker le code verifier
     const codeVerifier = generateCodeVerifier();
     const state = crypto.randomUUID();

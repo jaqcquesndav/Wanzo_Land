@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { apiService } from '../../services/api';
 import { AuthLayout } from './components/AuthLayout';
 import { AuthHeader } from './components/AuthHeader';
@@ -8,8 +8,16 @@ import { initiateAuth } from '../../utils/auth';
 
 export function Register() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Check for auth errors
+  const authError = searchParams.get('error');
+  const errorDescription = searchParams.get('error_description');
+  if (authError && !error) {
+    setError(errorDescription || `Erreur d'inscription: ${authError}`);
+  }
 
   const handleSubmit = async (formData: {
     email: string;
@@ -27,8 +35,12 @@ export function Register() {
       
       console.log('Compte créé avec succès:', response);
       
-      // Rediriger vers la page de connexion
-      navigate('/auth/login?registered=true');
+      // Récupérer le type d'utilisateur et l'ID de l'application depuis sessionStorage
+      const userType = sessionStorage.getItem('auth_user_type') || 'sme';
+      const appId = sessionStorage.getItem('auth_app_id') || 'admin';
+      
+      // Rediriger vers la page de connexion avec les paramètres nécessaires
+      navigate(`/auth/login?registered=true&userType=${userType}&appId=${appId}`);
     } catch (err) {
       console.error('Erreur lors de la création du compte:', err);
       setError(err instanceof Error ? err.message : 'Une erreur est survenue lors de la création du compte');
@@ -61,6 +73,7 @@ export function Register() {
     <AuthLayout>
       <AuthHeader 
         title="Créez votre compte Kiota Suit"
+        error={error}
       />
       
       <div className="mt-2 text-center">
