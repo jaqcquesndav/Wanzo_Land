@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { apiService } from '../../services/api';
 import { AuthLayout } from './components/AuthLayout';
@@ -9,8 +9,11 @@ export function AuthCallback() {
   const [searchParams] = useSearchParams();
   const [error, setError] = useState<string | null>(null);
   const { refreshUser } = useAuth();
+  const hasRun = useRef(false);
 
   useEffect(() => {
+    if (hasRun.current) return;
+  hasRun.current = true;
     const handleAuth = async () => {
       console.log('Démarrage du traitement du callback...');
       console.log('Paramètres reçus:', Object.fromEntries(searchParams.entries()));
@@ -104,7 +107,7 @@ export function AuthCallback() {
         sessionStorage.removeItem('auth_return_to');
         
         console.log('✅ Authentification réussie, redirection vers:', returnTo || redirectPath);
-        navigate(returnTo || redirectPath);
+        navigate(returnTo || redirectPath , { replace: true });
       } catch (err) {
         console.error('❌ Erreur lors du callback:', err);
         setError(err instanceof Error ? err.message : 'Une erreur est survenue');
