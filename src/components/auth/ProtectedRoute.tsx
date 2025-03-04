@@ -19,8 +19,6 @@ export function ProtectedRoute({
 
   // Vérifier périodiquement l'état d'authentification
   useEffect(() => {
-    // Rafraîchir l'utilisateur au montage du composant
-    refreshUser();
     
     // Rafraîchir l'utilisateur toutes les 5 minutes
     const interval = setInterval(() => {
