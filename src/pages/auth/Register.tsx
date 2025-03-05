@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link, useSearchParams } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams, useLocation } from 'react-router-dom';
 import { apiService } from '../../services/api';
 import { AuthLayout } from './components/AuthLayout';
 import { AuthHeader } from './components/AuthHeader';
@@ -9,6 +9,7 @@ import { initiateAuth } from '../../utils/auth';
 export function Register() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,9 +36,9 @@ export function Register() {
       
       console.log('Compte créé avec succès:', response);
       
-      // Récupérer le type d'utilisateur et l'ID de l'application depuis sessionStorage
-      const userType = sessionStorage.getItem('auth_user_type') || 'sme';
-      const appId = sessionStorage.getItem('auth_app_id') || 'admin';
+      // Récupérer le type d'utilisateur et l'ID de l'application
+      const userType = location.state?.userType || sessionStorage.getItem('auth_user_type') || 'sme';
+      const appId = location.state?.appId || sessionStorage.getItem('auth_app_id') || 'admin';
       
       // Rediriger vers la page de connexion avec les paramètres nécessaires
       navigate(`/auth/login?registered=true&userType=${userType}&appId=${appId}`);
@@ -56,10 +57,10 @@ export function Register() {
       
       // Initier l'authentification avec Auth0 en mode signup
       await initiateAuth({
-        userType: 'sme', // Par défaut, on utilise le type PME
-        appId: 'admin', // Par défaut, on utilise l'application admin
+        userType: location.state?.userType || 'sme',
+        appId: location.state?.appId || 'admin',
         provider,
-        returnTo: '/dashboard',
+        returnTo: '/auth/login?registered=true',
         isSignup: true // Spécifier explicitement que c'est un signup
       });
     } catch (err) {

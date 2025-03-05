@@ -43,7 +43,22 @@ export function Login() {
     if (authError) {
       setError(errorDescription || `Erreur d'authentification: ${authError}`);
     }
-  }, [searchParams]);
+
+    // Check if user needs to create account first
+    const needsSignup = searchParams.get('needs_signup');
+    if (needsSignup === 'true') {
+      setError('Vous devez d\'abord créer un compte avant de vous connecter.');
+      // Rediriger vers la page d'inscription après un court délai
+      setTimeout(() => {
+        navigate('/auth/register', {
+          state: {
+            userType: searchParams.get('userType') || sessionStorage.getItem('auth_user_type'),
+            appId: searchParams.get('appId') || sessionStorage.getItem('auth_app_id')
+          }
+        });
+      }, 2000);
+    }
+  }, [searchParams, navigate]);
 
   const handleOAuthLogin = async (provider?: string) => {
     try {

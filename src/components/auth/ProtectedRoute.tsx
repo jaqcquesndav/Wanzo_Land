@@ -1,32 +1,37 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { User } from '../../types/auth';
-import { useEffect } from 'react';
+import { useOnceEffect } from '../../hooks/useOnceEffect';
+import { APPS_CONFIG, APP_DOMAINS, USER_TYPES, UserType } from '../../config/apps';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  requiredUserType?: 'sme' | 'financial_institution';
+  requiredUserType?: UserType;
+  requiredRole?: string;
   requiredPermissions?: string[];
+  requiredSubscription?: boolean;
+  appId?: keyof typeof APPS_CONFIG[UserType];
 }
 
 export function ProtectedRoute({ 
   children, 
   requiredUserType,
-  requiredPermissions = []
+  requiredRole,
+  requiredPermissions = [],
+  requiredSubscription = true,
+  appId
 }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading, user, refreshUser } = useAuth();
   const location = useLocation();
 
-  // Vérifier périodiquement l'état d'authentification
-  useEffect(() => {
-    
-    // Rafraîchir l'utilisateur toutes les 5 minutes
+  // Rafraîchir le user périodiquement
+  useOnceEffect(() => {
     const interval = setInterval(() => {
       refreshUser();
-    }, 5 * 60 * 1000);
+    }, 5 * 60 * 1000); // 5 minutes
     
     return () => clearInterval(interval);
-  }, [refreshUser]);
+  });
 
   if (isLoading) {
     return <div className="flex items-center justify-center min-h-screen">
@@ -34,38 +39,59 @@ export function ProtectedRoute({
     </div>;
   }
 
-  // For development purposes, simulate authentication
-  const mockUser: User = {
-    id: 'mock-id',
-    email: 'user@example.com',
-    name: 'Mock User',
-    companyId: 'mock-company',
-    userType: requiredUserType || 'sme',
-    role: 'admin',
-    permissions: ['read:all', 'write:all', 'admin:all']
-  };
-
-  // Use the mock user if not authenticated in development
-  const effectiveUser = isAuthenticated ? user : mockUser;
-  const effectiveIsAuthenticated = process.env.NODE_ENV === 'development' ? true : isAuthenticated;
-
-  if (!effectiveIsAuthenticated || !effectiveUser) {
-    // Sauvegarder l'URL actuelle pour y revenir après la connexion
-    return <Navigate to="/auth/login" state={{ from: location.pathname }} replace />;
+  // Rediriger vers login si non authentifié
+  if (!isAuthenticated || !user) {
+    return <Navigate 
+      to="/auth/login" 
+      state={{ from: location.pathname }} 
+      replace 
+    />;
   }
 
-  // Check user type if required
-  if (requiredUserType && effectiveUser.userType !== requiredUserType) {
+  // Vérifier le type d'utilisateur
+  if (requiredUserType && user.userType !== requiredUserType) {
     return <Navigate to="/unauthorized" replace />;
   }
 
-  // Check permissions if required
+  // Vérifier le rôle
+  if (requiredRole && user.role !== requiredRole && user.role !== 'superadmin') {
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  // Vérifier les permissions
   if (requiredPermissions.length > 0) {
     const hasRequiredPermissions = requiredPermissions.every(
-      permission => effectiveUser.permissions?.includes(permission)
+      permission => user.permissions?.includes(permission)
     );
     if (!hasRequiredPermissions) {
       return <Navigate to="/unauthorized" replace />;
+    }
+  }
+
+  // Vérifier l'abonnement si requis
+  if (requiredSubscription && user.subscription) {
+    const { subscription } = user;
+
+    // Vérifier si l'abonnement est actif
+    if (subscription.status !== 'active' && subscription.status !== 'trial') {
+      return <Navigate to="/subscription/expired" replace />;
+    }
+
+    // Vérifier si l'app est incluse dans l'abonnement
+    if (appId && !subscription.allowedApps.includes(appId)) {
+      return <Navigate to="/subscription/upgrade" replace />;
+    }
+  }
+
+  // Si un appId est fourni, rediriger vers le sous-domaine approprié
+  if (appId && user.userType) {
+    const userApps = APPS_CONFIG[user.userType];
+    if (userApps && appId in userApps) {
+      const appConfig = userApps[appId];
+      // Rediriger vers le sous-domaine avec le token d'accès
+      const token = localStorage.getItem('access_token');
+      window.location.href = `${appConfig.domain}?token=${token}`;
+      return null;
     }
   }
 

@@ -1,38 +1,32 @@
-import { useAuthContext } from '../contexts/AuthContext';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useAuthContext } from '../contexts/AuthContext';
+import { getAppConfig, getLogoutRedirectUrl } from '../config/auth';
+import { useOnceEffect } from './useOnceEffect';
 
 export function useAuth() {
-  const { state, login, logout, fetchUser } = useAuthContext();
+  const { state, login, logout: contextLogout, fetchUser } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
-  // Add a flag to prevent multiple logout redirects
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  // Add a debounce flag for refresh operations
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Écouter les événements d'authentification
-  useEffect(() => {
+  useOnceEffect(() => {
     const handleAuthFailed = () => {
-      // Prevent multiple redirects
       if (!isLoggingOut) {
         setIsLoggingOut(true);
-        // Rediriger vers la page de connexion en cas d'échec d'authentification
         handleLogout();
       }
     };
 
     window.addEventListener('auth:failed', handleAuthFailed);
-    
-    return () => {
-      window.removeEventListener('auth:failed', handleAuthFailed);
-    };
-  }, [isLoggingOut]);
+    return () => window.removeEventListener('auth:failed', handleAuthFailed);
+  });
 
   const handleLogin = async (email: string, password: string) => {
     const success = await login(email, password);
     if (success) {
-      // Rediriger vers la page précédente ou le tableau de bord
       const from = location.state?.from || '/dashboard';
       navigate(from, { replace: true });
       return true;
@@ -41,32 +35,32 @@ export function useAuth() {
   };
 
   const handleLogout = () => {
-    // Nettoyer toutes les données d'authentification
-    sessionStorage.removeItem('code_verifier');
-    sessionStorage.removeItem('auth_state');
-    sessionStorage.removeItem('auth_is_signup');
-    sessionStorage.removeItem('auth_user_type');
-    sessionStorage.removeItem('auth_app_id');
-    sessionStorage.removeItem('auth_return_to');
-    sessionStorage.removeItem('exchanged_codes');
-    
-    logout();
-    navigate('/auth/login');
-    
-    // Reset the logging out flag after a delay
+    // 1. Récupérer le type d'utilisateur et l'app en cours
+    const userType = state.user?.userType || 'sme';
+    const currentApp = sessionStorage.getItem('current_app') || 'admin';
+
+    // 2. Nettoyer le storage
+    sessionStorage.clear();
+    localStorage.clear();
+
+    // 3. Déconnexion du contexte
+    contextLogout();
+
+    // 4. Rediriger vers la page appropriée
+    const redirectUrl = getLogoutRedirectUrl(userType, currentApp);
+    navigate(redirectUrl);
+
     setTimeout(() => {
       setIsLoggingOut(false);
     }, 1000);
   };
 
-  // Add a debounced refresh function to prevent multiple rapid calls
   const refreshUser = async () => {
-    // Use a simple debounce mechanism
     if (isRefreshing) {
       console.log('Already refreshing user, skipping duplicate call');
       return;
     }
-    
+
     try {
       setIsRefreshing(true);
       await fetchUser();

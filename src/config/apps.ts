@@ -5,28 +5,54 @@ export const USER_TYPES = {
 
 export type UserType = typeof USER_TYPES[keyof typeof USER_TYPES];
 
-export const APPS_CONFIG = {
+type AppId = 'admin' | 'accounting' | 'portfolio';
+
+interface AppConfig {
+  id: AppId;
+  name: string;
+  description: string;
+  icon: string;
+  domain: string;
+  requiredRole: string;
+}
+
+// Configuration des sous-domaines pour chaque application
+export const APP_DOMAINS = {
+  [USER_TYPES.SME]: {
+    admin: 'https://admin.kiota.com',
+    accounting: 'https://accounting.kiota.com',
+    portfolio: 'https://portfolio.kiota.com',
+  },
+  [USER_TYPES.FINANCIAL_INSTITUTION]: {
+    portfolio: 'https://fi.kiota.com',
+  },
+} as const;
+
+export const APPS_CONFIG: Record<UserType, Record<AppId, AppConfig>> = {
   [USER_TYPES.SME]: {
     admin: {
       id: 'admin',
       name: 'Administration',
       description: 'Gérez votre profil entreprise et vos utilisateurs',
       icon: 'Settings',
-      path: '/admin',
+      domain: APP_DOMAINS[USER_TYPES.SME].admin,
+      requiredRole: 'admin',
     },
     accounting: {
       id: 'accounting',
       name: 'Comptabilité',
       description: 'Gérez votre comptabilité et vos finances',
       icon: 'Calculator',
-      path: '/erp/accounting',
+      domain: APP_DOMAINS[USER_TYPES.SME].accounting,
+      requiredRole: 'user',
     },
     portfolio: {
       id: 'portfolio',
       name: 'Gestion de Portefeuille PME',
       description: 'Suivez et optimisez vos investissements',
       icon: 'LineChart',
-      path: '/portfolio/sme',
+      domain: APP_DOMAINS[USER_TYPES.SME].portfolio,
+      requiredRole: 'user',
     },
   },
   [USER_TYPES.FINANCIAL_INSTITUTION]: {
@@ -35,7 +61,8 @@ export const APPS_CONFIG = {
       name: 'Gestion de Portefeuille',
       description: 'Gérez les portefeuilles de vos clients PME',
       icon: 'BarChart',
-      path: '/portfolio/institution',
+      domain: APP_DOMAINS[USER_TYPES.FINANCIAL_INSTITUTION].portfolio,
+      requiredRole: 'user',
     },
-  },
+  } as Record<AppId, AppConfig>,
 };

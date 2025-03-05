@@ -6,12 +6,7 @@ import { Login } from '../pages/auth/Login';
 import { Register } from '../pages/auth/Register';
 import { AuthCallback } from '../pages/auth/AuthCallback';
 import { Dashboard } from '../pages/Dashboard';
-import { ProtectedRoute } from '../components/auth/ProtectedRoute';
 import { UnderDevelopment } from '../components/ui/UnderDevelopment';
-import { AdminApp } from '../pages/apps/admin/AdminApp';
-import { AccountingApp } from '../pages/apps/accounting/AccountingApp';
-import { PortfolioApp } from '../pages/apps/portfolio/PortfolioApp';
-import { FinancialApp } from '../pages/apps/financial/FinancialApp';
 
 export function AppRoutes() {
   return (
@@ -27,38 +22,10 @@ export function AppRoutes() {
         <Route path="callback" element={<AuthCallback />} />
       </Route>
 
-      {/* Routes protégées */}
-      <Route path="/dashboard" element={
-        <ProtectedRoute>
-          <Dashboard />
-        </ProtectedRoute>
-      } />
+      {/* Dashboard principal */}
+      <Route path="/dashboard" element={<Dashboard />} />
 
-      {/* Routes des applications */}
-      <Route path="/apps">
-        <Route path="admin" element={
-          <ProtectedRoute>
-            <AdminApp />
-          </ProtectedRoute>
-        } />
-        <Route path="accounting" element={
-          <ProtectedRoute>
-            <AccountingApp />
-          </ProtectedRoute>
-        } />
-        <Route path="portfolio" element={
-          <ProtectedRoute>
-            <PortfolioApp />
-          </ProtectedRoute>
-        } />
-        <Route path="financial" element={
-          <ProtectedRoute requiredUserType="financial_institution">
-            <FinancialApp />
-          </ProtectedRoute>
-        } />
-      </Route>
-
-      {/* Pages en développement */}
+      {/* Pages statiques et utilitaires */}
       <Route path="/about" element={
         <UnderDevelopment 
           pageName="À propos"

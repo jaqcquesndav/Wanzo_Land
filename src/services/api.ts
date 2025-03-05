@@ -1,5 +1,8 @@
 import { AUTH0_CONFIG, API_ENDPOINTS } from '../config/auth';
 
+// Define the AppName type
+type AppName = 'app1' | 'app2' | 'app3'; // Replace with your actual app names
+
 class ApiService {
   private baseUrl: string;
   private audience: string;
@@ -201,18 +204,18 @@ class ApiService {
   /**
    * Récupère des données d'application en fonction de l'appName
    */
-  async getAppData(appName: string, token?: string) {
-    const endpoint = API_ENDPOINTS.apps[appName as keyof typeof API_ENDPOINTS.apps];
+  async getAppData(appName: AppName, token?: string) {
+    const endpoint = API_ENDPOINTS.apps[appName];
     if (!endpoint) {
       console.error('Application non trouvée:', appName);
       throw new Error('Application non trouvée');
     }
-
+  
     const validToken = token || (await this.getValidToken());
     if (!validToken) {
       throw new Error("Token d'authentification manquant ou invalide");
     }
-
+  
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
       headers: await this.getHeaders(validToken),
       credentials: 'include',
@@ -221,7 +224,7 @@ class ApiService {
     console.log(`Données pour l'application ${appName} récupérées avec succès:`, data);
     return data;
   }
-
+  
   /**
    * Échange le code d'autorisation contre des tokens
    * (Maintenant, on appelle le vrai endpoint backend /auth/exchange)
