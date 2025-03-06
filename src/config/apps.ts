@@ -19,7 +19,7 @@ interface AppConfig {
 // Configuration des sous-domaines pour chaque application
 export const APP_DOMAINS = {
   [USER_TYPES.SME]: {
-    admin: 'https://admin.kiota.com',
+    admin: 'http://localhost:4173/',
     accounting: 'https://accounting.kiota.com',
     portfolio: 'https://portfolio.kiota.com',
   },

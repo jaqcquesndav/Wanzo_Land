@@ -1,8 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { User } from '../../types/auth';
 import { useOnceEffect } from '../../hooks/useOnceEffect';
-import { APPS_CONFIG, APP_DOMAINS, USER_TYPES, UserType } from '../../config/apps';
+import { APPS_CONFIG, UserType } from '../../config/apps';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
