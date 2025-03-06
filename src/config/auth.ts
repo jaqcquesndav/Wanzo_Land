@@ -22,7 +22,7 @@ interface ApiEndpoints {
 
 const APP_DOMAINS = {
   sme: {
-    admin: 'https://admin.kiota.com',
+    admin: 'http://localhost:4173',
     accounting: 'https://accounting.kiota.com',
     portfolio: 'https://portfolio.kiota.com',
   },
