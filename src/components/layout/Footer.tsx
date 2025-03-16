@@ -6,9 +6,9 @@ import { Button } from '../ui/Button';
 
 const navigation = {
   solutions: [
-    { name: 'ERP', href: '/under-development' },
-    { name: 'Solutions de Financement', href: '/under-development' },
-    { name: 'Boutique Leasing', href: '/under-development' },
+    { name: 'ERP', href: 'auth/apps/sme' },
+    { name: 'Gestion de portefeuille IF', href: '/auth/apps/financial_institution' },
+    { name: 'Leasing Store', href: '/leasing-store' },
     { name: 'Tarification', href: '/under-development' },
   ],
   support: [
@@ -31,7 +31,7 @@ const navigation = {
   social: [
     { name: 'Facebook', href: '#', icon: Facebook },
     { name: 'Twitter', href: '#', icon: Twitter },
-    { name: 'LinkedIn', href: '#', icon: Linkedin },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/i-kiotahub/', icon: Linkedin },
     { name: 'Instagram', href: '#', icon: Instagram },
   ],
 };

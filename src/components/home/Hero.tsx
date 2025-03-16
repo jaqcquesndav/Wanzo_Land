@@ -23,7 +23,7 @@ export function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setTitleIndex((current) => (current + 1) % titles.length);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
@@ -52,7 +52,7 @@ export function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.7 }}
                   className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mb-6"
                 >
                   {titles[titleIndex]}
@@ -60,8 +60,8 @@ export function Hero() {
               </AnimatePresence>
             </div>
             <p className="mt-8 text-lg leading-8 text-gray-600">
-              Découvrez notre suite d'applications intégrées avec Adha, notre assistant IA, 
-              qui révolutionne la gestion et le financement des PME africaines.
+            Kiota Suit c'est aussi Adha, un assistant intelligent pensé pour faciliter 
+            la gestion et assurer l'inclusion financière des PMEs en Afrique. 
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
               <button

@@ -25,7 +25,7 @@ export function LeasingStoreShortcut() {
           </p>
           
           <Link
-            to="/under-development"
+            to="/leasing-store"
             className={cn(
               "flex items-center justify-center gap-2 w-full",
               "bg-primary text-white rounded-lg px-4 py-2",
