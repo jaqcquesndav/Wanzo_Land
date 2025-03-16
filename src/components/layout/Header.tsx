@@ -7,6 +7,7 @@ import { MobileNavigation } from './MobileNavigation';
 
 const navigation = [
   { name: 'À propos', href: '/about' },
+  { name: 'Equipe', href: '/team' },
   { name: 'Leasing Store', href: '/leasing-store' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Contact', href: '/contact' },
