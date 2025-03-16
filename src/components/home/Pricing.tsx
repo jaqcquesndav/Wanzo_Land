@@ -20,7 +20,7 @@ const plans = [
   {
     name: 'PME',
     description: 'Suite complète de gestion assistée par IA',
-    price: '15',
+    price: '19,9',
     features: [
       'Application de comptabilité avancée',
       'Gestion de portefeuille PME',
@@ -36,7 +36,7 @@ const plans = [
   {
     name: 'Institution Financière',
     description: 'Gestion optimale des risques et portefeuilles',
-    price: '100',
+    price: '99,9',
     features: [
       'Accès à toutes les PME du réseau',
       'Analyse de risque avancée',

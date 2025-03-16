@@ -5,7 +5,6 @@ import { AppSelection } from '../pages/auth/AppSelection';
 import { Login } from '../pages/auth/Login';
 import { Register } from '../pages/auth/Register';
 import { AuthCallback } from '../pages/auth/AuthCallback';
-import { Dashboard } from '../pages/Dashboard';
 import { UnderDevelopment } from '../components/ui/UnderDevelopment';
 
 export function AppRoutes() {
@@ -21,9 +20,6 @@ export function AppRoutes() {
         <Route path="register" element={<Register />} />
         <Route path="callback" element={<AuthCallback />} />
       </Route>
-
-      {/* Dashboard principal */}
-      <Route path="/dashboard" element={<Dashboard />} />
 
       {/* Pages statiques et utilitaires */}
       <Route path="/about" element={
@@ -68,12 +64,7 @@ export function AppRoutes() {
           description="Notre centre de ressources est en cours de développement."
         />
       } />
-      <Route path="/leasing-store" element={
-        <UnderDevelopment 
-          pageName="Boutique Leasing"
-          description="Notre boutique de leasing est en cours de développement."
-        />
-      } />
+
       <Route path="/unauthorized" element={
         <UnderDevelopment 
           pageName="Accès non autorisé"
