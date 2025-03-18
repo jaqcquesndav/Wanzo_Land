@@ -20,7 +20,7 @@ interface AppConfig {
 export const APP_DOMAINS = {
   [USER_TYPES.SME]: {
     admin: 'http://localhost:4173/',
-    accounting: 'https://accounting.kiota.com',
+    accounting: 'http://localhost:3030/',
     portfolio: 'https://portfolio.kiota.com',
   },
   [USER_TYPES.FINANCIAL_INSTITUTION]: {
