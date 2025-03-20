@@ -83,7 +83,7 @@ export function Hero() {
 
           <div className="relative lg:block hidden">
             <img
-              src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              src="https://res.cloudinary.com/daxvxdecv/image/upload/v1742468995/PMEgestionCover_cyk0yt.png"
               alt="Gestion PME"
               className="rounded-2xl shadow-2xl"
             />
