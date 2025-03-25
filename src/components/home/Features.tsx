@@ -6,7 +6,7 @@ import { Button } from '../ui/Button';
 const steps = [
   {
     title: "Transition Numérique",
-    description: "Participez à nos formations ou celles de nos partenaires, adoptez nos outils de gestion (ERP) pour lancer votre aventure",
+    description: "Adoptez nos outils de gestion (ERP) pour lancer votre aventure",
     duration: "0-6 mois",
     icon: Database,
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742912461/kiota_suit/yqkqyac7iu3tr68spznx.jpg",
