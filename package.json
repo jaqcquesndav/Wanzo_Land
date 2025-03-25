@@ -25,6 +25,7 @@
     "rehype-prism-plus": "^2.0.0",
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
+    "swiper": "^11.0.7",
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {

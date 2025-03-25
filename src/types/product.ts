@@ -9,7 +9,7 @@ export interface Product {
   subcategory: string;
   condition: string;
   brand?: string;
-  specifications?: Record<string, string | number>;
+  specifications: Record<string, string | number | undefined>;
   availableFinancing?: string[];
   availableDurations?: string[];
   stock?: number;

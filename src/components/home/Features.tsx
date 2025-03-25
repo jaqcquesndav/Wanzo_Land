@@ -1,96 +1,153 @@
 import { motion } from 'framer-motion';
 import { Container } from '../ui/Container';
-import { Calculator, LineChart, Brain, Shield } from 'lucide-react';
+import { ArrowRight, BarChart, Brain, Database, LineChart } from 'lucide-react';
+import { Button } from '../ui/Button';
 
-const features = [
+const steps = [
   {
-    name: 'Gestion Intelligente',
-    description: 'Comptabilité et audit automatisés avec Adha, conformes aux normes SYSCOHADA et IFRS.',
-    icon: Calculator,
-    color: 'bg-primary',
+    title: "Transition Numérique",
+    description: "Adoptez nos outils ERP pour digitaliser vos opérations",
+    duration: "0-6 mois",
+    icon: Database,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
+    features: [
+      "Gestion comptable automatisée",
+      "Suivi des opérations en temps réel",
+      "Digitalisation des processus",
+      "Accompagnement personnalisé"
+    ]
   },
   {
-    name: 'Accès au Financement',
-    description: 'Connectez-vous directement aux institutions financières et accédez à des financements adaptés.',
-    icon: LineChart,
-    color: 'bg-warning',
-  },
-  {
-    name: 'Adha - IA Avancée',
-    description: 'Assistant IA pour l\'analyse prédictive, la détection des fraudes et l\'automatisation.',
+    title: "Collecte et Analyse",
+    description: "Nous analysons vos données pour établir votre profil financier",
+    duration: "6 mois",
     icon: Brain,
-    color: 'bg-warning',
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
+    features: [
+      "Analyse des performances",
+      "Scoring automatique",
+      "Évaluation des risques",
+      "Rapports détaillés"
+    ]
   },
   {
-    name: 'Conformité Totale',
-    description: 'Respect des normes SYSCOHADA, IFRS, Bâle III et de la réglementation RDC.',
-    icon: Shield,
-    color: 'bg-primary',
-  },
-];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+    title: "Mise en Relation",
+    description: "Accédez à notre réseau d'institutions financières partenaires",
+    duration: "6+ mois",
+    icon: LineChart,
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
+    features: [
+      "Visibilité auprès des investisseurs",
+      "Propositions de financement",
+      "Instruments financiers diversifiés: Crédits, Leasing, Capital Investissement, etc.",
+      "Négociation facilitée",
+      "Accompagnement dédié"
+    ]
   }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
+];
 
 export function Features() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="relative overflow-hidden bg-white py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-primary">
-            Solutions Complètes
+            Notre Approche
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Tout ce dont vous avez besoin pour réussir
+            Votre Parcours vers le Financement
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Une suite d'outils intégrés conçue pour les PME modernes
+            Un processus innovant basé sur les données pour faciliter l'accès au financement des PMEs
           </p>
         </div>
 
-        <motion.div 
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none"
-        >
-          <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.name}
-                variants={item}
-                className="relative"
-              >
-                <div className="relative rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-                  <div className={`absolute -top-4 -right-4 w-20 h-20 ${feature.color} rounded-full opacity-10 blur-2xl transition-all duration-200 group-hover:opacity-20`} />
-                  
-                  <div className="inline-flex items-center justify-center rounded-xl bg-primary p-2">
-                    <feature.icon className="h-6 w-6 text-white" />
+        <div className="mt-16 space-y-20">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="relative"
+            >
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+              }`}>
+                <div className="relative">
+                  <div className="aspect-[16/9] overflow-hidden rounded-2xl bg-gray-100">
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-transparent" />
                   </div>
-
-                  <h3 className="mt-4 text-xl font-semibold text-gray-900">
-                    {feature.name}
-                  </h3>
-                  <p className="mt-2 text-gray-600">
-                    {feature.description}
-                  </p>
+                  <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
+                    <p className="text-sm font-medium text-primary">
+                      Durée : {step.duration}
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                <div className="relative">
+                  {index < steps.length - 1 && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 }}
+                      className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 hidden lg:block"
+                    >
+                      <ArrowRight className="h-12 w-12 text-primary/20 rotate-90" />
+                    </motion.div>
+                  )}
+
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
+                        <step.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        {step.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-lg text-gray-600">{step.description}</p>
+
+                    <ul className="space-y-3">
+                      {step.features.map((feature) => (
+                        <motion.li
+                          key={feature}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.5 }}
+                          className="flex items-center gap-3 text-gray-600"
+                        >
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          {feature}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <Button size="lg" className="inline-flex items-center gap-2">
+            Commencer votre transition numérique
+            <ArrowRight className="h-5 w-5" />
+          </Button>
         </motion.div>
       </Container>
     </div>
