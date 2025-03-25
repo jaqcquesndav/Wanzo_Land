@@ -30,60 +30,55 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: '1',
-    name: 'Sarah Chen',
-    role: 'CEO & Co-fondatrice',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    bio: "Experte en fintech avec plus de 15 ans d'expérience dans le secteur bancaire et les startups technologiques. Passionnée par l'inclusion financière en Afrique.",
-    linkedin: 'https://linkedin.com/in/sarah-chen',
-    email: 'sarah.chen@kiota.com',
+    name: 'Jacques NDAVARO',
+    role: 'Directeur Exécutif',
+    image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1742917639/kiota_suit/Team/rmmyjayldublm9vxsta2.jpg',
+    bio: "Experte dans l'accompagnement technique des PME en RDC. Passionnée par la revolution industrielle et l'inclusion financière en Afrique.",
+    linkedin: 'https://www.linkedin.com/in/jacques-ndavaro-b02b25111',
+    email: 'jacquesndav@ikiotahub.com',
     experience: [
       {
-        company: 'Goldman Sachs',
-        role: 'Vice President, Digital Banking',
-        period: '2015-2020',
-        description: 'Direction de la transformation numérique des services bancaires aux entreprises.'
+        company: 'i-KiotaHub',
+        role: 'Directeur Exécutif, Business Architecte',
+        period: '2023-présent',
+        description: 'Analyse des besoins des PMEs, montage des projets Industriels et développement de solutions fintech innovantes.'
       },
       {
-        company: 'McKinsey & Company',
-        role: 'Senior Consultant',
-        period: '2010-2015',
-        description: 'Conseil en stratégie pour les institutions financières en Afrique.'
+        company: 'CRES',
+        role: 'Coordinateur',
+        period: '2018-présent',
+        description: 'Coordination des activités de recherche et développement, mise en place des programmes de renforcement des capacités dans le numérique, procédés de production, etc'
       }
     ],
     education: [
       {
-        school: 'Harvard Business School',
-        degree: 'MBA',
-        year: '2010'
+        school: 'Université Libre des Pays des Grands Lacs',
+        degree: 'Ingénieur Civil en Electro-énergétique',
+        year: '2022'
       },
-      {
-        school: 'MIT',
-        degree: 'BSc Computer Science',
-        year: '2005'
-      }
     ],
-    skills: ['Leadership', 'Fintech', 'Stratégie', 'Innovation', 'Finance inclusive']
+    skills: ['Leadership', 'Industrie', 'Stratégie', 'Innovation', 'Transition numérique']
   },
   {
     id: '2',
-    name: 'Jean-Paul Mugisha',
-    role: 'CTO',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    bio: "Expert en intelligence artificielle et en développement de solutions cloud. Plus de 10 ans d'expérience dans la création de plateformes fintech innovantes.",
+    name: 'NEKA MBASA PhD',
+    role: 'Directeur des Investissements',
+    image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1742917639/kiota_suit/Team/rmmyjayldublm9vxsta2.jpg',
+    bio: "Professeur d'Université et expert en finance avec une expérience de plus de 15 ans dans le secteur bancaire et les institutions financières internationales.",
     linkedin: 'https://linkedin.com/in/jp-mugisha',
-    email: 'jp.mugisha@kiota.com',
+    email: 'Neka.Mbasa@ikiotahub.com',
     experience: [
       {
-        company: 'Microsoft',
-        role: 'Senior Software Engineer',
-        period: '2018-2022',
-        description: 'Développement de solutions cloud pour le secteur financier.'
+        company: 'i-Kiotahub',
+        role: 'Directeur des Investissements',
+        period: '2023-présent',
+        description: 'Développement des partenariats financiers, structuration des offres de financement et gestion des portefeuilles d\'investissement.'
       },
       {
-        company: 'Andela',
-        role: 'Technical Team Lead',
-        period: '2014-2018',
-        description: 'Formation et direction d\'équipes de développeurs en Afrique.'
+        company: 'Université Libre des Pays des Grands Lacs',
+        role: 'Vice Doyen de la Recherche en Faculté des Sciences économiques et de Gestion',
+        period: '2014-présent',
+        description: 'Enseignement des cours de Finances des Entreprises, comptabilité, etc'
       }
     ],
     education: [
@@ -102,11 +97,47 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: '3',
-    name: 'Aminata Diallo',
+    name: 'Victoire KASEREKA',
     role: 'Directrice des Opérations',
-    image: 'https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1742927082/kiota_suit/Team/wwvbbq1u6hkpynurkbv6.jpg',
     bio: "Spécialiste des opérations avec une expertise particulière dans le développement de partenariats stratégiques en Afrique. Passionnée par l'impact social.",
-    linkedin: 'https://linkedin.com/in/aminata-diallo',
+    linkedin: 'https://www.linkedin.com/in/victoire-kasereka-33603b20b/',
+    email: 'aminata.diallo@kiota.com',
+    experience: [
+      {
+        company: 'Orange Money',
+        role: 'Directrice Régionale',
+        period: '2016-2022',
+        description: 'Supervision des opérations de mobile money en Afrique de l\'Ouest.'
+      },
+      {
+        company: 'African Development Bank',
+        role: 'Project Manager',
+        period: '2012-2016',
+        description: 'Gestion de projets d\'inclusion financière.'
+      }
+    ],
+    education: [
+      {
+        school: 'HEC Paris',
+        degree: 'Master en Management',
+        year: '2012'
+      },
+      {
+        school: 'ESP Dakar',
+        degree: 'Licence en Gestion',
+        year: '2010'
+      }
+    ],
+    skills: ['Gestion des opérations', 'Développement commercial', 'Partenariats', 'Mobile Money']
+  },
+  {
+    id: '3',
+    name: 'Anthony WANNY',
+    role: 'Directrice de la Communication',
+    image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1742916817/kiota_suit/Team/k3iq7ynuuxebkcl92o6t.jpg',
+    bio: "Spécialiste des opérations avec une expertise particulière dans le développement de partenariats stratégiques en Afrique. Passionnée par l'impact social.",
+    linkedin: 'https://www.linkedin.com/in/victoire-kasereka-33603b20b/',
     email: 'aminata.diallo@kiota.com',
     experience: [
       {
@@ -151,7 +182,7 @@ export function Team() {
               Notre équipe
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Une équipe passionnée combinant expertise technologique et connaissance approfondie du secteur financier africain.
+              Une équipe passionnée combinant expertise technologique et connaissance approfondie du Marché local.
             </p>
           </div>
 

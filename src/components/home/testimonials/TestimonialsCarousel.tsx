@@ -12,7 +12,7 @@ interface TestimonialsCarouselProps {
 
 export function TestimonialsCarousel({ 
   testimonials,
-  autoPlayInterval = 5000
+  autoPlayInterval = 20000
 }: TestimonialsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -51,7 +51,7 @@ export function TestimonialsCarousel({
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 2 }}
                   className="w-full md:w-1/2 flex-shrink-0"
                 >
                   <TestimonialCard testimonial={testimonials[index]} />

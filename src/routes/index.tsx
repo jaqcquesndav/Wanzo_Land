@@ -27,16 +27,6 @@ export function AppRoutes() {
         <Route path="register" element={<Register />} />
         <Route path="callback" element={<AuthCallback />} />
       </Route>
-      {/* Pages statiques et utilitaires */}
-      <Route
-        path="/about"
-        element={
-          <UnderDevelopment
-            pageName="À propos"
-            description="La page de présentation de notre entreprise est en cours de développement."
-          />
-        }
-      />
       <Route
         path="/products/*"
         element={

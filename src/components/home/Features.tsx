@@ -6,39 +6,45 @@ import { Button } from '../ui/Button';
 const steps = [
   {
     title: "Transition Numérique",
-    description: "Adoptez nos outils ERP pour digitaliser vos opérations",
+    description: "Participez à nos formations ou celles de nos partenaires, adoptez nos outils de gestion (ERP) pour lancer votre aventure",
     duration: "0-6 mois",
     icon: Database,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742912461/kiota_suit/yqkqyac7iu3tr68spznx.jpg",
     features: [
-      "Gestion comptable automatisée",
-      "Suivi des opérations en temps réel",
-      "Digitalisation des processus",
+      "Demarrez votre parcour dès la formalisation de votre entreprise",
+      "Gestion comptable assistée par l'Intelligence Artificielle",
+      "Audits & Importation des anciens exercices comptables",
+      "Digitalisation des processus de vente, production, etc.",
       "Accompagnement personnalisé"
     ]
   },
   {
     title: "Collecte et Analyse",
-    description: "Nous analysons vos données pour établir votre profil financier",
+    description: "Nos experts analysent vos données, principalement les données des transactions, pour établir votre profil financier",
     duration: "6 mois",
     icon: Brain,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
     features: [
       "Analyse des performances",
-      "Scoring automatique",
-      "Évaluation des risques",
-      "Rapports détaillés"
+      "Scoring crédit automatique basé sur les transactions et non les états financiers",
+      "Vous n'avez pas besoin d'être rentable pour bénéficier de nos services",
+      "Évaluation des risques et opportunités",
+      "Montage des projets basés sur les réalités de votre PME",
+      "Recommandations personnalisées",
+      "Rapports détaillés assisté par l'Intelligence Artificielle"
     ]
   },
   {
     title: "Mise en Relation",
-    description: "Accédez à notre réseau d'institutions financières partenaires",
+    description: "Bénéficiez des opportunité de financement illimitées. Accédez à notre réseau d'institutions financières partenaires",
     duration: "6+ mois",
     icon: LineChart,
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742930300/kiota_suit/wiyivnk9wgf6zvniyo0t.jpg",
     features: [
-      "Visibilité auprès des investisseurs",
-      "Propositions de financement",
+      "Resautage et Parainage des PME éligibles",
+      "Visibilité auprès des investisseurs et Institutions financières",
+      "Propositions de financement via l'outil de gestion de portefeuille PME",
+      "Accès à des offres de financement compétitives",
       "Instruments financiers diversifiés: Crédits, Leasing, Capital Investissement, etc.",
       "Négociation facilitée",
       "Accompagnement dédié"
@@ -55,10 +61,12 @@ export function Features() {
             Notre Approche
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Votre Parcours vers le Financement
+            Votre Parcours vers la croissance
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Un processus innovant basé sur les données pour faciliter l'accès au financement des PMEs
+          Pour nous, il ne peut y avoir d’inclusion financière sans transition numérique. Les PME qui souhaitent bénéficier 
+          d’un appui financier migrent vers nos outils digitaux (Kiota Suit). Après six mois d’utilisation active, l’entrepreneur peut 
+          accéder à des offres de leasing (location d'équipements), de crédit, de subvention ou de capital-investissement.
           </p>
         </div>
 
