@@ -14,7 +14,7 @@ const journey = [
   {
     year: '2023',
     title: 'La Genèse',
-    description: "La naissance de Kiota Suit est bien plus qu’un projet technologique. C’est l’aboutissement d’années d’engagement aux côtés des jeunes entrepreneurs en RDC. Nos fondateurs, eux-mêmes issus de l’écosystème entrepreneurial local, ont passé des années à accompagner, écouter, former et analyser.Sur le terrain, à Goma comme ailleurs, nous sommes confrontés à une réalité implacable : moins de 10 % des PMEs congolaises ont accès aux intruments financements formels (Crédit banquaire avec ou sans garantie, leasing, capital investisement,etc. ); plus de 85% sont des éternelles micro-entreprises informelles. Derrière ce chiffre se cachent des histoires, des efforts invisibles, des ambitions freinées.",
+    description: "La naissance de Kiota Suit est bien plus qu’un projet technologique. C’est l’aboutissement d’années d’engagement aux côtés des jeunes entrepreneurs en RDC. Nos fondateurs, eux-mêmes issus de l’écosystème entrepreneurial local, ont passé des années à accompagner, écouter, former et analyser.Sur le terrain, à Goma comme ailleurs, nous sommes confrontés à une réalité implacable : moins de 10 % des PMEs congolaises ont accès aux instruments de financement formel — qu’il s’agisse de crédit bancaire avec ou sans garantie, de leasing ou de capital-investissement. Pire encore, plus de 85 % demeurent enfermées dans un statut d’éternelles micro-entreprises informelles, sans accès aux outils, aux ressources ni aux perspectives de croissance.",
     image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1743090232/kiota_suit/uejl8wcke1cctgelkwgn.jpg'
   },
   {
