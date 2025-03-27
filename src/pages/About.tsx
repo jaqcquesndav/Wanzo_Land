@@ -15,7 +15,7 @@ const journey = [
     year: '2023',
     title: 'La Genèse',
     description: "La naissance d'i-kiotahub repose autant sur l'expérience de ses fondateurs, eux-mêmes engagés depuis plusieurs années dans l'entrepreneuriat en RDC, que sur une observation attentive du terrain. Face au constat alarmant que moins de 10 % des PME congolaises ont accès au financement bancaire, nous avons ressenti le besoin d'aller plus loin, de comprendre en profondeur les causes de cette exclusion financière",
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80'
+    image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1743090232/kiota_suit/uejl8wcke1cctgelkwgn.jpg'
   },
   {
     year: '2024',

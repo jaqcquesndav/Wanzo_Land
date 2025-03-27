@@ -60,7 +60,7 @@ export function Hero() {
               </AnimatePresence>
             </div>
             <p className="mt-8 text-lg leading-8 text-gray-600">
-            Notre ambition est simple : stimuler l’inclusion financière des PMEs des marchés de frontière, en assurant leur transition numérique.
+            Notre ambition est simple : Accélérer l’inclusion financière des PMEs Africaines, en assurant leur transition numérique.
             Kiota Suit, c’est l’intelligence collective du terrain en RDC, augmentée par la technologie. 
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
