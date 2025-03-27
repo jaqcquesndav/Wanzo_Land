@@ -11,7 +11,7 @@ interface AppSectionProps {
 export function AppSection({ group, price, billingPeriod }: AppSectionProps) {
   return (
     <div className="py-16 first:pt-0 last:pb-0">
-      <div className="border-l-4 border-indigo-600 pl-4">
+      <div className="border-l-4 border-primary pl-4">
         <h2 className="text-lg font-semibold text-gray-900">{group.name}</h2>
         <p className="mt-1 text-sm text-gray-500">{group.description}</p>
         <p className="mt-4">

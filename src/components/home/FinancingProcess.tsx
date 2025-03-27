@@ -47,7 +47,7 @@ export function FinancingProcess() {
     <div className="bg-white py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">
+          <h2 className="text-base font-semibold leading-7 text-primary">
             Processus de Financement
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -70,7 +70,7 @@ export function FinancingProcess() {
                 className="relative"
               >
                 <div className="flex items-start gap-8">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-600">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
                     <step.icon className="h-6 w-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -97,7 +97,7 @@ export function FinancingProcess() {
                         <ul className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
                           {step.metrics.map((metric) => (
                             <li key={metric} className="flex items-center text-sm text-gray-600">
-                              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-indigo-600" />
+                              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-primary" />
                               {metric}
                             </li>
                           ))}
@@ -111,7 +111,7 @@ export function FinancingProcess() {
                         <ul className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
                           {step.options.map((option) => (
                             <li key={option} className="flex items-center text-sm text-gray-600">
-                              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-indigo-600" />
+                              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-primary" />
                               {option}
                             </li>
                           ))}

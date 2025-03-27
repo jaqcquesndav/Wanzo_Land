@@ -74,7 +74,7 @@ export function LeasingSection() {
         <div className="mt-12 text-center">
           <Link
             to="/products/financing"
-            className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 rounded-full hover:bg-indigo-500 transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary rounded-full hover:bg-indigo-500 transition-colors"
           >
             Découvrir nos solutions de financement
           </Link>

@@ -26,7 +26,7 @@ export function AppCard({ app, price, isIncluded }: AppCardProps) {
             À partir de {price}
           </p>
         ) : isIncluded && (
-          <p className="mt-4 text-sm font-medium text-indigo-600">
+          <p className="mt-4 text-sm font-medium text-primary">
             Inclus dans le forfait
           </p>
         )}
@@ -56,7 +56,7 @@ export function AppCard({ app, price, isIncluded }: AppCardProps) {
 
       <Link
         to={`/products/${app.id}`}
-        className="mt-8 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500"
+        className="mt-8 inline-flex items-center text-sm font-medium text-primary hover:text-indigo-500"
       >
         En savoir plus
         <ArrowRight className="ml-2 h-4 w-4" />

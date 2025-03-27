@@ -61,7 +61,7 @@ export function ProductCard({
             <p className="text-sm font-medium text-gray-900">
               Prix: ${price.toLocaleString('en-US')}
             </p>
-            <p className="text-sm text-indigo-600">
+            <p className="text-sm text-primary-600">
               ou ${monthlyPayment.toLocaleString('en-US')}/mois en leasing
             </p>
           </div>

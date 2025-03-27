@@ -16,7 +16,7 @@ export function ConditionFilter({ selectedConditions, onChange }: ConditionFilte
             type="checkbox"
             checked={selectedConditions.includes(condition.id)}
             onChange={() => onChange(condition.id)}
-            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-indigo-500"
           />
           <label
             htmlFor={`condition-${condition.id}`}

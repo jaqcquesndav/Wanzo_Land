@@ -14,19 +14,19 @@ export function AppAvailability({ platforms }: AppAvailabilityProps) {
       <div className="mt-4 flex items-center gap-6">
         {platforms.web && (
           <div className="flex items-center gap-2">
-            <Globe className="h-5 w-5 text-indigo-600" />
+            <Globe className="h-5 w-5 text-primary" />
             <span className="text-sm text-gray-600">Web</span>
           </div>
         )}
         {platforms.desktop && (
           <div className="flex items-center gap-2">
-            <Monitor className="h-5 w-5 text-indigo-600" />
+            <Monitor className="h-5 w-5 text-primary" />
             <span className="text-sm text-gray-600">Desktop</span>
           </div>
         )}
         {platforms.mobile && (
           <div className="flex items-center gap-2">
-            <Smartphone className="h-5 w-5 text-indigo-600" />
+            <Smartphone className="h-5 w-5 text-primary" />
             <span className="text-sm text-gray-600">Mobile</span>
           </div>
         )}

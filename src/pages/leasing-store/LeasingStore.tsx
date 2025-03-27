@@ -9,7 +9,7 @@ import { ActiveFilters } from './components/ActiveFilters';
 import { useProducts } from './hooks/useProducts';
 import { useFilters } from './hooks/useFilters';
 import { useSearch } from './hooks/useSearch';
-import { Filter, Plus } from 'lucide-react';
+import { Filter, Plus, AlertCircle } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Pagination } from './components/Pagination';
 
@@ -17,6 +17,11 @@ export function LeasingStore() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const [showDetails, setShowDetails] = useState(false);
+
+  const toggleDetails = () => {
+    setShowDetails((prev) => !prev);
+  };
 
   const { products, isLoading } = useProducts();
   const { searchQuery, setSearchQuery, searchResults } = useSearch(products);
@@ -32,20 +37,48 @@ export function LeasingStore() {
   return (
     <PageContainer>
       <div className="bg-white">
-        <Container className="py-16">
+        <Container className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-gray-900">
                 Boutique Leasing
               </h1>
-              <p className="mt-2 text-sm text-gray-500">
-                Trouvez l'équipement idéal pour votre entreprise
-              </p>
+              <div className="mt-6">
+                <button
+                  onClick={toggleDetails}
+                  className="flex items-center gap-2 text-primary hover:underline"
+                >
+                  <AlertCircle className="h-5 w-5" />
+                  <span>En savoir plus</span>
+                </button>
+                {showDetails && (
+                  <div className="mt-4 space-y-6 text-gray-600">
+                    <div className="flex flex-col sm:flex-row items-start gap-4">
+                      <AlertCircle className="h-6 w-6 text-yellow-500 flex-shrink-0" />
+                      <p className="text-justify leading-relaxed">
+                        <strong>Travaillez avec des professionnels :</strong> Choisissez vos équipements avec l'aide de professionnels qualifiés. Des prestataires locaux peuvent également concevoir vos équipements, évitant ainsi le recours à l'importation.
+                      </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-start gap-4">
+                      <AlertCircle className="h-6 w-6 text-yellow-500 flex-shrink-0" />
+                      <p className="text-justify leading-relaxed">
+                        <strong>Équipements présentés :</strong> Les équipements listés ici ne sont qu'un échantillon pour illustrer les types d'équipements pris en charge. Cette offre est rendue possible grâce à nos institutions financières partenaires, disposant des autorisations nécessaires pour fournir ce service particulier.
+                      </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-start gap-4">
+                      <AlertCircle className="h-6 w-6 text-yellow-500 flex-shrink-0" />
+                      <p className="text-justify leading-relaxed">
+                        <strong>Options d'achat :</strong> Ces équipements sont également disponibles pour achat, offrant une flexibilité adaptée à vos besoins professionnels.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
               <Link to="/leasing-store/custom-request">
-                <Button variant="secondary" className="flex items-center gap-2">
+                <Button variant="secondary" className="flex items-center gap-2 sm:static">
                   <Plus className="h-4 w-4" />
                   Demande personnalisée
                 </Button>

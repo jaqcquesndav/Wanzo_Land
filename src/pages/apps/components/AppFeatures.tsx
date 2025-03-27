@@ -12,7 +12,7 @@ export function AppFeatures({ app }: AppFeaturesProps) {
       <ul className="mt-6 space-y-4">
         {app.features.map((feature) => (
           <li key={feature.name} className="flex items-start">
-            <Check className="h-5 w-5 text-indigo-600 mt-0.5" />
+            <Check className="h-5 w-5 text-primary mt-0.5" />
             <span className="ml-3 text-gray-600">{feature.name}</span>
           </li>
         ))}

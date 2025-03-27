@@ -32,7 +32,7 @@ export function PricingComparison() {
                   {feature.tiers.map((included, idx) => (
                     <td key={idx} className="px-3 py-4 text-center">
                       {included ? (
-                        <Check className="mx-auto h-5 w-5 text-indigo-600" />
+                        <Check className="mx-auto h-5 w-5 text-primary" />
                       ) : (
                         <X className="mx-auto h-5 w-5 text-gray-400" />
                       )}

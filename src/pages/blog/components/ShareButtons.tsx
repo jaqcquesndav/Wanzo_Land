@@ -44,7 +44,7 @@ export function ShareButtons({ post, className }: ShareButtonsProps) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-full text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+            className="p-2 rounded-full text-gray-600 hover:text-primary hover:bg-indigo-50 transition-colors"
             title={`Partager sur ${link.name}`}
           >
             <link.icon className="h-5 w-5" />

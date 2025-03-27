@@ -34,12 +34,12 @@ export function SolutionCard({ name, description, icon: Icon, href, features, im
         <ul className="mt-4 space-y-2">
           {features.map((feature) => (
             <li key={feature} className="text-sm text-gray-500 flex items-center">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 mr-2" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
               {feature}
             </li>
           ))}
         </ul>
-        <div className="mt-4 flex items-center text-sm text-indigo-600 group-hover:text-indigo-500">
+        <div className="mt-4 flex items-center text-sm text-primary group-hover:text-indigo-500">
           En savoir plus
           <ArrowRight className="ml-1 h-4 w-4" />
         </div>

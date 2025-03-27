@@ -48,7 +48,7 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
             >
               <Dialog.Panel className="relative w-full max-w-sm bg-white p-6 shadow-xl">
                 <div className="flex items-center justify-between">
-                  <Link to="/" className="text-xl font-bold text-indigo-600" onClick={onClose}>
+                  <Link to="/" className="text-xl font-bold text-primary" onClick={onClose}>
                     Kiota Suit
                   </Link>
                   <button
@@ -77,7 +77,7 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
                                 />
                               </Disclosure.Button>
                               <Disclosure.Panel className="space-y-1 px-3">
-                                {item.children.map((child) => (
+                                {item.children?.map((child) => (
                                   <Link
                                     key={child.name}
                                     to={child.href}
@@ -110,7 +110,7 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
                   <div className="border-t border-gray-200 pt-4">
                     <button
                       onClick={handleStartClick}
-                      className="block w-full rounded-lg bg-indigo-600 px-3 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-500"
+                      className="block w-full rounded-lg bg-primary px-3 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-500"
                     >
                       Commencer
                     </button>

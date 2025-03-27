@@ -55,7 +55,7 @@ export function PricingPlans({ type, currency, billingPeriod }: PricingPlansProp
             <ul className="mt-8 space-y-3">
               {app.features.map((feature) => (
                 <li key={feature.name} className="flex items-start">
-                  <Check className="h-5 w-5 flex-shrink-0 text-indigo-600" />
+                  <Check className="h-5 w-5 flex-shrink-0 text-primary" />
                   <span className="ml-3 text-sm text-gray-700">
                     {feature.name}
                     {feature.limit && (

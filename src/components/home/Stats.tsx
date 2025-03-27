@@ -17,7 +17,7 @@ export function Stats() {
               <dt className="text-base leading-7 text-gray-600">{stat.name}</dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
                 <div className="flex items-center justify-center gap-x-2">
-                  <stat.icon className="h-8 w-8 text-indigo-600" />
+                  <stat.icon className="h-8 w-8 text-primary" />
                   <span>{stat.value}</span>
                 </div>
               </dd>

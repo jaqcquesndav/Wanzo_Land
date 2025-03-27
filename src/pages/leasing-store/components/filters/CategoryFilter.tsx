@@ -17,7 +17,7 @@ export function CategoryFilter({ selectedCategories, onChange }: CategoryFilterP
               type="checkbox"
               checked={selectedCategories.includes(key)}
               onChange={() => onChange(key)}
-              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-indigo-500"
             />
             <label
               htmlFor={`category-${key}`}
@@ -34,7 +34,7 @@ export function CategoryFilter({ selectedCategories, onChange }: CategoryFilterP
                   type="checkbox"
                   checked={selectedCategories.includes(sub.id)}
                   onChange={() => onChange(sub.id)}
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-indigo-500"
                 />
                 <label
                   htmlFor={`subcategory-${sub.id}`}

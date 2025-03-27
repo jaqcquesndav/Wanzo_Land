@@ -64,7 +64,7 @@ export function AppDashboard() {
               key={app.id}
               onClick={() => setSelectedApp(app.id)}
               className={`relative flex flex-col gap-4 rounded-2xl bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-200 text-left ${
-                selectedApp === app.id ? 'ring-2 ring-indigo-600' : ''
+                selectedApp === app.id ? 'ring-2 ring-primary' : ''
               }`}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.98 }}

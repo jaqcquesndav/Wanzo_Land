@@ -38,7 +38,7 @@ export function FAQ() {
             </h2>
             <p className="mt-6 text-base leading-7 text-gray-600">
               Vous ne trouvez pas la réponse que vous cherchez ?{' '}
-              <a href="/contact" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              <a href="/contact" className="font-semibold text-primary hover:text-indigo-500">
                 Contactez notre équipe
               </a>
             </p>

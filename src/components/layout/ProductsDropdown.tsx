@@ -49,7 +49,7 @@ export function ProductsDropdown({ item, isActive }: ProductsDropdownProps) {
         className={cn(
           "relative flex items-center gap-x-1 py-2 text-sm font-semibold transition-colors",
           isActive
-            ? "text-indigo-600 before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-indigo-600"
+            ? "text-primary before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-primary"
             : "text-gray-700 hover:text-gray-900"
         )}
         onClick={() => setIsOpen(!isOpen)}
@@ -73,7 +73,7 @@ export function ProductsDropdown({ item, isActive }: ProductsDropdownProps) {
                   onClick={() => setIsOpen(false)}
                 >
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-indigo-600">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-primary">
                       {child.name}
                     </p>
                     <p className="mt-1 text-sm text-gray-500">

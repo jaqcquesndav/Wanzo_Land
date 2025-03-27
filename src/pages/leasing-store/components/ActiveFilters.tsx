@@ -76,7 +76,7 @@ export function ActiveFilters({ filters, onRemoveFilter, onClearAll }: ActiveFil
           <button
             type="button"
             onClick={onClearAll}
-            className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+            className="text-sm font-medium text-primary hover:text-indigo-500"
           >
             Effacer tous les filtres
           </button>

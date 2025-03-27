@@ -27,7 +27,7 @@ export function Products() {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">
+          <h2 className="text-base font-semibold leading-7 text-primary">
             Nos Solutions
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -44,7 +44,7 @@ export function Products() {
             {products.map((product) => (
               <div key={product.name} className="flex flex-col">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <product.icon className="h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                  <product.icon className="h-5 w-5 flex-none text-primary" aria-hidden="true" />
                   {product.name}
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
@@ -52,7 +52,7 @@ export function Products() {
                   <p className="mt-6">
                     <Link
                       to={product.href}
-                      className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                      className="text-sm font-semibold leading-6 text-primary hover:text-indigo-500"
                     >
                       En savoir plus <ArrowRight className="inline-block h-4 w-4" />
                     </Link>

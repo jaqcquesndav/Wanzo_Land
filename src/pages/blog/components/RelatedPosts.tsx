@@ -38,7 +38,7 @@ export function RelatedPosts({ currentPostId }: RelatedPostsProps) {
                   {post.category}
                 </span>
               </div>
-              <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-indigo-600">
+              <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-primary">
                 {post.title}
               </h3>
               <p className="mt-2 text-sm leading-6 text-gray-600">

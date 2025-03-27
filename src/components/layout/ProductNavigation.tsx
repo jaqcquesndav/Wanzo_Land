@@ -51,8 +51,8 @@ export function ProductNavigation() {
               to={product.href}
               className="group flex flex-col items-center p-4 text-center rounded-lg hover:bg-white hover:shadow-md transition-all duration-200"
             >
-              <product.icon className="h-6 w-6 text-indigo-600 mb-2" />
-              <span className="text-sm font-medium text-gray-900 group-hover:text-indigo-600">
+              <product.icon className="h-6 w-6 text-primary mb-2" />
+              <span className="text-sm font-medium text-gray-900 group-hover:text-primary">
                 {product.name}
               </span>
             </Link>

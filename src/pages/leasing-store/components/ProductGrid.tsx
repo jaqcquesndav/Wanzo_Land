@@ -28,7 +28,7 @@ export function ProductGrid({ products }: ProductGridProps) {
                 <p className="text-sm font-medium text-gray-900">
                   Prix: ${product.price.toLocaleString('en-US')}
                 </p>
-                <p className="text-sm text-indigo-600">
+                <p className="text-sm text-primary">
                   ou ${product.monthlyPayment.toLocaleString('en-US')}/mois en leasing
                 </p>
               </div>

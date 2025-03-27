@@ -16,7 +16,7 @@ export function DurationFilter({ selectedDurations, onChange }: DurationFilterPr
             type="checkbox"
             checked={selectedDurations.includes(duration.id)}
             onChange={() => onChange(duration.id)}
-            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-indigo-500"
           />
           <label
             htmlFor={`duration-${duration.id}`}

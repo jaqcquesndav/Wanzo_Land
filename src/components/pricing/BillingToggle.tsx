@@ -22,7 +22,7 @@ export function BillingToggle({ period, onChange }: BillingToggleProps) {
         aria-checked={period === 'yearly'}
         onClick={() => onChange(period === 'monthly' ? 'yearly' : 'monthly')}
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-          period === 'yearly' ? 'bg-indigo-600' : 'bg-gray-200'
+          period === 'yearly' ? 'bg-primary' : 'bg-gray-200'
         }`}
       >
         <span

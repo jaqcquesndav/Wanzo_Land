@@ -50,7 +50,7 @@ export function SolutionsGrid() {
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 bg-gray-50">
       <div className="mx-auto max-w-2xl lg:text-center mb-16">
-        <h2 className="text-base font-semibold leading-7 text-indigo-600">Solutions</h2>
+        <h2 className="text-base font-semibold leading-7 text-primary">Solutions</h2>
         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Une suite complète d'outils pour votre entreprise
         </p>
