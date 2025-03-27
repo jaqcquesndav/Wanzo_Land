@@ -74,7 +74,14 @@ export function About() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-b from-indigo-50 py-16 sm:py-24">
+      <div
+        className="relative bg-gradient-to-b from-indigo-50 py-16 sm:py-24"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(238, 242, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://res.cloudinary.com/daxvxdecv/image/upload/v1742930300/kiota_suit/wiyivnk9wgf6zvniyo0t.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">

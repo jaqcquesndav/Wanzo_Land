@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { Container } from '../ui/Container';
-import { ArrowRight, BarChart, Brain, Database, LineChart } from 'lucide-react';
+import { ArrowRight,  Brain, Database, LineChart } from 'lucide-react';
 import { Button } from '../ui/Button';
+
+//BarChart,
 
 const steps = [
   {

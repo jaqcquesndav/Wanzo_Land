@@ -60,8 +60,8 @@ export function Hero() {
               </AnimatePresence>
             </div>
             <p className="mt-8 text-lg leading-8 text-gray-600">
-            Kiota Suit c'est aussi Adha, un assistant intelligent pensé pour faciliter 
-            la gestion et assurer l'inclusion financière des PMEs en Afrique. 
+            Notre ambition est simple : stimuler l’inclusion financière des PMEs des marchés de frontière, en assurant leur transition numérique.
+            Kiota Suit, c’est l’intelligence collective du terrain en RDC, augmentée par la technologie. 
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
               <button
