@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useCart } from '../../hooks/useCart';
 import { Button } from '../ui/Button';
 import { cn } from '../../utils/cn';
+import { Share2 } from 'lucide-react';
 
 interface ProductCardProps {
   id: string;
@@ -43,18 +44,42 @@ export function ProductCard({
     });
   };
 
+  const handleShare = () => {
+    const shareData = {
+      title: name,
+      text: `${name} - ${description}\nPrix: $${price.toLocaleString('en-US')} ou $${monthlyPayment.toLocaleString('en-US')}/mois en leasing`,
+      url: `${window.location.origin}/leasing-store/product/${id}`, // Ensure the link is included
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).catch((error) => console.error('Error sharing:', error));
+    } else {
+      alert('Le partage n’est pas pris en charge sur ce navigateur.');
+    }
+  };
+
   return (
     <div className={cn("group relative", className)}>
       <Link to={`/leasing-store/product/${id}`}>
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200">
+        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 relative">
           <img
             src={image}
             alt={name}
             className="h-full w-full object-cover object-center group-hover:opacity-75"
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-4 relative">
           <h3 className="text-sm text-gray-700">{name}</h3>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleShare();
+            }}
+            className="absolute top-0 right-0 p-2 bg-primary-600 rounded-full shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            aria-label="Partager"
+          >
+            <Share2 className="h-5 w-5 text-white" /> {/* Adjusted size for better fit */}
+          </button>
           <p className="mt-1 text-sm text-gray-500">{category}</p>
           <p className="text-xs text-gray-400">{condition}</p>
           <div className="mt-2">

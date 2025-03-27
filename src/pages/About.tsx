@@ -14,13 +14,13 @@ const journey = [
   {
     year: '2023',
     title: 'La Genèse',
-    description: "La naissance d'i-kiotahub repose autant sur l'expérience de ses fondateurs, eux-mêmes engagés depuis plusieurs années dans l'entrepreneuriat en RDC, que sur une observation attentive du terrain. Face au constat alarmant que moins de 10 % des PME congolaises ont accès au financement bancaire, nous avons ressenti le besoin d'aller plus loin, de comprendre en profondeur les causes de cette exclusion financière",
+    description: "La naissance de Kiota Suit est bien plus qu’un projet technologique. C’est l’aboutissement d’années d’engagement aux côtés des jeunes entrepreneurs en RDC. Nos fondateurs, eux-mêmes issus de l’écosystème entrepreneurial local, ont passé des années à accompagner, écouter, former et analyser.Sur le terrain, à Goma comme ailleurs, nous sommes confrontés à une réalité implacable : moins de 10 % des PMEs congolaises ont accès aux intruments financements formels (Crédit banquaire avec ou sans garantie, leasing, capital investisement,etc. ); plus de 85% sont des éternelles micro-entreprises informelles. Derrière ce chiffre se cachent des histoires, des efforts invisibles, des ambitions freinées.",
     image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1743090232/kiota_suit/uejl8wcke1cctgelkwgn.jpg'
   },
   {
     year: '2024',
     title: 'Immersion Terrain',
-    description: "Notre équipe passe 18 mois aux côtés de 50 PME locales, dont SOSEPE, une entreprise de Goma dirigée par des femmes et spécialisée dans les produits d'hygiène. Concrètement, l' équipe de recherche observe les processus de production ou de prestation de services, recueille les témoignages sur les difficultés liées aux opérations (par exemple, l'état des équipements de production, le manque de fonds de roulement ou la dépendance vis-à-vis des systèmes informels de crédit - tontines), et analyse la manière dont les entrepreneurs jonglent avec leurs obligations administratives et fiscales. Les informations récoltées permettent d'identifier très précisément les blocages qui freinent le développement de ces PME au quotidien et de mettre en lumière les leviers d'action qui pourraient leur faciliter l'accès à des financements adaptés.",
+    description: "Notre équipe passe 18 mois aux côtés de 50 PME locales, dont SOSEPE, une entreprise de Goma dirigée par des femmes et spécialisée dans les produits d'hygiène. Concrètement, l' équipe de recherche participe à la formulation des nouveaux produits ou services, observe les processus de production ou de prestation de services, constate les difficultés liées aux opérations (par exemple, l'état des équipements de production, les aides publiques sporadiques et incomplètes, le manque de fonds de roulement ou la dépendance vis-à-vis des systèmes informels de crédit - tontines), et analyse la manière dont les entrepreneurs jonglent avec leurs obligations administratives et fiscales. Les informations récoltées permettent d'identifier très précisément les blocages qui freinent le développement de ces PME au quotidien et de mettre en lumière les leviers d'action qui pourraient leur faciliter l'accès à des financements adaptés.",
     
     image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1743085450/kiota_suit/z4dxuxwbkqq7xvfwxxni.jpg'
   }, 
@@ -47,7 +47,7 @@ const journey = [
   {
     year: '2025',
     title: 'Partenariats',
-    description: " Parallèlement, nous poursuivons le développement de ces outils et menons des négociations actives avec des partenaires nationaux et internationaux — banques, microfinances, fonds de garantie, incubateurs, réseaux d’investisseurs, diaspora, etc. — afin de garantir des offres de financement compétitives et adaptées aux besoins réels des PME locales.",
+    description: " Enfin, nous poursuivons le développement de ces outils, les ateliers de co-création avec les PME locales, et menons des négociations actives avec des partenaires nationaux et internationaux — banques, microfinances, fonds de garantie, fonds d'impact, incubateurs, réseaux d’investisseurs, diaspora, etc. — afin de garantir des offres de financement compétitives et adaptées aux besoins réels des PME locales.",
     image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1743086219/kiota_suit/hayxezsmo4agdq4ywnkh.jpg'
   },
 ];
@@ -87,11 +87,6 @@ export function About() {
             <h1 className="text-3xl font-bold tracking-tight text-primary-600 sm:text-4xl lg:text-5xl">
               Notre Histoire
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-800 sm:text-xl">
-              Née au sein de l'accélérateur d'entreprises i-kiotahub en RDC, Kiota Suit est le fruit de deux années 
-              d'immersion totale auprès des PME locales. Notre mission : révolutionner l'accès au 
-              financement en Afrique grâce à une approche combinant inclusion financière et transition numérique.
-            </p>
           </div>
         </Container>
       </div>
@@ -99,9 +94,9 @@ export function About() {
       {/* Notre Parcours */}
       <Container>
         <div className="py-16 sm:py-24">
-          <h2 className="text-primary-600 text-2xl font-bold text-center sm:text-3xl mb-12 sm:mb-16">
-            Notre Parcours
-          </h2>
+          <h3 className="text-primary-600 text-2xl font-bold text-center sm:text-3xl mb-12 sm:mb-16">
+          Des vies, des ambitions, des espoirs partagés… Kiota Suit est né de cette volonté de transformer les réalités vécues à l’Est de la RD Congo en leviers d’action pour des milliers de petites entreprises.
+          </h3>
           <div className="space-y-16 sm:space-y-24">
             {journey.map((step, index) => (
               <div

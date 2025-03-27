@@ -2,13 +2,14 @@ import { motion } from 'framer-motion';
 import { Container } from '../ui/Container';
 import { ArrowRight,  Brain, Database, LineChart } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { useState } from 'react';
 
 //BarChart,
 
 const steps = [
   {
     title: "Transition Numérique",
-    description: "Adoptez nos outils de gestion (ERP) pour lancer votre aventure",
+    description: "Avant d’aller loin, il faut être bien préparé. Nos outils de gestion sont votre première étape pour mieux organiser votre activité, comprendre la situation actuelle, assainir les comptes et faire grandir votre entreprise en toute confiance.",
     duration: "0-6 mois",
     icon: Database,
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742912461/kiota_suit/yqkqyac7iu3tr68spznx.jpg",
@@ -16,13 +17,14 @@ const steps = [
       "Demarrez votre parcour dès la formalisation de votre entreprise",
       "Gestion comptable assistée par l'Intelligence Artificielle",
       "Audits & Importation des anciens exercices comptables",
+      "Obtention de la côte crédit et note ESG initiales",
       "Digitalisation des processus de vente, production, etc.",
       "Accompagnement personnalisé"
     ]
   },
   {
     title: "Collecte et Analyse",
-    description: "Nos experts analysent vos données, principalement les données des transactions, pour établir votre profil financier",
+    description: "Nos experts analysent vos données, principalement les données des transactions, pour établir votre profil financier.",
     duration: "6 mois",
     icon: Brain,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
@@ -38,7 +40,7 @@ const steps = [
   },
   {
     title: "Mise en Relation",
-    description: "Bénéficiez des opportunité de financement illimitées. Accédez à notre réseau d'institutions financières partenaires",
+    description: "Bénéficiez des opportunités de financement illimitées. Accédez à notre réseau des partenaires, dont les institutions financières et les invetisseurs institutionnels.",
     duration: "6+ mois",
     icon: LineChart,
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742930300/kiota_suit/wiyivnk9wgf6zvniyo0t.jpg",
@@ -55,6 +57,8 @@ const steps = [
 ];
 
 export function Features() {
+  const [expandedStep, setExpandedStep] = useState<number | null>(null);
+
   return (
     <div className="relative overflow-hidden bg-white py-24 sm:py-32">
       <Container>
@@ -66,9 +70,7 @@ export function Features() {
             Votre Parcours vers la croissance
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-          Pour nous, il ne peut y avoir d’inclusion financière sans transition numérique. Les PME qui souhaitent bénéficier 
-          d’un appui financier migrent vers nos outils digitaux (Kiota Suit). Après six mois d’utilisation active, l’entrepreneur peut 
-          accéder à des offres de leasing (location d'équipements), de crédit, de subvention ou de capital-investissement.
+          Pour nous, il ne peut y avoir d’inclusion financière effective sans transition numérique.
           </p>
         </div>
 
@@ -126,21 +128,34 @@ export function Features() {
 
                     <p className="text-lg text-gray-600">{step.description}</p>
 
-                    <ul className="space-y-3">
-                      {step.features.map((feature) => (
-                        <motion.li
-                          key={feature}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.5 }}
-                          className="flex items-center gap-3 text-gray-600"
-                        >
-                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
+                    {expandedStep === index && (
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <ul className="space-y-3">
+                          {step.features.map((feature) => (
+                            <motion.li
+                              key={feature}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.5 }}
+                              className="flex items-center gap-3 text-gray-600"
+                            >
+                              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                              {feature}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={() =>
+                        setExpandedStep(expandedStep === index ? null : index)
+                      }
+                      className="text-primary font-medium"
+                    >
+                      {expandedStep === index ? 'Lire moins' : 'Lire plus'}
+                    </button>
                   </div>
                 </div>
               </div>
