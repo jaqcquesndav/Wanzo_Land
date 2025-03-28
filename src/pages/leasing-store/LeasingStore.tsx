@@ -128,11 +128,15 @@ export function LeasingStore() {
                 </div>
               ) : (
                 <>
-                  <ProductGrid products={currentProducts} onProductClick={function (): void {
+                  <ProductGrid
+                    products={currentProducts}
+                    onProductClick={function (): void {
                       throw new Error('Function not implemented.');
-                    } } onLeaseRequest={function (): void {
+                    }}
+                    onLeaseRequest={function (): void {
                       throw new Error('Function not implemented.');
-                    } } />
+                    }}
+                  />
                   
                   {totalPages > 1 && (
                     <div className="mt-8">
