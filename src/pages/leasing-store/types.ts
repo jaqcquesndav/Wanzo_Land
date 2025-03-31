@@ -1,4 +1,5 @@
 export interface Product {
+  gallery: never[];
   id: string;
   name: string;
   description: string;

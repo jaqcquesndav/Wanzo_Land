@@ -134,7 +134,7 @@ const teamMembers: TeamMember[] = [
   {
     id: '4',
     name: 'Anthony WANNY',
-    role: 'Directrice de la Communication',
+    role: 'Directeur de la Communication',
     image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1742916817/kiota_suit/Team/k3iq7ynuuxebkcl92o6t.jpg',
     bio: "Spécialiste des opérations avec une expertise particulière dans le développement de partenariats stratégiques en Afrique. Passionnée par l'impact social.",
     linkedin: 'https://www.linkedin.com/in/victoire-kasereka-33603b20b/',

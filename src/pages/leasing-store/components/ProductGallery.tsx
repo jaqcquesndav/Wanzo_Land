@@ -14,16 +14,12 @@ interface ProductGalleryProps {
 export function ProductGallery({ product }: ProductGalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
-  // Simule plusieurs images pour la démo
-  const images = [
-    product.image,
-    'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-  ];
+  // Combine l'image principale et les images de la galerie
+  const images = [product.image, ...(product.gallery || [])];
 
   return (
     <div className="space-y-4">
+      {/* Carrousel principal */}
       <Swiper
         spaceBetween={10}
         navigation={true}
@@ -42,6 +38,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
         ))}
       </Swiper>
 
+      {/* Miniatures */}
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
