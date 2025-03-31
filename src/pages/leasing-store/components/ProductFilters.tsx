@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { X } from 'lucide-react';
 import { CategoryFilter } from './filters/CategoryFilter';
@@ -28,12 +28,28 @@ export function ProductFilters({
   mobileFiltersOpen,
   setMobileFiltersOpen,
 }: ProductFiltersProps) {
-  const filterComponents = [
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
+
+  const toggleCategory = (category: string) => {
+    setExpandedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((cat) => cat !== category)
+        : [...prev, category]
+    );
+  };
+
+  const nestedCategoryFilter = (
     <CategoryFilter
       key="categories"
       selectedCategories={filters.categories}
+      expandedCategories={expandedCategories}
+      onToggleCategory={toggleCategory}
       onChange={(value) => onFilterChange('categories', value)}
-    />,
+    />
+  );
+
+  const filterComponents = [
+    nestedCategoryFilter,
     <PriceFilter
       key="prices"
       selectedPrices={filters.prices}

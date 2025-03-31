@@ -32,8 +32,9 @@ export function ProductFilters({
     <CategoryFilter
       key="categories"
       selectedCategories={filters.categories}
-      onChange={(value) => onFilterChange('categories', value)}
-    />,
+      onChange={(value) => onFilterChange('categories', value)} expandedCategories={[]} onToggleCategory={function (category: string): void {
+        throw new Error('Function not implemented.');
+      } }    />,
     <PriceFilter
       key="prices"
       selectedPrices={filters.prices}

@@ -29,11 +29,12 @@ export const mockProducts = [
     id: "it-002",
     name: "Imprimante HP LaserJet Pro",
     description: "Imprimante laser monochrome avec impression rapide",
-    image: "https://example.com/imprimante-hp.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429529/kiota_suit/Leasing/Equipements%20informatiques/impression/Imprimante%20HP%20LaserJet%20Pro/c5frbpxoo6tx4f5snjei.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429529/kiota_suit/Leasing/Equipements%20informatiques/impression/Imprimante%20HP%20LaserJet%20Pro/k7o5fhrqhfzfnsllilma.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429529/kiota_suit/Leasing/Equipements%20informatiques/impression/Imprimante%20HP%20LaserJet%20Pro/hcwuxdpz4ldst0jhezp2.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429528/kiota_suit/Leasing/Equipements%20informatiques/impression/Imprimante%20HP%20LaserJet%20Pro/ahz88di4s70otbacb2n8.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429528/kiota_suit/Leasing/Equipements%20informatiques/impression/Imprimante%20HP%20LaserJet%20Pro/xxzokonitpt21gbuhbw7.jpg"
     ],
     price: 200,
     monthlyPayment: 9.99,
@@ -54,11 +55,11 @@ export const mockProducts = [
     id: "it-003",
     name: "iPad Pro 12.9”",
     description: "Tablette Apple avec écran Liquid Retina et puce M1",
-    image: "https://example.com/ipad-pro.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429835/kiota_suit/Leasing/Equipements%20informatiques/Tablette/iPad%20Pro%2012.9/lubpznwt7hrn01iwmuur.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429818/kiota_suit/Leasing/Equipements%20informatiques/Tablette/iPad%20Pro%2012.9/yjjkhg72ocdocp0nfebp.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429835/kiota_suit/Leasing/Equipements%20informatiques/Tablette/iPad%20Pro%2012.9/eqeeedguednw401lr0ih.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429834/kiota_suit/Leasing/Equipements%20informatiques/Tablette/iPad%20Pro%2012.9/qzemdfjz3pztmavrz6rx.jpg"
     ],
     price: 1200,
     monthlyPayment: 49.99,
@@ -79,11 +80,11 @@ export const mockProducts = [
     id: "it-004",
     name: "Imprimante 3D Creality Ender 3 V2",
     description: "Imprimante 3D économique avec haute précision d’impression",
-    image: "https://example.com/creality-ender3.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430302/kiota_suit/Leasing/Equipements%20informatiques/impression_3d/Imprimante%203D%20Creality%20Ender%203%20V2/wpuv33v4gv3uuuxjddcz.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430302/kiota_suit/Leasing/Equipements%20informatiques/impression_3d/Imprimante%203D%20Creality%20Ender%203%20V2/woyddht2wbo3ewuqu6uj.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430302/kiota_suit/Leasing/Equipements%20informatiques/impression_3d/Imprimante%203D%20Creality%20Ender%203%20V2/yk9rlqlliryn5sps222a.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430302/kiota_suit/Leasing/Equipements%20informatiques/impression_3d/Imprimante%203D%20Creality%20Ender%203%20V2/cnufg2fbflf5kpghtnvp.jpg"
     ],
     price: 250,
     monthlyPayment: 10.99,
@@ -104,11 +105,11 @@ export const mockProducts = [
     id: "it-005",
     name: "Drone DJI Phantom 4 Pro",
     description: "Drone professionnel avec caméra 4K et détection d’obstacles",
-    image: "https://example.com/dji-phantom4.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430661/kiota_suit/Leasing/Equipements%20informatiques/drones/Drone%20DJI%20Phantom%204%20Pro/njic8geqy9odhc6jscrn.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430661/kiota_suit/Leasing/Equipements%20informatiques/drones/Drone%20DJI%20Phantom%204%20Pro/lbzczqbrgqwo5xpwqbe1.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430661/kiota_suit/Leasing/Equipements%20informatiques/drones/Drone%20DJI%20Phantom%204%20Pro/xnoubqytzmaubempibuj.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430661/kiota_suit/Leasing/Equipements%20informatiques/drones/Drone%20DJI%20Phantom%204%20Pro/waynos4g3x2mokp7mpq8.jpg"
     ],
     price: 1800,
     monthlyPayment: 75.99,
@@ -130,11 +131,12 @@ export const mockProducts = [
     name: "Caméra Sony Alpha 7 IV",
     description:
       "Appareil photo hybride professionnel avec capteur plein format",
-    image: "https://example.com/sony-alpha7.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430910/kiota_suit/Leasing/Equipements%20informatiques/audiovisuel/Cam%C3%A9ra%20Sony%20Alpha%207%20IV/gshi2b9bz5nxmuumolle.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430922/kiota_suit/Leasing/Equipements%20informatiques/audiovisuel/Cam%C3%A9ra%20Sony%20Alpha%207%20IV/n7a6nh9rtjvrs58yaett.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430946/kiota_suit/Leasing/Equipements%20informatiques/audiovisuel/Cam%C3%A9ra%20Sony%20Alpha%207%20IV/jq0pcsctamdglwvxzdmf.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430966/kiota_suit/Leasing/Equipements%20informatiques/audiovisuel/Cam%C3%A9ra%20Sony%20Alpha%207%20IV/wivhmlgmw2q6zwpowiq9.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743430967/kiota_suit/Leasing/Equipements%20informatiques/audiovisuel/Cam%C3%A9ra%20Sony%20Alpha%207%20IV/nmtdn2n4n2gizlilx5io.jpg"
     ],
     price: 2500,
     monthlyPayment: 99.99,
@@ -147,7 +149,7 @@ export const mockProducts = [
       video: "4K 60fps",
       stabilisation: "5 axes",
     },
-    availableFinancing: ["credit", "leasing"],
+    availableFinancing: ["credit", "leasing", "Cash"],
     availableDurations: ["12", "24", "36"],
     stock: 4,
   },
@@ -156,11 +158,12 @@ export const mockProducts = [
     id: "bu-002",
     name: "Rétroprojecteur Epson ProX",
     description: "Rétroprojecteur haute définition avec connectivité sans fil.",
-    image: "https://example.com/retroprojecteur-epson.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743434095/kiota_suit/Leasing/Equipements%20informatiques/retroprojecteurs/R%C3%A9troprojecteur%20Epson%20ProX/aaqgq7mn4yiq0azppqwl.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743434104/kiota_suit/Leasing/Equipements%20informatiques/retroprojecteurs/R%C3%A9troprojecteur%20Epson%20ProX/h6q4zvysxt7ls10dqfli.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743434104/kiota_suit/Leasing/Equipements%20informatiques/retroprojecteurs/R%C3%A9troprojecteur%20Epson%20ProX/hqwsfp2ak8dmph7amcuz.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743434104/kiota_suit/Leasing/Equipements%20informatiques/retroprojecteurs/R%C3%A9troprojecteur%20Epson%20ProX/o20afq4bffregva1hfte.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743434104/kiota_suit/Leasing/Equipements%20informatiques/retroprojecteurs/R%C3%A9troprojecteur%20Epson%20ProX/wqoir9medrmpnsszghbz.png"
     ],
     price: 850,
     monthlyPayment: 35.99,
