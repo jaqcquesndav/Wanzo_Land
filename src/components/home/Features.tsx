@@ -3,6 +3,7 @@ import { Container } from '../ui/Container';
 import { ArrowRight,  Brain, Database, LineChart } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //BarChart,
 
@@ -54,6 +55,7 @@ const steps = [
 
 export function Features() {
   const [expandedStep, setExpandedStep] = useState<number | null>(null);
+  const navigate = useNavigate(); // Add navigation hook
 
   return (
     <div className="relative overflow-hidden bg-white py-24 sm:py-32">
@@ -165,7 +167,11 @@ export function Features() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <Button size="lg" className="inline-flex items-center gap-2">
+          <Button
+            size="lg"
+            className="inline-flex items-center gap-2"
+            onClick={() => navigate('/auth/select')} // Update button click handler
+          >
             Commencer votre transition numérique
             <ArrowRight className="h-5 w-5" />
           </Button>

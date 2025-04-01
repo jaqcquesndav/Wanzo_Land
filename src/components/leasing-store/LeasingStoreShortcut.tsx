@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Store, X } from 'lucide-react';
+import { Store, X, ShoppingCart } from 'lucide-react'; // Added ShoppingCart icon
 import { cn } from '../../utils/cn';
 import { mockProducts } from '../../pages/leasing-store/data/mockProducts'; // Import mock data
 
@@ -36,7 +36,10 @@ export function LeasingStoreShortcut() {
       {isOpen && (
         <div className="bg-white rounded-lg shadow-xl p-4 w-64 animate-fade-in">
           <div className="flex justify-between items-center mb-3">
-            <h3 className="font-semibold text-gray-900">Kiota Store</h3>
+            <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+              Kiota Store
+              <ShoppingCart className="h-4 w-4 text-gray-500" /> {/* Added cart icon */}
+            </h3>
             <button
               onClick={() => setIsOpen(false)}
               className="text-gray-400 hover:text-gray-600"

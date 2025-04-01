@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Container } from '../ui/Container';
-import { Brain, Shield, LineChart } from 'lucide-react';
+import { Brain, Shield, LineChart, Check } from 'lucide-react';
+import { useState } from 'react';
 
 const plans = [
   {
-    name: 'Démo',
-    description: 'Découvrez gratuitement nos solutions de base',
+    name: 'Free',
+    description: 'Commencez gratuitement avec nos fonctionnalités de base',
     price: '0',
     features: [
       'Application de comptabilité',
@@ -23,7 +24,9 @@ const plans = [
     price: '19,9',
     features: [
       'Application de comptabilité avancée',
+      'Intégration à vos outils actuels ou migration facile',
       'Gestion de portefeuille PME',
+      'Acces au Leasing Store',
       'Assistant IA Adha intégré',
       '1 Million de Tokens offerts',
       'Conformité SYSCOHADA et IFRS',
@@ -43,7 +46,7 @@ const plans = [
       'Prévision des crises',
       'Conformité Bâle III',
       'Assistant IA Adha Premium',
-      '1 Million de Tokens offerts',
+      '30 Million de Tokens offerts',
       'Support dédié 24/7'
     ],
     tokenPrice: '5',
@@ -54,6 +57,7 @@ const plans = [
 
 export function Pricing() {
   const navigate = useNavigate();
+  const [isAnnual, setIsAnnual] = useState(false);
 
   const handlePlanSelect = (plan: typeof plans[0]) => {
     if (plan.demo) {
@@ -63,6 +67,16 @@ export function Pricing() {
     } else {
       navigate('/auth/select?type=financial');
     }
+  };
+
+  const getPrice = (price: string) => {
+    const monthlyPrice = parseFloat(price);
+    return isAnnual ? (monthlyPrice * 12 * 0.8).toFixed(1) : price; // 20% discount for annual
+  };
+
+  const getOriginalAnnualPrice = (price: string) => {
+    const monthlyPrice = parseFloat(price);
+    return (monthlyPrice * 12).toFixed(1);
   };
 
   return (
@@ -75,6 +89,27 @@ export function Pricing() {
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Choisissez votre forfait
           </p>
+          <p className="mt-2 text-sm text-gray-500">
+            Les outils sont conçus pour les entreprises établies, si vous êtes une startup, nous vous recommandons de commencer par le plan free.
+          </p>
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setIsAnnual(false)}
+              className={`px-4 py-2 text-sm font-semibold ${
+                !isAnnual ? 'text-primary underline' : 'text-gray-500'
+              }`}
+            >
+              Mensuel
+            </button>
+            <button
+              onClick={() => setIsAnnual(true)}
+              className={`ml-4 px-4 py-2 text-sm font-semibold ${
+                isAnnual ? 'text-primary underline' : 'text-gray-500'
+              }`}
+            >
+              Annuel (-20%)
+            </button>
+          </div>
         </div>
 
         <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
@@ -100,10 +135,17 @@ export function Pricing() {
                   {plan.description}
                 </p>
                 <p className="mt-6">
+                  {isAnnual && (
+                    <span className="text-sm font-semibold text-red-500 line-through mr-2">
+                      ${getOriginalAnnualPrice(plan.price)}
+                    </span>
+                  )}
                   <span className="text-4xl font-bold tracking-tight text-gray-900">
-                    ${plan.price}
+                    ${getPrice(plan.price)}
                   </span>
-                  <span className="text-sm font-semibold text-gray-600">/mois</span>
+                  <span className="text-sm font-semibold text-gray-600">
+                    {isAnnual ? '/an' : '/mois'}
+                  </span>
                 </p>
               </div>
 
@@ -111,7 +153,7 @@ export function Pricing() {
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start">
                     <div className="flex-shrink-0">
-                      <Brain className="h-5 w-5 text-primary" />
+                      <Check className="h-5 w-5 text-primary" />
                     </div>
                     <span className="ml-3 text-sm text-gray-600">{feature}</span>
                   </li>

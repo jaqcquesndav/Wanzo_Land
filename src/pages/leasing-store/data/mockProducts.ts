@@ -285,10 +285,12 @@ export const mockProducts = [
   id: "mob-002",
   name: "Table de Réunion en Bois Massif",
   description: "Grande table de réunion pour 10 personnes, idéale pour les PME.",
-  image: "https://example.com/table-reunion.jpg",
+  image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743519770/01_robf7g.png",
   gallery: [
-    "https://example.com/table-reunion-1.jpg",
-    "https://example.com/table-reunion-2.jpg"
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743519772/06_b3uwdk.png",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743519770/02_poew3a.png",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743519770/07_jsjh60.png",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743519774/10_nyhkkw.png"
   ],
   price: 800,
   monthlyPayment: 29.99,
