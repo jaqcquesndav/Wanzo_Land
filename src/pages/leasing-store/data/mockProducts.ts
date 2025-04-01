@@ -180,34 +180,177 @@ export const mockProducts = [
     availableDurations: ["12", "24"],
     stock: 5,
   },
-//BUREAUTIQUE
-
   {
-    id: "bu-001",
-    name: "Bureau Exécutif en Bois Massif",
-    description:
-      "Bureau spacieux avec rangement intégré et finition en bois massif.",
-    image: "https://example.com/bureau-bois.jpg",
+    id: "proj-001",
+    name: "Bâche de Projection Portable 100 pouces",
+    description: "Bâche de projection portable avec support pliable, idéale pour les présentations et formations.",
+    image: "https://example.com/bache-projection.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://example.com/bache-projection-1.jpg",
+      "https://example.com/bache-projection-2.jpg"
     ],
-    price: 1200,
-    monthlyPayment: 49.99,
-    category: "bureautique",
-    subcategory: "mobilier",
+    price: 150,
+    monthlyPayment: 6.99,
+    category: "mobilier_accessoirs_workspace",
+    subcategory: "baches_projection",
     condition: "new",
-    brand: "OfficeLux",
+    brand: "ProjectionPro",
     specifications: {
-      dimensions: "160x80x75 cm",
-      materiau: "Bois massif",
-      couleur: "Noyer",
+      taille: "100 pouces",
+      materiau: "Tissu PVC",
+      compatibilite: "Projecteurs HD et 4K",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 25,
+  },
+  {
+    id: "proj-002",
+    name: "Écran Interactif 65 pouces",
+    description: "Écran interactif tactile pour salles de formation, avec support mural inclus.",
+    image: "https://example.com/ecran-formation.jpg",
+    gallery: [
+      "https://example.com/ecran-formation-1.jpg",
+      "https://example.com/ecran-formation-2.jpg"
+    ],
+    price: 2500,
+    monthlyPayment: 99.99,
+    category: "mobilier_accessoirs_workspace",
+    subcategory: "ecrans_formation",
+    condition: "new",
+    brand: "SmartBoard",
+    specifications: {
+      taille: "65 pouces",
+      resolution: "4K UHD",
+      connectivite: "HDMI, USB, Wi-Fi",
     },
     availableFinancing: ["leasing", "credit"],
     availableDurations: ["12", "24", "36"],
     stock: 10,
   },
+  
+//BUREAUTIQUE
+
+{
+  id: "wb-001",
+  name: "Tableau Blanc Magnétique 120x90 cm",
+  description: "Tableau blanc magnétique avec cadre en aluminium et accessoires inclus.",
+  image: "https://example.com/whiteboard.jpg",
+  gallery: [
+    "https://example.com/whiteboard-1.jpg",
+    "https://example.com/whiteboard-2.jpg"
+  ],
+  price: 100,
+  monthlyPayment: 4.99,
+  category: "mobilier_accessoirs_workspace",
+  subcategory: "whiteboards",
+  condition: "new",
+  brand: "OfficeBoard",
+  specifications: {
+    dimensions: "120x90 cm",
+    materiau: "Surface magnétique effaçable",
+    accessoires: "Marqueurs, aimants, gomme",
+  },
+  availableFinancing: ["leasing"],
+  availableDurations: ["12", "24"],
+  stock: 50,
+},
+{
+  id: "mob-001",
+  name: "Chaise Ergonomique pour Bureau",
+  description: "Chaise de bureau avec support lombaire ajustable et accoudoirs.",
+  image: "https://example.com/chaise-ergonomique.jpg",
+  gallery: [
+    "https://example.com/chaise-ergonomique-1.jpg",
+    "https://example.com/chaise-ergonomique-2.jpg"
+  ],
+  price: 150,
+  monthlyPayment: 6.99,
+  category: "mobilier_accessoirs_workspace",
+  subcategory: "chaises_bureau",
+  condition: "new",
+  brand: "ErgoOffice",
+  specifications: {
+    materiau: "Tissu respirant",
+    ajustements: "Hauteur, inclinaison, support lombaire",
+  },
+  availableFinancing: ["leasing"],
+  availableDurations: ["12", "24"],
+  stock: 50,
+},
+{
+  id: "mob-002",
+  name: "Table de Réunion en Bois Massif",
+  description: "Grande table de réunion pour 10 personnes, idéale pour les PME.",
+  image: "https://example.com/table-reunion.jpg",
+  gallery: [
+    "https://example.com/table-reunion-1.jpg",
+    "https://example.com/table-reunion-2.jpg"
+  ],
+  price: 800,
+  monthlyPayment: 29.99,
+  category: "mobilier_accessoirs_workspace",
+  subcategory: "salles_reunion",
+  condition: "new",
+  brand: "OfficeLux",
+  specifications: {
+    dimensions: "3m x 1.2m",
+    materiau: "Bois massif",
+    couleur: "Chêne clair",
+  },
+  availableFinancing: ["leasing", "credit"],
+  availableDurations: ["12", "24", "36"],
+  stock: 15,
+},
+
+{
+  id: "mob-002",
+  name: "Table de Réunion en Bois Massif",
+  description: "Grande table de réunion pour 10 personnes, idéale pour les PME.",
+  image: "https://example.com/table-reunion.jpg",
+  gallery: [
+    "https://example.com/table-reunion-1.jpg",
+    "https://example.com/table-reunion-2.jpg"
+  ],
+  price: 800,
+  monthlyPayment: 29.99,
+  category: "mobilier_accessoirs_workspace",
+  subcategory: "salles_reunion",
+  condition: "new",
+  brand: "OfficeLux",
+  specifications: {
+    dimensions: "3m x 1.2m",
+    materiau: "Bois massif",
+    couleur: "Chêne clair",
+  },
+  availableFinancing: ["leasing", "credit"],
+  availableDurations: ["12", "24", "36"],
+  stock: 15,
+},
+{
+  id: "mob-006",
+  name: "Comptoir d’Accueil Moderne",
+  description: "Comptoir d’accueil avec éclairage LED intégré et espace de rangement.",
+  image: "https://example.com/comptoir-accueil.jpg",
+  gallery: [
+    "https://example.com/comptoir-accueil-1.jpg",
+    "https://example.com/comptoir-accueil-2.jpg"
+  ],
+  price: 800,
+  monthlyPayment: 29.99,
+  category: "mobilier_accessoirs_workspace",
+  subcategory: "accueil_reception",
+  condition: "new",
+  brand: "ReceptionPro",
+  specifications: {
+    dimensions: "200x90x110 cm",
+    materiau: "Bois et verre",
+    couleur: "Blanc et noir",
+  },
+  availableFinancing: ["leasing", "credit"],
+  availableDurations: ["12", "24", "36"],
+  stock: 10,
+},
 
   //TRANSPORT
 
@@ -387,6 +530,54 @@ export const mockProducts = [
     availableDurations: ['12', '24'],
     stock: 8
   },
+  {
+    id: "vh-005",
+    name: "Mitsubishi Canter Camion Frigorifique",
+    description: "Camion frigorifique pour le transport de produits périssables.",
+    image: "https://example.com/mitsubishi-canter.jpg",
+    gallery: [
+      "https://example.com/mitsubishi-canter-1.jpg",
+      "https://example.com/mitsubishi-canter-2.jpg"
+    ],
+    price: 60000,
+    monthlyPayment: 1299.99,
+    category: "vehicules",
+    subcategory: "vehicules_speciaux",
+    condition: "new",
+    brand: "Mitsubishi",
+    specifications: {
+      capacite: "5 tonnes",
+      moteur: "3.0L Diesel",
+      temperature: "-20°C à +10°C",
+    },
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24", "36"],
+    stock: 6,
+  },
+  {
+    id: "vh-006",
+    name: "Man Bateau de Transport 20m",
+    description: "Bateau robuste pour le transport de marchandises sur les voies navigables.",
+    image: "https://example.com/man-bateau.jpg",
+    gallery: [
+      "https://example.com/man-bateau-1.jpg",
+      "https://example.com/man-bateau-2.jpg"
+    ],
+    price: 200000,
+    monthlyPayment: 7999.99,
+    category: "vehicules",
+    subcategory: "bateaux",
+    condition: "new",
+    brand: "Man",
+    specifications: {
+      longueur: "20m",
+      capacite: "50 tonnes",
+      moteur: "Diesel marin",
+    },
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24", "36"],
+    stock: 3,
+  },
 
   // ============ MACHINES OUTILS ============
   // Ajoutez ici d'autres produits de la catégorie "Machines Outils"
@@ -554,86 +745,323 @@ export const mockProducts = [
   },
 
   // Machines Alimentaires
+  
   {
-    id: 'mi-007',
-    name: 'Machine de transformation alimentaire',
-    description: 'Équipement pour transformer les produits alimentaires en grandes quantités',
-    image: 'https://example.com/machine-transformation-alimentaire.jpg',
+    id: "ag-003",
+    name: "Presse à Huile pour Arachide et Tournesol",
+    description: "Machine compacte pour extraire l'huile des graines comme l'arachide, le soja et le tournesol.",
+    image: "https://example.com/presse-huile.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://example.com/presse-huile-1.jpg",
+      "https://example.com/presse-huile-2.jpg"
     ],
-    price: 55000,
-    monthlyPayment: 1299.99,
-    category: 'machines_industrielles',
-    subcategory: 'machines_alimentaires',
-    condition: 'new',
-    brand: 'FoodTech',
+    price: 3000,
+    monthlyPayment: 79.99,
+    category: "machines_industrielles",
+    subcategory: "machines_agricoles",
+    condition: "new",
+    brand: "OilPressTech",
     specifications: {
-      capacité: '1000 kg/h',
-      énergie: 'Hydraulique',
-      application: 'Transformation des fruits et légumes',
+      capacité: "50 kg/heure",
+      puissance: "3 kW",
+      rendement: "40-50%",
+      usage: "Arachide, soja, tournesol",
     },
-    availableFinancing: ['credit_bail', 'leasing'],
-    availableDurations: ['12', '24', '36'],
-    stock: 4
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24"],
+    stock: 8,
+  },
+  {
+    id: "ag-004",
+    name: "Ligne de Production de Farine de Manioc",
+    description: "Équipement complet pour transformer le manioc en farine de haute qualité.",
+    image: "https://example.com/ligne-farine-manioc.jpg",
+    gallery: [
+      "https://example.com/ligne-farine-manioc-1.jpg",
+      "https://example.com/ligne-farine-manioc-2.jpg"
+    ],
+    price: 15000,
+    monthlyPayment: 399.99,
+    category: "machines_industrielles",
+    subcategory: "machines_agricoles",
+    condition: "new",
+    brand: "CassavaTech",
+    specifications: {
+      capacité: "500 kg/heure",
+      étapes: "Lavage, râpage, séchage, broyage",
+      énergie: "Électrique",
+      usage: "Manioc",
+    },
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24", "36"],
+    stock: 3,
+  },
+  {
+    id: "ag-005",
+    name: "Mini-Ligne de Production de Biscuits",
+    description: "Ligne compacte pour produire des biscuits à base de farine de manioc, maïs ou soja.",
+    image: "https://example.com/ligne-biscuits.jpg",
+    gallery: [
+      "https://example.com/ligne-biscuits-1.jpg",
+      "https://example.com/ligne-biscuits-2.jpg"
+    ],
+    price: 12000,
+    monthlyPayment: 299.99,
+    category: "machines_industrielles",
+    subcategory: "machines_agricoles",
+    condition: "new",
+    brand: "BiscuitLine",
+    specifications: {
+      capacité: "200 kg/heure",
+      étapes: "Mélange, façonnage, cuisson, emballage",
+      énergie: "Électrique",
+      usage: "Farine de manioc, maïs, soja",
+    },
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24", "36"],
+    stock: 4,
   },
   // ============ OUTILLAGE ============    
   // Ajoutez ici d'autres produits de la catégorie "OUTILLAGE"
 
+  //outillage pour électriciens, mécaniciens, plombiers, maçons, etc.
   {
-    id: 'ep-001',
-    name: 'Perceuse à percussion Bosch',
-    description: 'Perceuse à percussion professionnelle, idéale pour les travaux de maçonnerie et de construction',
-    image: 'https://example.com/perceuse-bosch.jpg',
+    id: "ep-007",
+    name: "Coffret d'Outils pour Mécaniciens - 108 pièces",
+    description: "Coffret complet avec clés, douilles, tournevis et accessoires pour les travaux de mécanique.",
+    image: "https://example.com/coffret-mecanicien.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://example.com/coffret-mecanicien-1.jpg",
+      "https://example.com/coffret-mecanicien-2.jpg"
     ],
-    price: 120,
-    monthlyPayment: 29.99,
-    category: 'equipements_professionnels',
-    subcategory: 'outillage',
-    condition: 'new',
-    brand: 'Bosch',
+    price: 150,
+    monthlyPayment: 6.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "ToolPro",
     specifications: {
-      puissance: '850W',
-      vitesse_max: '2800 RPM',
-      accessoires: 'Mandrin de 13 mm',
+      contenu: "Clés plates, douilles, tournevis, pinces, marteau",
+      matériau: "Acier chromé",
+      poids: "8 kg",
     },
-    availableFinancing: ['credit_bail', 'leasing'],
-    availableDurations: ['12', '24'],
-    stock: 15
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 20,
   },
 
-  // Équipements Spécifiques
   {
-    id: 'ep-002',
-    name: 'Générateur Honda EU2200i',
-    description: 'Générateur portable professionnel, idéal pour les chantiers ou les événements extérieurs',
-    image: 'https://example.com/generator-honda.jpg',
+    id: "ep-008",
+    name: "Coffret d'Outils pour Électriciens - 50 pièces",
+    description: "Coffret compact avec outils isolés pour les travaux électriques en toute sécurité.",
+    image: "https://example.com/coffret-electricien.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://example.com/coffret-electricien-1.jpg",
+      "https://example.com/coffret-electricien-2.jpg"
     ],
-    price: 1000,
-    monthlyPayment: 249.99,
-    category: 'equipements_professionnels',
-    subcategory: 'equipements_metiers',
-    condition: 'new',
-    brand: 'Honda',
+    price: 120,
+    monthlyPayment: 4.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "SafeTools",
     specifications: {
-      puissance: '2200W',
-      carburant: 'Essence',
-      poids: '21 kg',
+      contenu: "Tournevis isolés, pinces coupantes, testeur de tension, dénudeur de câbles",
+      norme: "Isolation 1000V",
+      poids: "5 kg",
     },
-    availableFinancing: ['credit_bail', 'leasing'],
-    availableDurations: ['12', '24', '36'],
-    stock: 8
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 15,
   },
+
+  {
+    id: "ep-009",
+    name: "Coffret d'Outils pour Plombiers - 65 pièces",
+    description: "Coffret pratique avec outils essentiels pour les travaux de plomberie.",
+    image: "https://example.com/coffret-plombier.jpg",
+    gallery: [
+      "https://example.com/coffret-plombier-1.jpg",
+      "https://example.com/coffret-plombier-2.jpg"
+    ],
+    price: 180,
+    monthlyPayment: 7.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "PlumbKit",
+    specifications: {
+      contenu: "Clés à molette, coupe-tubes, ruban téflon, pinces multiprises",
+      matériau: "Acier inoxydable",
+      poids: "6 kg",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 10,
+  },
+
+  {
+    id: "ep-010",
+    name: "Perceuse Électrique Polyvalente 500W",
+    description: "Perceuse compacte et puissante pour les travaux de perçage sur bois, métal et béton.",
+    image: "https://example.com/perceuse-electrique.jpg",
+    gallery: [
+      "https://example.com/perceuse-electrique-1.jpg",
+      "https://example.com/perceuse-electrique-2.jpg"
+    ],
+    price: 100,
+    monthlyPayment: 4.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "DrillMaster",
+    specifications: {
+      puissance: "500W",
+      vitesse: "0-3000 RPM",
+      mandrin: "13 mm",
+      usage: "Bois, métal, béton",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 25,
+  },
+
+  {
+    id: "ep-011",
+    name: "Foreuse à Percussion 800W",
+    description: "Foreuse robuste avec fonction percussion pour les travaux intensifs sur béton et pierre.",
+    image: "https://example.com/foreuse-percussion.jpg",
+    gallery: [
+      "https://example.com/foreuse-percussion-1.jpg",
+      "https://example.com/foreuse-percussion-2.jpg"
+    ],
+    price: 150,
+    monthlyPayment: 6.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "HammerTech",
+    specifications: {
+      puissance: "800W",
+      vitesse: "0-2800 RPM",
+      percussion: "45000 BPM",
+      usage: "Béton, pierre",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 15,
+  },
+
+  {
+    id: "ep-012",
+    name: "Ponceuse Orbitale 300W",
+    description: "Ponceuse légère et efficace pour les travaux de finition sur bois et métal.",
+    image: "https://example.com/ponceuse-orbitale.jpg",
+    gallery: [
+      "https://example.com/ponceuse-orbitale-1.jpg",
+      "https://example.com/ponceuse-orbitale-2.jpg"
+    ],
+    price: 80,
+    monthlyPayment: 3.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "SmoothFinish",
+    specifications: {
+      puissance: "300W",
+      vitesse: "12000 OPM",
+      plateau: "125 mm",
+      usage: "Bois, métal",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 20,
+  },
+
+  {
+    id: "ep-013",
+    name: "Poste à Souder Inverter 200A",
+    description: "Poste à souder compact et portable pour les travaux de soudure à l'arc.",
+    image: "https://example.com/poste-souder.jpg",
+    gallery: [
+      "https://example.com/poste-souder-1.jpg",
+      "https://example.com/poste-souder-2.jpg"
+    ],
+    price: 250,
+    monthlyPayment: 9.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "WeldPro",
+    specifications: {
+      courant: "200A",
+      technologie: "Inverter",
+      usage: "Soudure à l'arc (MMA)",
+      poids: "5 kg",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 10,
+  },
+
+  {
+    id: "ep-014",
+    name: "Meuleuse d'Angle 750W",
+    description: "Meuleuse compacte pour les travaux de découpe et de meulage sur métal et béton.",
+    image: "https://example.com/meuleuse-angle.jpg",
+    gallery: [
+      "https://example.com/meuleuse-angle-1.jpg",
+      "https://example.com/meuleuse-angle-2.jpg"
+    ],
+    price: 120,
+    monthlyPayment: 5.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "GrindMaster",
+    specifications: {
+      puissance: "750W",
+      disque: "125 mm",
+      vitesse: "11000 RPM",
+      usage: "Métal, béton",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 18,
+  },
+
+  {
+    id: "ep-015",
+    name: "Scie Sauteuse Électrique 650W",
+    description: "Scie sauteuse puissante et précise pour les travaux de découpe sur bois, métal et plastique.",
+    image: "https://example.com/scie-sauteuse.jpg",
+    gallery: [
+      "https://example.com/scie-sauteuse-1.jpg",
+      "https://example.com/scie-sauteuse-2.jpg"
+    ],
+    price: 110,
+    monthlyPayment: 4.99,
+    category: "equipements_professionnels",
+    subcategory: "outillage",
+    condition: "new",
+    brand: "CutMaster",
+    specifications: {
+      puissance: "650W",
+      vitesse: "0-3000 RPM",
+      profondeur_coupe: {
+        bois: "65 mm",
+        métal: "10 mm",
+        plastique: "20 mm",
+      },
+      inclinaison: "45°",
+      usage: "Bois, métal, plastique",
+    },
+    availableFinancing: ["leasing"],
+    availableDurations: ["12", "24"],
+    stock: 20,
+  },
+
+  
 
   // Matériel de Restauration
   {
@@ -768,6 +1196,57 @@ export const mockProducts = [
     availableFinancing: ['credit_bail', 'leasing'],
     availableDurations: ['12', '24', '36'],
     stock: 4
+  },
+  {
+    id: "ag-001",
+    name: "Motoculteur Multifonctionnel 7HP",
+    description: "Motoculteur polyvalent pour le labour, le sarclage et le transport agricole.",
+    image: "https://example.com/motoculteur.jpg",
+    gallery: [
+      "https://example.com/motoculteur-1.jpg",
+      "https://example.com/motoculteur-2.jpg"
+    ],
+    price: 1500,
+    monthlyPayment: 59.99,
+    category: "machines_industrielles",
+    subcategory: "machines_agricoles",
+    condition: "new",
+    brand: "AgriTech",
+    specifications: {
+      moteur: "7 HP Diesel",
+      largeur_labour: "80 cm",
+      profondeur_labour: "15 cm",
+      accessoires: "Remorque, charrue, sarcleuse",
+    },
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24"],
+    stock: 10,
+  },
+
+  {
+    id: "ag-002",
+    name: "Moissonneuse-Batteuse Compacte 4LZ-1.0",
+    description: "Moissonneuse-batteuse compacte adaptée aux petites exploitations agricoles.",
+    image: "https://example.com/moissonneuse-batteuse.jpg",
+    gallery: [
+      "https://example.com/moissonneuse-batteuse-1.jpg",
+      "https://example.com/moissonneuse-batteuse-2.jpg"
+    ],
+    price: 8000,
+    monthlyPayment: 199.99,
+    category: "machines_industrielles",
+    subcategory: "machines_agricoles",
+    condition: "new",
+    brand: "AgriHarvest",
+    specifications: {
+      capacité: "1 tonne/heure",
+      moteur: "20 HP Diesel",
+      largeur_coupe: "1.2 m",
+      usage: "Maïs, manioc, soja",
+    },
+    availableFinancing: ["leasing", "credit"],
+    availableDurations: ["12", "24"],
+    stock: 5,
   },
   {
     id: 'ag-002',
