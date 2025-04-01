@@ -97,7 +97,7 @@ export function LeasingStore() {
             </div>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 flex items-center gap-4">
             <Link to="/leasing-store/custom-request">
               <Button
                 variant="secondary"
@@ -107,6 +107,13 @@ export function LeasingStore() {
                 Demande personnalisée
               </Button>
             </Link>
+            <Button
+              variant="secondary"
+              className="flex items-center gap-2 lg:hidden"
+              onClick={() => setMobileFiltersOpen((prev) => !prev)}
+            >
+              <Filter className="h-4 w-4" />
+            </Button>
           </div>
 
           <div className="mt-8">
@@ -119,7 +126,11 @@ export function LeasingStore() {
 
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 mt-8">
             {/* Filtres */}
-            <div className="hidden lg:block">
+            <div
+              className={`${
+                mobileFiltersOpen ? "block" : "hidden"
+              } lg:block`}
+            >
               <ProductFilters
                 filters={filters}
                 onFilterChange={handleFilterChange}
