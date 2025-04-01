@@ -1,4 +1,4 @@
-import { useState, useRef, KeyboardEvent } from 'react';
+import { useState, useRef, KeyboardEvent, useEffect } from 'react';
 import { Send, Paperclip } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Button } from '../ui/Button';
@@ -9,6 +9,7 @@ interface ChatInputProps {
   isRecording?: boolean;
   isWebSearchEnabled?: boolean;
   isDemoMode?: boolean;
+  className?: string; // Add the className prop
 }
 
 export function ChatInput({ 
@@ -16,11 +17,23 @@ export function ChatInput({
   isLoading, 
   isRecording, 
   isWebSearchEnabled,
-  isDemoMode 
+  isDemoMode,
+  className // Destructure the className prop
 }: ChatInputProps) {
   const [message, setMessage] = useState('');
   const [attachments, setAttachments] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsKeyboardOpen(window.innerHeight < 500); // Detect keyboard open for small height
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSend = () => {
     if (message.trim() && !isLoading) {
@@ -38,13 +51,13 @@ export function ChatInput({
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setAttachments(Array.from(e.target.files));
+    if (e.target.files && e.target.files.length > 0) {
+      setAttachments((prev) => [...prev, ...Array.from(e.target.files!)]);
     }
   };
 
   return (
-    <div className="space-y-2">
+    <div className={cn("space-y-2 bg-white border-t border-gray-200 p-2 relative", isKeyboardOpen ? 'pb-16' : '', className)}>
       {attachments.length > 0 && (
         <div className="flex flex-wrap gap-2">
           {attachments.map((file, index) => (
@@ -81,7 +94,7 @@ export function ChatInput({
               "w-full p-2.5 text-sm rounded-lg resize-none",
               "bg-gray-50 border border-gray-300",
               "focus:ring-primary focus:border-primary",
-              "min-h-[44px] max-h-[120px]"
+              "min-h-[44px] max-h-[120px] overflow-hidden"
             )}
             rows={1}
             disabled={isLoading || isRecording}

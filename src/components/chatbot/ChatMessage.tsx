@@ -48,23 +48,24 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
   };
 
   const handleAudioPlay = () => {
-    setIsAudioPlaying(true);
-    // Simuler la progression
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 1;
-      setAudioProgress(progress);
-      if (progress >= 100) {
-        clearInterval(interval);
-        setIsAudioPlaying(false);
-        setAudioProgress(0);
-      }
-    }, 100);
+    setIsAudioPlaying((prev) => !prev);
+    if (!isAudioPlaying) {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 1;
+        setAudioProgress(progress);
+        if (progress >= 100) {
+          clearInterval(interval);
+          setIsAudioPlaying(false);
+          setAudioProgress(0);
+        }
+      }, 100);
+    }
   };
 
   return (
     <div className={cn(
-      "flex w-full",
+      "flex w-full max-w-[100%] overflow-hidden relative z-40",
       message.isBot ? "justify-start" : "justify-end"
     )}>
       <div className={cn(

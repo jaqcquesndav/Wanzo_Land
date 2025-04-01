@@ -15,7 +15,7 @@ export function UserTypeSelection() {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <Container>
-        <div className="text-center mb-12">
+        <div className="mt-12 text-center mb-12">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
             Choisissez votre type de compte
           </h1>

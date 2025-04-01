@@ -13,6 +13,7 @@ const plans = [
       'Application de comptabilité',
       'Accès limité à Adha',
       'Conformité SYSCOHADA',
+      '1 utilisateur par Application',
       'Support communautaire'
     ],
     highlighted: false,
@@ -25,6 +26,7 @@ const plans = [
     features: [
       'Application de comptabilité avancée',
       'Intégration à vos outils actuels ou migration facile',
+      "Jusqu'à 10 utilisateurs par application",
       'Gestion de portefeuille PME',
       'Acces au Leasing Store',
       'Assistant IA Adha intégré',
@@ -42,6 +44,12 @@ const plans = [
     price: '99,9',
     features: [
       'Accès à toutes les PME du réseau',
+      "Jusqu'à 100 utilisateurs par application (Admin, Analystes, etc.)",
+      'Espace de prospection et de mise en relation',
+      'Production des rapports assistée par IA',
+      'Centrale de risque et de notation',
+      'Gestion de portefeuille avancée',
+      'Intégration API avec vos outils',
       'Analyse de risque avancée',
       'Prévision des crises',
       'Conformité Bâle III',
@@ -90,7 +98,7 @@ export function Pricing() {
             Choisissez votre forfait
           </p>
           <p className="mt-2 text-sm text-gray-500">
-            Les outils sont conçus pour les entreprises établies, si vous êtes une startup, nous vous recommandons de commencer par le plan free.
+            Les outils sont conçus pour les entreprises établies, si vous êtes une startup ou nouvelle entreprise, nous vous recommandons de commencer par le plan free.
           </p>
           <div className="mt-4 flex justify-center">
             <button
@@ -183,6 +191,7 @@ export function Pricing() {
           ))}
         </div>
 
+        {/* 
         <div className="mt-16 max-w-3xl mx-auto text-center">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Pourquoi choisir Kiota Suit ?
@@ -205,6 +214,8 @@ export function Pricing() {
             </div>
           </div>
         </div>
+        */}
+        
       </Container>
     </div>
   );

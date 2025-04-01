@@ -6,24 +6,40 @@ import { cn } from '../utils/cn';
 
 const faqs = [
   {
-    question: "Comment démarrer avec Kiota Suit ?",
-    answer: "Créez votre compte gratuitement et suivez notre guide de démarrage rapide. Notre équipe vous accompagne dans la configuration initiale."
+    question: "Qu'est-ce que Kiota Suit ?",
+    answer: "Kiota Suit n'est pas une bourse, c'est un ensemble d'applications de gestion ERP et de gestion de portefeuille conçu pour accélérer la transition numérique et l'inclusion financière des PMEs. Elle est adressée aux Nouvelles entreprises, PMEs, les Incubateurs et Institutions financières, Fonds de garanties et Investisseurs indépendants en RDC. La solution a été développée par l'accélérateur d'entreprises i-Kiotahub ayant son siège en RDC."
+  },
+  {
+    question: "Quels outils sont disponibles dans Kiota Suit ?",
+    answer: "Pour les PMEs, nous proposons une application d'administration des comptes, une application de comptabilité et une application de gestion de portefeuille. Pour les Institutions financières, nous avons une application de gestion de portefeuille permettant de gérer différents types de portefeuilles comme les crédits traditionnels, le leasing et le capital investissement."
+  },
+  {
+    question: "Comment fonctionne l'intelligence artificielle dans Kiota Suit ?",
+    answer: "Adha, l'intelligence artificielle utilisée dans nos outils, fait recours à des modèles établis comme ceux d'OpenAI, Meta et Atropic. Elle utilise également des couches métier basées sur le RAG & CAG et des agents IA spécialisés."
+  },
+  {
+    question: "Dans quelles villes Kiota Suit est-elle opérationnelle ?",
+    answer: "La solution est actuellement opérationnelle dans les villes de Lubumbashi, Butembo et Beni, et sera bientôt disponible à Kinshasa, Mbujimai et Kisangani."
   },
   {
     question: "Quels sont les modes de paiement acceptés ?",
-    answer: "Nous acceptons les cartes bancaires, les virements bancaires et les principaux services de mobile money en Afrique."
+    answer: "Nous privilégions le mobile money (M-PESA, Airtel Money et Orange Money), mais nous acceptons également les cartes bancaires et les virements bancaires."
   },
   {
-    question: "Puis-je essayer Kiota Suit gratuitement ?",
-    answer: "Oui, nous proposons une période d'essai gratuite de 14 jours avec accès à toutes les fonctionnalités."
+    question: "Qu'est-ce que Kiota Store ?",
+    answer: "Kiota Store est un espace de marché qui présente les équipements pris en charge par nos offres de leasing, d'achat par tranche et d'achat comptant."
+  },
+  {
+    question: "Comment valider mon compte pour utiliser Kiota Suit ?",
+    answer: "Votre compte doit être validé pour utiliser le système. Cette validation s'opère après avoir rempli le profil de votre entreprise dans l'application d'administration. Vous recevrez votre validation dans un délai de 2 jours ouvrables."
+  },
+  {
+    question: "Mes données sont-elles sécurisées ?",
+    answer: "Oui, nous utilisons un chiffrement de niveau bancaire et sommes conformes aux normes de sécurité internationales. C'est l'entrepreneur qui choisit à quelle institution partager ses données. Il peut ne pas partager, mais cela limiterait son accès aux offres de financement."
   },
   {
     question: "Comment fonctionne le support client ?",
     answer: "Notre équipe de support est disponible 24/7 par chat, email et téléphone. Nous proposons également des formations personnalisées."
-  },
-  {
-    question: "Mes données sont-elles sécurisées ?",
-    answer: "Oui, nous utilisons un chiffrement de niveau bancaire et sommes conformes aux normes de sécurité internationales."
   }
 ];
 

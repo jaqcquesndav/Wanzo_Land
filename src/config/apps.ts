@@ -49,7 +49,7 @@ export const APPS_CONFIG: Record<UserType, Record<AppId, AppConfig>> = {
     portfolio: {
       id: 'portfolio',
       name: 'Gestion de Portefeuille PME',
-      description: 'Suivez et optimisez vos investissements',
+      description: 'Sollicitez des crédits, gérez les remboursements, les leasings, et profitez du capital investissement',
       icon: 'LineChart',
       domain: APP_DOMAINS[USER_TYPES.SME].portfolio,
       requiredRole: 'user',

@@ -5,24 +5,52 @@ import { cn } from '../../utils/cn';
 
 const faqs = [
   {
-    question: "Comment fonctionne Kiota Suit ?",
-    answer: "Kiota Suit est une suite d'applications intégrées qui combine gestion d'entreprise et solutions de financement. Notre assistant IA Adha vous guide dans toutes vos opérations."
+    question: "Qu'est-ce que Kiota Suit ?",
+    answer: "Kiota Suit est un ensemble d'applications de gestion d'entreprises (ERP) et de portefeuille conçu pour accélérer la transition numérique et l'inclusion financière des PME en RDC. Elle cible les PME, Incubateurs, Institutions financières, Fonds de garantie et Investisseurs indépendants, elle a été développée par i-Kiotahub."
   },
   {
-    question: "Quels sont les avantages d'utiliser Adha ?",
-    answer: "Adha, notre assistant IA, automatise vos tâches comptables, détecte les anomalies, et vous aide à prendre de meilleures décisions grâce à l'analyse prédictive."
+    question: "Quels outils sont disponibles dans Kiota Suit ?",
+    answer: "Pour les PME : administration des comptes, comptabilité et gestion de portefeuille. Pour les Institutions financières : gestion de portefeuilles incluant crédits, leasing et capital-investissement."
   },
   {
-    question: "Comment accéder au financement ?",
-    answer: "Utilisez nos applications de gestion pendant 6 mois pour générer un score de crédit basé sur vos données réelles, puis accédez à des financements adaptés."
+    question: "Comment fonctionne l'intelligence artificielle dans Kiota Suit ?",
+    answer: "Adha, notre IA, utilise des modèles établis (OpenAI, Meta, Anthropic, etc) et des couches métier basées sur RAG & CAG, ainsi que des agents IA spécialisés."
   },
   {
-    question: "Quelles normes comptables sont supportées ?",
-    answer: "Nous supportons les normes SYSCOHADA et IFRS, avec une conformité totale aux réglementations locales et internationales."
+    question: "Dans quelles villes Kiota Suit est-elle opérationnelle ?",
+    answer: (
+      <>
+        Nous opérons dans les villes où nous trouvons des partenaires locaux tels que des incubateurs, cabinets d'audit, centres de PME, pépinières d'entreprises, etc. Actuellement, nous sommes présents à Lubumbashi, Butembo et Beni, et bientôt à Kinshasa, Mbuji-Mayi et Kisangani. Si vous souhaitez collaborer avec nous, vous pouvez{" "}
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSc_4vpYUR8-mOQ89WHNDGbT-0mT79p1xASmmfMkwvuXfAVR6g/viewform"
+          className="text-warning underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          devenir un partenaire local
+        </a>.
+      </>
+    )
   },
   {
-    question: "Quelle est la durée d'engagement ?",
-    answer: "Il n'y a pas de durée minimale d'engagement. Vous pouvez commencer avec notre version gratuite et évoluer selon vos besoins."
+    question: "Quels sont les modes de paiement acceptés ?",
+    answer: "Mobile money (M-PESA, Airtel Money, Orange Money), cartes bancaires et virements bancaires. Les paiements se font via l'application d'administration des comptes côté PME et directement dans l'application de gestion de portefeuille pour les autres."
+  },
+  {
+    question: "Qu'est-ce que Kiota Store ?",
+    answer: "Un espace de marché pour les équipements pris en charge par nos offres de leasing, d'achat par tranche et d'achat comptant. Kiota Store ne contient pas tous les équipements pris en charge. Vous pouvez également soumettre une demande personnalisée pour des équipements spécifiques."
+  },
+  {
+    question: "Comment valider mon compte pour utiliser Kiota Suit ?",
+    answer: "Remplissez le profil de votre entreprise dans l'application d'administration. La validation prend 2 jours ouvrables."
+  },
+  {
+    question: "Mes données sont-elles sécurisées ?",
+    answer: "Oui, grâce à un chiffrement de niveau bancaire et une conformité aux normes internationales. Vous contrôlez le partage de vos données."
+  },
+  {
+    question: "Comment fonctionne le support client ?",
+    answer: "Support 24/7 par chat, email et téléphone, avec des formations personnalisées disponibles."
   }
 ];
 
