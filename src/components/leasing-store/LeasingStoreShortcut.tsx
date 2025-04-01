@@ -1,10 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Store, X } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { mockProducts } from '../../pages/leasing-store/data/mockProducts'; // Import mock data
 
 export function LeasingStoreShortcut() {
   const [isOpen, setIsOpen] = useState(true);
+  const [thumbnails, setThumbnails] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // Fetch equipment images from mock data with valid images
+    const equipmentImages = mockProducts
+      .filter((product) => product.image) // Ensure the product has an image
+      .map((product) => product.image);
+    setThumbnails(equipmentImages);
+  }, []);
+
+  useEffect(() => {
+    // Automatically cycle through thumbnails every 3 seconds
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % thumbnails.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [thumbnails]);
+
+  const visibleThumbnails = [
+    thumbnails[(currentIndex - 1 + thumbnails.length) % thumbnails.length],
+    thumbnails[currentIndex],
+    thumbnails[(currentIndex + 1) % thumbnails.length],
+  ];
 
   return (
     <div className="fixed bottom-20 right-4 z-50">
@@ -19,7 +44,22 @@ export function LeasingStoreShortcut() {
               <X className="h-4 w-4" />
             </button>
           </div>
-          
+
+          {/* Carousel Section */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            {visibleThumbnails.map((src, index) => (
+              <img
+                key={index}
+                src={src}
+                alt={`Equipment ${index + 1}`}
+                className={cn(
+                  "object-cover rounded-md transition-transform",
+                  index === 1 ? "h-16 w-16 scale-110" : "h-12 w-12 opacity-70"
+                )}
+              />
+            ))}
+          </div>
+
           <p className="text-sm text-gray-600 mb-4">
             Découvrez notre sélection d'équipements disponibles. Achetez, louez, payez à votre rythme!
           </p>

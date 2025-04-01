@@ -33,6 +33,7 @@ export function AppRoutes() {
           <UnderDevelopment
             pageName="Produits"
             description="Notre catalogue de produits est en cours de développement."
+            showBody={true}
           />
         }
       />
@@ -42,6 +43,7 @@ export function AppRoutes() {
           <UnderDevelopment
             pageName="Tarification"
             description="Nos offres et tarifs seront bientôt disponibles."
+            showBody={true}
           />
         }
       />

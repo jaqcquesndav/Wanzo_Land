@@ -4,6 +4,7 @@ import { Menu, ShoppingCart, Home } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Container } from '../ui/Container';
 import { MobileNavigation } from './MobileNavigation';
+import React from 'react';
 
 const navigation = [
   { name: 'Accueil', href: '/', icon: <Home className="inline-block mr-2 h-5 w-5 text-blue-500" /> },
@@ -39,7 +40,12 @@ export function Header() {
                   location.pathname === item.href && "text-warning"
                 )}
               >
-                {item.icon}
+                {item.icon && React.cloneElement(item.icon, {
+                  className: cn(
+                    "inline-block mr-2 h-5 w-5",
+                    location.pathname === item.href ? "text-warning" : "text-gray-700"
+                  )
+                })}
                 {item.name}
                 {location.pathname === item.href && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-warning"></span>
@@ -69,7 +75,17 @@ export function Header() {
       <MobileNavigation
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
-        navigation={navigation}
+        navigation={navigation.map((item) => ({
+          ...item,
+          icon: item.icon
+            ? React.cloneElement(item.icon, {
+                className: cn(
+                  "inline-block mr-2 h-5 w-5",
+                  location.pathname === item.href ? "text-warning" : "text-gray-700"
+                )
+              })
+            : null,
+        }))}
       />
     </header>
   );

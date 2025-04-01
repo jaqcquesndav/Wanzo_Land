@@ -6,7 +6,7 @@ import { Testimonials } from '../components/home/Testimonials';
 
 export function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-white space-y-2">
       <Hero />
       <Features />
       <Pricing />

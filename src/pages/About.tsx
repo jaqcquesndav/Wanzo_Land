@@ -95,7 +95,7 @@ export function About() {
       <Container>
         <div className="py-16 sm:py-24">
           <h3 className="text-primary-600 text-2xl font-bold text-center sm:text-3xl mb-12 sm:mb-16">
-          Des vies, des ambitions, des espoirs partagés… Kiota Suit est né de cette volonté de transformer les réalités vécues à l’Est de la RD Congo en leviers d’action pour des milliers de petites entreprises.
+          Des vies, des ambitions, des espoirs partagés…
           </h3>
           <div className="space-y-16 sm:space-y-24">
             {journey.map((step, index) => (
@@ -112,7 +112,7 @@ export function About() {
                   <h3 className="text-xl font-bold mt-2 text-center lg:text-left sm:text-2xl">
                     {step.title}
                   </h3>
-                  <p className="mt-4 text-gray-600 leading-relaxed text-center lg:text-left">
+                  <p className="mt-4 text-gray-600 leading-relaxed lg:text-left text-justify">
                     {step.description}
                   </p>
                 </div>

@@ -15,11 +15,12 @@ const steps = [
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742912461/kiota_suit/yqkqyac7iu3tr68spznx.jpg",
     features: [
       "Demarrez votre parcour dès la formalisation de votre entreprise",
-      "Gestion comptable assistée par l'Intelligence Artificielle",
-      "Audits & Importation des anciens exercices comptables",
-      "Obtention de la côte crédit et note ESG initiales",
-      "Digitalisation des processus de vente, production, etc.",
-      "Accompagnement personnalisé"
+      "Nos partenaires locaux vous accompagnent dans cette transition",
+      "Gestion comptable assistée par l'Intelligence Artificielle (IA)",
+      "Passez vos écritures comptables en language naturel grâce à l'IA",
+      "Importatez facilement vos anciens exercices comptables",
+      "Digitalisez vos processus de vente, production, etc.",
+      "Béneficiez d'un Accompagnement personnalisé"
     ]
   },
   {
@@ -29,13 +30,10 @@ const steps = [
     icon: Brain,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80",
     features: [
-      "Analyse des performances",
-      "Scoring crédit automatique basé sur les transactions et non les états financiers",
       "Vous n'avez pas besoin d'être rentable pour bénéficier de nos services",
-      "Évaluation des risques et opportunités",
+      "Nos experts Analysent vos données comptables et financières",
+      "Obtenez votre note ESG et côte crédit automatiquement, cette dernière sera basée sur les transactions et non les états financiers",
       "Montage des projets basés sur les réalités de votre PME",
-      "Recommandations personnalisées",
-      "Rapports détaillés assisté par l'Intelligence Artificielle"
     ]
   },
   {
@@ -45,13 +43,11 @@ const steps = [
     icon: LineChart,
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742930300/kiota_suit/wiyivnk9wgf6zvniyo0t.jpg",
     features: [
-      "Resautage et Parainage des PME éligibles",
-      "Visibilité auprès des investisseurs et Institutions financières",
+      "Visibilité auprès des investisseurs, fonds de garanties et Institutions financières",
       "Propositions de financement via l'outil de gestion de portefeuille PME",
       "Accès à des offres de financement compétitives",
+      "Dans Kiota Store, Achetez, louez, payez vos équipements à votre rythme",
       "Instruments financiers diversifiés: Crédits, Leasing, Capital Investissement, etc.",
-      "Négociation facilitée",
-      "Accompagnement dédié"
     ]
   }
 ];
