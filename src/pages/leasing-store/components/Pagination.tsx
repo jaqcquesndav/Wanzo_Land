@@ -11,7 +11,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <nav className="flex items-center justify-center">
+    <nav className="flex items-center justify-center mb-4 mt-4">
       <Button
         variant="secondary"
         onClick={() => onPageChange(currentPage - 1)}

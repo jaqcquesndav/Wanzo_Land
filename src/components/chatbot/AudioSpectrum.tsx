@@ -11,7 +11,7 @@ export function AudioSpectrum({ isPlaying, progress }: AudioSpectrumProps) {
   const points = Array.from({ length: numPoints });
 
   return (
-    <div className="h-8 flex items-center justify-center gap-2">
+    <div className="h-8 flex items-center justify-center gap-2 overflow-hidden">
       {points.map((_, index) => {
         const isActive = (index / numPoints) * 100 <= progress;
         

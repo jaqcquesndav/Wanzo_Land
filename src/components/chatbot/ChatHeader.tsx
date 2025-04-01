@@ -22,7 +22,7 @@ export function ChatHeader({ onClose, onToggleFullscreen, isFullscreen, isDemoMo
   }, []);
 
   return (
-    <div className={`flex justify-between items-center p-4 border-b bg-white relative z-10 ${isCompact ? 'h-[48px]' : 'h-[56px]'}`}>
+    <div className={`flex justify-between items-center p-4 border-b bg-white sticky top-0 z-10 ${isCompact ? 'h-[48px]' : 'h-[56px]'}`}>
       <div className="flex items-center gap-2">
         <span className="text-2xl">🤖</span>
         <div>

@@ -10,6 +10,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 import { cn } from '../../utils/cn';
 import { Button } from '../ui/Button';
 import { AudioSpectrum } from './AudioSpectrum';
+import { useNavigate } from "react-router-dom";
 
 interface Message {
   id: string;
@@ -38,6 +39,8 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
   const [isCopied, setIsCopied] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const navigate = useNavigate();
 
   const handleCopy = async () => {
     if (onCopy) {
@@ -66,10 +69,11 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
   return (
     <div className={cn(
       "flex w-full max-w-[100%] overflow-hidden relative z-40",
-      message.isBot ? "justify-start" : "justify-end"
+      message.isBot ? "justify-start" : "justify-end",
+      isFullscreen && "h-screen" // Occuper tout l'écran en mode plein écran
     )}>
       <div className={cn(
-        "flex max-w-[80%] gap-3",
+        "flex max-w-[80%] gap-3 overflow-hidden",
         message.isBot ? "flex-row" : "flex-row-reverse"
       )}>
         <div className={cn(
@@ -79,7 +83,7 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
           {message.isBot ? '🤖' : '👤'}
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 max-h-[50vh] overflow-y-auto">
           <div className={cn(
             "inline-block rounded-lg px-4 py-2",
             message.isBot ? "bg-gray-100" : "bg-primary text-white"
@@ -164,6 +168,12 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
           )}
         </div>
       </div>
+      <button
+        onClick={() => navigate("/chat/fullscreen")}
+        className="absolute top-2 right-2 text-sm text-primary hover:underline"
+      >
+        Mode plein écran
+      </button>
     </div>
   );
 }

@@ -27,18 +27,18 @@ export function ChatInput({
 
   useEffect(() => {
     const handleResize = () => {
-      setIsKeyboardOpen(window.innerHeight < 500); // Detect keyboard open for small height
+      setIsKeyboardOpen(window.innerHeight < 500); // Détecte si le clavier est ouvert
     };
 
-    handleResize(); // Initial check
+    handleResize(); // Vérification initiale
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleSend = () => {
     if (message.trim() && !isLoading) {
-      onSend(message.trim(), attachments);
-      setMessage('');
+      onSend(message.trim(), attachments); // Appelle la fonction onSend avec le message et les pièces jointes
+      setMessage(''); // Réinitialise l'input après l'envoi
       setAttachments([]);
     }
   };
@@ -54,6 +54,10 @@ export function ChatInput({
     if (e.target.files && e.target.files.length > 0) {
       setAttachments((prev) => [...prev, ...Array.from(e.target.files!)]);
     }
+  };
+
+  const handleMicroClick = () => {
+    console.log("Microphone button clicked"); // Ajoutez ici la logique pour gérer l'enregistrement audio
   };
 
   return (
@@ -81,8 +85,8 @@ export function ChatInput({
       <div className="flex items-end gap-2">
         <div className="flex-1">
           <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={message} // Affiche le message dans l'input
+            onChange={(e) => setMessage(e.target.value)} // Met à jour le message
             onKeyPress={handleKeyPress}
             placeholder={
               isRecording ? "Enregistrement en cours..." : 
@@ -113,14 +117,23 @@ export function ChatInput({
         <Button
           variant="secondary"
           size="sm"
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => fileInputRef.current?.click()} // Ouvre le sélecteur de fichiers
           disabled={isLoading || isRecording || isDemoMode}
         >
           <Paperclip className="h-4 w-4" />
         </Button>
 
         <Button
-          onClick={handleSend}
+          variant="secondary"
+          size="sm"
+          onClick={handleMicroClick} // Gère le clic sur le bouton micro
+          disabled={isLoading || isRecording}
+        >
+          🎤
+        </Button>
+
+        <Button
+          onClick={handleSend} // Gère l'envoi du message
           disabled={!message.trim() || isLoading || isRecording}
           size="sm"
         >

@@ -14,6 +14,7 @@ import { ProductDetails } from "../pages/leasing-store/ProductDetails";
 import { CustomRequest } from "../pages/leasing-store/CustomRequest";
 import { UnderDevelopment } from "../components/ui/UnderDevelopment";
 import { Team } from "../pages/Team";
+import { FullscreenChat } from "../pages/chat/FullscreenChat";
 
 export function AppRoutes() {
   return (
@@ -89,7 +90,7 @@ export function AppRoutes() {
         <Route path="product/:id" element={<ProductDetails />} />
         <Route path="custom-request" element={<CustomRequest />} />
       </Route>
-      F{/* Pages statiques */}
+      {/* Pages statiques */}
       <Route path="/about" element={<About />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/contact" element={<Contact />} />
@@ -113,6 +114,7 @@ export function AppRoutes() {
           />
         }
       />
+      <Route path="/chat/fullscreen" element={<FullscreenChat />} />
     </Routes>
   );
 }
