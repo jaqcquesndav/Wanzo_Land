@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Container } from '../../components/ui/Container';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { SearchBar } from './components/SearchBar';
-import { ProductFilters } from './components/ProductFilters';
-import { ProductGrid } from './components/ProductGrid';
-import { ActiveFilters } from './components/ActiveFilters';
-import { useProducts } from './hooks/useProducts';
-import { useFilters } from './hooks/useFilters';
-import { useSearch } from './hooks/useSearch';
-import { Filter, Plus, AlertCircle } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
-import { Pagination } from './components/Pagination';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Container } from "../../components/ui/Container";
+import { PageContainer } from "../../components/layout/PageContainer";
+import { SearchBar } from "./components/SearchBar";
+import { ProductFilters } from "./components/ProductFilters";
+import { ProductGrid } from "./components/ProductGrid";
+import { ActiveFilters } from "./components/ActiveFilters";
+import { useProducts } from "./hooks/useProducts";
+import { useFilters } from "./hooks/useFilters";
+import { useSearch } from "./hooks/useSearch";
+import { Filter, Plus, AlertCircle } from "lucide-react";
+import { Button } from "../../components/ui/Button";
+import { Pagination } from "./components/Pagination";
 
 export function LeasingStore() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -25,7 +25,13 @@ export function LeasingStore() {
 
   const { products, isLoading } = useProducts();
   const { searchQuery, setSearchQuery, searchResults } = useSearch(products);
-  const { filters, handleFilterChange, removeFilter, clearFilters, filteredProducts } = useFilters(searchResults);
+  const {
+    filters,
+    handleFilterChange,
+    removeFilter,
+    clearFilters,
+    filteredProducts,
+  } = useFilters(searchResults);
 
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -40,9 +46,12 @@ export function LeasingStore() {
         <Container className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-                Boutique Leasing
+              <h1 className="text-3xl font-bold tracking-tight text-gray-700 mt-4">
+                Kiota Store
               </h1>
+              <h3 className="text-xl font-medium tracking-tight text-green-700 mt-2">
+                Achetez, Louez, payez à votre rythme !
+              </h3>
               <div className="mt-6">
                 <button
                   onClick={toggleDetails}
@@ -56,50 +65,55 @@ export function LeasingStore() {
                     <div className="flex flex-col sm:flex-row items-start gap-4">
                       <AlertCircle className="h-6 w-6 text-yellow-500 flex-shrink-0" />
                       <p className="text-justify leading-relaxed">
-                        <strong>Travaillez avec des professionnels :</strong> Choisissez vos équipements avec l'aide de professionnels qualifiés. Des prestataires locaux peuvent également concevoir vos équipements, évitant ainsi le recours à l'importation.
+                        <strong>Travaillez avec des professionnels :</strong>{" "}
+                        Choisissez vos équipements avec l'aide de professionnels
+                        qualifiés. Des prestataires locaux peuvent également
+                        concevoir vos équipements, évitant ainsi le recours à
+                        l'importation.
                       </p>
                     </div>
                     <div className="flex flex-col sm:flex-row items-start gap-4">
                       <AlertCircle className="h-6 w-6 text-yellow-500 flex-shrink-0" />
                       <p className="text-justify leading-relaxed">
-                        <strong>Équipements présentés :</strong> Les équipements listés ici ne sont qu'un échantillon pour illustrer les types d'équipements pris en charge. Cette offre est rendue possible grâce à nos institutions financières partenaires, disposant des autorisations nécessaires pour fournir ce service particulier.
+                        <strong>Équipements présentés :</strong> Les équipements
+                        listés ici ne sont qu'un échantillon pour illustrer les
+                        types d'équipements pris en charge. Cette offre est
+                        rendue possible grâce à nos institutions financières
+                        partenaires, disposant des autorisations nécessaires
+                        pour fournir ce service particulier.
                       </p>
                     </div>
                     <div className="flex flex-col sm:flex-row items-start gap-4">
                       <AlertCircle className="h-6 w-6 text-yellow-500 flex-shrink-0" />
                       <p className="text-justify leading-relaxed">
-                        <strong>Options d'achat :</strong> Ces équipements sont également disponibles pour achat, offrant une flexibilité adaptée à vos besoins professionnels.
+                        <strong>Options d'achat :</strong> Ces équipements sont
+                        également disponibles pour achat, offrant une
+                        flexibilité adaptée à vos besoins professionnels.
                       </p>
                     </div>
                   </div>
                 )}
               </div>
             </div>
+          </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-              <Link to="/leasing-store/custom-request">
-                <Button variant="secondary" className="flex items-center gap-2 sm:static">
-                  <Plus className="h-4 w-4" />
-                  Demande personnalisée
-                </Button>
-              </Link>
-
-              <button
-                type="button"
-                className="inline-flex items-center lg:hidden"
-                onClick={() => setMobileFiltersOpen(true)}
+          <div className="mt-8">
+            <Link to="/leasing-store/custom-request">
+              <Button
+                variant="secondary"
+                className="flex items-center gap-2 sm:static"
               >
-                <Filter className="h-5 w-5" />
-                <span className="ml-2">Filtres</span>
-              </button>
-            </div>
+                <Plus className="h-4 w-4" />
+                Demande personnalisée
+              </Button>
+            </Link>
           </div>
 
           <div className="mt-8">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
-              onClear={() => setSearchQuery('')}
+              onClear={() => setSearchQuery("")}
             />
           </div>
 
@@ -131,13 +145,13 @@ export function LeasingStore() {
                   <ProductGrid
                     products={currentProducts}
                     onProductClick={function (): void {
-                      throw new Error('Function not implemented.');
+                      throw new Error("Function not implemented.");
                     }}
                     onLeaseRequest={function (): void {
-                      throw new Error('Function not implemented.');
+                      throw new Error("Function not implemented.");
                     }}
                   />
-                  
+
                   {totalPages > 1 && (
                     <div className="mt-8">
                       <Pagination

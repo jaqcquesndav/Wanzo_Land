@@ -184,10 +184,11 @@ export const mockProducts = [
     id: "proj-001",
     name: "Bâche de Projection Portable 100 pouces",
     description: "Bâche de projection portable avec support pliable, idéale pour les présentations et formations.",
-    image: "https://example.com/bache-projection.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517713/716JcdlSG6L.__AC_SY300_SX300_QL70_ML2__i2bjrf.jpg",
     gallery: [
-      "https://example.com/bache-projection-1.jpg",
-      "https://example.com/bache-projection-2.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517709/61iw8aArIOL._AC_SX425__bi70up.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517705/71XnplD0drL._AC_SX425__xfakow.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517717/6116lOmr2aL._AC_SX425__zwgfkc.jpg"
     ],
     price: 150,
     monthlyPayment: 6.99,
@@ -208,10 +209,10 @@ export const mockProducts = [
     id: "proj-002",
     name: "Écran Interactif 65 pouces",
     description: "Écran interactif tactile pour salles de formation, avec support mural inclus.",
-    image: "https://example.com/ecran-formation.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517822/Hda2977cce16b4cb9853fab16c142e824Q_mewaju.png",
     gallery: [
-      "https://example.com/ecran-formation-1.jpg",
-      "https://example.com/ecran-formation-2.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517817/H6c00b6d1b5564c0eafb3541407914ef6h_cavc3v.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517813/H06e8642ab8a446f69134d2a3cf5982f8Z_uy8xqx.png"
     ],
     price: 2500,
     monthlyPayment: 99.99,
@@ -235,10 +236,11 @@ export const mockProducts = [
   id: "wb-001",
   name: "Tableau Blanc Magnétique 120x90 cm",
   description: "Tableau blanc magnétique avec cadre en aluminium et accessoires inclus.",
-  image: "https://example.com/whiteboard.jpg",
+  image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517656/61UuBz0hhCL._AC_SL1500__gh7wxp.jpg",
   gallery: [
-    "https://example.com/whiteboard-1.jpg",
-    "https://example.com/whiteboard-2.jpg"
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517652/61SRjw6-DwL._AC_SL1500__oorzbq.jpg",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517649/61fty5_OuwL._AC_SL1500__yfiyfk.jpg",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517660/71Fy6RPt-9L._AC_SL1490__kfsu5f.jpg"
   ],
   price: 100,
   monthlyPayment: 4.99,
@@ -259,10 +261,11 @@ export const mockProducts = [
   id: "mob-001",
   name: "Chaise Ergonomique pour Bureau",
   description: "Chaise de bureau avec support lombaire ajustable et accoudoirs.",
-  image: "https://example.com/chaise-ergonomique.jpg",
+  image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517592/pl_1_1_10476_gv6ksy.webp",
   gallery: [
-    "https://example.com/chaise-ergonomique-1.jpg",
-    "https://example.com/chaise-ergonomique-2.jpg"
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517596/pl_1_2_10476_pn0eqp.webp",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517599/pl_1_3_10476_cddslr.webp",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517604/pl_1_5_10476_xusvgm.webp"
   ],
   price: 150,
   monthlyPayment: 6.99,
@@ -331,10 +334,11 @@ export const mockProducts = [
   id: "mob-006",
   name: "Comptoir d’Accueil Moderne",
   description: "Comptoir d’accueil avec éclairage LED intégré et espace de rangement.",
-  image: "https://example.com/comptoir-accueil.jpg",
+  image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517404/bureau_daccueil-deskono-192347z_cmzgdd.jpg",
   gallery: [
-    "https://example.com/comptoir-accueil-1.jpg",
-    "https://example.com/comptoir-accueil-2.jpg"
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517402/bureau_daccueil-deskono-192365z_pjoqix.jpg",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517407/bureau_daccueil-deskono-192356z_elmif3.jpg",
+    "https://res.cloudinary.com/daxvxdecv/image/upload/v1743517411/bureau_daccueil-deskono-192383z_jfslcp.jpg"
   ],
   price: 800,
   monthlyPayment: 29.99,

@@ -8,7 +8,7 @@ const navigation = {
   solutions: [
     { name: 'ERP', href: 'auth/apps/sme' },
     { name: 'Gestion de portefeuille IF', href: '/auth/apps/financial_institution' },
-    { name: 'Leasing Store', href: '/leasing-store' },
+    { name: 'Kiota Store', href: '/leasing-store' },
     { name: 'Tarification', href: '/under-development' },
   ],
   support: [

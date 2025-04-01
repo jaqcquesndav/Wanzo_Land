@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, ShoppingCart, Home } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Container } from '../ui/Container';
 import { MobileNavigation } from './MobileNavigation';
 
 const navigation = [
+  { name: 'Accueil', href: '/', icon: <Home className="inline-block mr-2 h-5 w-5 text-blue-500" /> },
   { name: 'À propos', href: '/about' },
   { name: 'Equipe', href: '/team' },
-  { name: 'Leasing Store', href: '/leasing-store' },
+  { name: 'Kiota Store', href: '/leasing-store', icon: <ShoppingCart className="inline-block ml-2 h-5 w-5 text-blue-500" /> },
   { name: 'FAQ', href: '/faq' },
   { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation(); // Récupère l'URL actuelle
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -33,10 +35,15 @@ export function Header() {
                 to={item.href}
                 className={cn(
                   "relative py-2 text-sm font-semibold transition-colors",
-                  "text-gray-700 hover:text-warning"
+                  "text-gray-700 hover:text-warning",
+                  location.pathname === item.href && "text-warning"
                 )}
               >
+                {item.icon}
                 {item.name}
+                {location.pathname === item.href && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-warning"></span>
+                )}
               </Link>
             ))}
           </div>

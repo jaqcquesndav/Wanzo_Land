@@ -11,7 +11,7 @@ export function LeasingStoreShortcut() {
       {isOpen && (
         <div className="bg-white rounded-lg shadow-xl p-4 w-64 animate-fade-in">
           <div className="flex justify-between items-center mb-3">
-            <h3 className="font-semibold text-gray-900">Boutique Leasing</h3>
+            <h3 className="font-semibold text-gray-900">Kiota Store</h3>
             <button
               onClick={() => setIsOpen(false)}
               className="text-gray-400 hover:text-gray-600"
@@ -21,7 +21,7 @@ export function LeasingStoreShortcut() {
           </div>
           
           <p className="text-sm text-gray-600 mb-4">
-            Découvrez notre sélection d'équipements disponibles en leasing
+            Découvrez notre sélection d'équipements disponibles. Achetez, louez, payez à votre rythme!
           </p>
           
           <Link
