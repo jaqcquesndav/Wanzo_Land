@@ -54,7 +54,7 @@ const plans = [
       'Prévision des crises',
       'Conformité Bâle III',
       'Assistant IA Adha Premium',
-      '30 Million de Tokens offerts',
+      '10 Million de Tokens offerts',
       'Support dédié 24/7'
     ],
     tokenPrice: '5',
