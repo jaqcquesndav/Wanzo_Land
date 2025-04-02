@@ -45,10 +45,10 @@ const steps = [
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742930300/kiota_suit/wiyivnk9wgf6zvniyo0t.jpg",
     features: [
       "Visibilité auprès des investisseurs, fonds de garanties et Institutions financières",
-      "Propositions de financement via l'outil de gestion de portefeuille PME",
-      "Accès à des offres de financement compétitives",
-      "Dans Kiota Store, Achetez, louez, payez vos équipements à votre rythme",
-      "Instruments financiers diversifiés: Crédits, Leasing, Capital Investissement, etc.",
+      "Accès intégral aux instruments de financement via l'outil de gestion de portefeuille PME",
+      "Facilitation de l'acquisitions des matériels et équipements de production spécialisés",
+      "Via Kiota Store, Achetez, louez, payez ces équipements à votre rythme",
+      "Accès aux instruments de financement diversifiés: Crédits, Leasing, Capital Investissement, etc.",
     ]
   }
 ];
