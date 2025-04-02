@@ -9,12 +9,16 @@ const faqs = [
     answer: "Kiota Suit est un ensemble d'applications de gestion d'entreprises (ERP) et de portefeuille conçu pour accélérer la transition numérique et l'inclusion financière des PME en RDC. Elle cible les PME, Incubateurs, Institutions financières, Fonds de garantie et Investisseurs indépendants."
   },
   {
+    question: "Comment valider mon compte pour utiliser Kiota Suit ?",
+    answer: "Remplissez le profil de votre entreprise dans l'application d'administration. La validation prend 2 jours ouvrables."
+  },
+  {
     question: "Quels outils sont disponibles dans Kiota Suit ?",
     answer: "Pour les PME : administration des comptes, comptabilité et gestion de portefeuille. Pour les Institutions financières : gestion de portefeuilles incluant crédits, leasing et capital-investissement."
   },
   {
-    question: "Comment fonctionne l'intelligence artificielle dans Kiota Suit ?",
-    answer: "Il s'agit d'un ensemble d'assistants spécialisés, tels qu'Adha, Adha Fisk, Adha Compta, etc., en comptabilité, fiscalité, droit des affaires, finance, analyste marché qui apportent aux entrepreneurs et gestionnaires de portefeuille un soutien précieux dans leur quotidien. Elle facilite l'analyse de données, la conception des projets, la production des rapports, etc."
+    question: "Comment fonctionne l'intelligence artificielle (Adha) dans Kiota Suit ?",
+    answer: "Il s'agit d'un ensemble d'assistants spécialisés en comptabilité, fiscalité, droit des affaires, finance, analyste marché, etc. Ils apportent aux entrepreneurs et gestionnaires de portefeuille un soutien précieux dans leur quotidien. ils facilitent l'analyse de données, la conception des projets, la production des rapports, etc."
   },
   {
     question: "Dans quelles villes Kiota Suit est-elle opérationnelle ?",
@@ -39,10 +43,6 @@ const faqs = [
   {
     question: "Qu'est-ce que Kiota Store ?",
     answer: "Un espace de marché pour les équipements pris en charge par nos offres de leasing, d'achat par tranche et d'achat comptant. Kiota Store ne contient pas tous les équipements pris en charge. Vous pouvez également soumettre une demande personnalisée pour des équipements spécifiques."
-  },
-  {
-    question: "Comment valider mon compte pour utiliser Kiota Suit ?",
-    answer: "Remplissez le profil de votre entreprise dans l'application d'administration. La validation prend 2 jours ouvrables."
   },
   {
     question: "Mes données sont-elles sécurisées ?",
