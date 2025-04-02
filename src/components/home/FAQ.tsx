@@ -6,7 +6,7 @@ import { cn } from '../../utils/cn';
 const faqs = [
   {
     question: "Qu'est-ce que Kiota Suit ?",
-    answer: "Kiota Suit est un ensemble d'applications de gestion d'entreprises (ERP) et de portefeuille conçu pour accélérer la transition numérique et l'inclusion financière des PME en RDC. Elle cible les PME, Incubateurs, Institutions financières, Fonds de garantie et Investisseurs indépendants, elle a été développée par i-Kiotahub."
+    answer: "Kiota Suit est un ensemble d'applications de gestion d'entreprises (ERP) et de portefeuille conçu pour accélérer la transition numérique et l'inclusion financière des PME en RDC. Elle cible les PME, Incubateurs, Institutions financières, Fonds de garantie et Investisseurs indépendants."
   },
   {
     question: "Quels outils sont disponibles dans Kiota Suit ?",
@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     question: "Comment fonctionne l'intelligence artificielle dans Kiota Suit ?",
-    answer: "Adha, notre IA, utilise des modèles établis (OpenAI, Meta, Anthropic, etc) et des couches métier basées sur RAG & CAG, ainsi que des agents IA spécialisés."
+    answer: "Il s'agit d'un ensemble d'assistants spécialisés, tels qu'Adha, Adha Fisk, Adha Compta, etc., en comptabilité, fiscalité, droit des affaires, finance, analyste marché qui apportent aux entrepreneurs et gestionnaires de portefeuille un soutien précieux dans leur quotidien. Elle facilite l'analyse de données, la conception des projets, la production des rapports, etc."
   },
   {
     question: "Dans quelles villes Kiota Suit est-elle opérationnelle ?",
