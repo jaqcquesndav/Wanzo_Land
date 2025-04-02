@@ -16,4 +16,11 @@ export interface Product {
   stock?: number;
   rating?: number;
   reviews?: number;
+  installment: {
+    downPaymentPercentage: number;
+    downPayment: number;
+    installmentAmount: number;
+  };
+  leasingPartner: string;
+  supplier: string;
 }
