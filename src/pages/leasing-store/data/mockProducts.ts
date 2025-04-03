@@ -1,5 +1,4 @@
 export const mockProducts = [
-
   // ============ MACHINES OUTILS ============
   // Ajoutez ici d'autres produits de la catégorie "Machines Outils"
 
@@ -8,13 +7,16 @@ export const mockProducts = [
     name: "Tour à métaux manuel",
     description:
       "Tour manuel robuste pour l'usinage de précision des pièces métalliques.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/ED1000GDIG-Tour-a-metaux-a-affichage-Numerique-Entre-poi-show-full_1_uuutdq.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/ED1000GDIG-Tour-a-metaux-a-affichage-Numerique-Entre-poi-show-full_1_uuutdq.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/Tour-a-Metaux-avec-Affichage-Digital-ED1000-GDIG-show-full_lek3h8.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511023/ED1000GDIG-Accessoires-fournis-avec-le-tour-a-metaux-show-full_crlutl.jpg",
     ],
     price: 15000,
     monthlyPayment: 399.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 1250, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_outils",
     condition: "new",
@@ -24,27 +26,30 @@ export const mockProducts = [
       capacité: "Usinage de pièces jusqu'à 300 mm de diamètre",
       vitesse_max: "1500 RPM",
       contrôle: "Manuel",
-      précision: "0.05 mm"
+      précision: "0.05 mm",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["12", "24", "36"],
-    stock: 6
+    stock: 6,
   },
   {
     id: "mi-009",
     name: "Fraiseuse manuelle universelle",
     description:
       "Fraiseuse polyvalente pour les travaux d'usinage manuel sur métal et plastique.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511117/FRAISEUSE_jr7fhb.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511117/FRAISEUSE_jr7fhb.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511112/Capture02_lq5yme.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511112/Capture02_lq5yme.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511112/Capture_w3aufi.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511115/Capture044_kyyudi.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511114/Capture05_aekulr.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511114/Capture05_aekulr.png",
     ],
     price: 18000,
     monthlyPayment: 499.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 1500, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_outils",
     condition: "new",
@@ -54,66 +59,11 @@ export const mockProducts = [
       capacité: "Table de 800 x 300 mm",
       vitesse_max: "2000 RPM",
       contrôle: "Manuel",
-      précision: "0.02 mm"
+      précision: "0.02 mm",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["12", "24", "36"],
-    stock: 4
-  },
-
-  // Machines Agricoles
-  {
-    id: "mi-002",
-    name: "Tracteur Massey Ferguson 4707",
-    description: "Tracteur tout-terrain puissant pour les travaux agricoles",
-    image: "https://example.com/massey-ferguson-4707.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 42000,
-    monthlyPayment: 899.99,
-    category: "agriculture",
-    subcategory: "machines_agricoles",
-    condition: "new",
-    brand: "Massey Ferguson",
-    specifications: {
-      moteur: "4.4L Diesel",
-      puissance: "95 HP",
-      capacité: "Tête de fauche et remorque",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24", "36"],
-    stock: 3,
-  },
-
-  // Équipement de Chantier
-  {
-    id: "mi-003",
-    name: "Pelleteuse Caterpillar 320",
-    description:
-      "Pelleteuse hydraulique pour travaux de terrassement et de construction",
-    image: "https://example.com/pelleteuse-cat-320.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 80000,
-    monthlyPayment: 1799.99,
-    category: "machines_industrielles",
-    subcategory: "equipement_chantier",
-    condition: "new",
-    brand: "Caterpillar",
-    specifications: {
-      moteur: "6.6L Diesel",
-      puissance: "150 HP",
-      capacité_benne: "1.5 m³",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24", "36"],
-    stock: 2,
+    stock: 4,
   },
 
   // Machines de Production
@@ -122,7 +72,8 @@ export const mockProducts = [
     name: "Presses hydrauliques de production",
     description:
       "Presses à haute capacité pour la fabrication de pièces métalliques",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513947/H138f0ea575e14a28b2ce55fe30f7a8cdV.jpg_720x720q50_cgayfi.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513947/H138f0ea575e14a28b2ce55fe30f7a8cdV.jpg_720x720q50_cgayfi.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513945/H1d07ed207c5c40a68c9b9c6c551d4a17D.jpg_720x720q50_go84ea.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513949/H8667109d10b745b29722490aaa9f36f1F.jpg_720x720q50_ucg8ir.png",
@@ -130,6 +81,8 @@ export const mockProducts = [
     ],
     price: 2000,
     monthlyPayment: 49.99,
+    paymentPeriods: "24, 36, 48 mois",
+    installmentPayment: { amount: 83.33, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_production",
     condition: "new",
@@ -149,7 +102,8 @@ export const mockProducts = [
     id: "mi-005",
     name: "Machine à tisser automatique",
     description: "Machine de production textile pour tissage rapide et précis",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595313/07_u0u84h.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595313/07_u0u84h.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595321/10_zy2ztt.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595314/08_cxbflo.png",
@@ -157,6 +111,8 @@ export const mockProducts = [
     ],
     price: 25000,
     monthlyPayment: 599.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 2083.33, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_textile",
     condition: "new",
@@ -170,37 +126,41 @@ export const mockProducts = [
     availableDurations: ["12", "24", "36"],
     stock: 5,
   },
-
-  // Machines de Métallurgie
   {
-    id: "mi-006",
-    name: "Fours industriels pour fusion de métaux",
+    id: "mi-010",
+    name: "Usine de Fabrication de Fils de Cheveux Artificiels en Soie",
     description:
-      "Fours à haute température pour la fusion des métaux précieux et industriels",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596237/03_xl96wc.png",
+      "Usine clé en main pour la production de fils de cheveux artificiels en soie, adaptée aux besoins industriels.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677843/Capture_aecugm.png",
     gallery: [
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596239/04_azwuon.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596298/05_ffbtg9.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596237/02_xitqf7.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596301/F3_wphyxr.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596304/F6_awl75v.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677843/03_bd9z7t.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677842/05_txv97f.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677842/02_dm7xdo.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677841/06_bzbqmz.png",
     ],
-    price: 120000,
-    monthlyPayment: 2999.99,
+    price: 100000,
+    monthlyPayment: 2499.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 8333.33, period: "mois" },
     category: "machines_industrielles",
-    subcategory: "machines_metallurgie",
+    subcategory: "usines_production",
     condition: "new",
-    brand: "MetalFusion Corp.",
+    brand: "SilkHairTech",
     specifications: {
-      capacité: "10 tonnes",
-      température_max: "2000°C",
-      source_énergie: "Electrique",
+      capacité: "500 kg/jour",
+      énergie: "Électrique",
+      dimensions: "50m x 30m",
+      caractéristiques: [
+        "Machines de filature automatisées",
+        "Système de contrôle qualité intégré",
+        "Ligne d'emballage automatisée",
+      ],
     },
     availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["24", "36", "48"],
+    availableDurations: ["12", "24", "36"],
     stock: 2,
   },
-
   // Machines Alimentaires
 
   {
@@ -208,11 +168,12 @@ export const mockProducts = [
     name: "Presse à Huile pour Arachide et Tournesol",
     description:
       "Machine compacte pour extraire l'huile des graines comme l'arachide, le soja et le tournesol.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/Capture_fvxmjn.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/Capture_fvxmjn.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/04_j5cw0v.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/03_uq13zf.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/02_hdnmg2.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/02_hdnmg2.png",
     ],
     price: 3000,
     monthlyPayment: 79.99,
@@ -306,6 +267,8 @@ export const mockProducts = [
     ],
     price: 35000,
     monthlyPayment: 799.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 2916.67, period: "mois" },
     category: "vehicules",
     subcategory: "transport_en_commun",
     condition: "occasion",
@@ -332,6 +295,8 @@ export const mockProducts = [
     ],
     price: 75000,
     monthlyPayment: 1599.99,
+    paymentPeriods: "24, 36, 48 mois",
+    installmentPayment: { amount: 6250, period: "mois" },
     category: "vehicules",
     subcategory: "vehicules_speciaux",
     condition: "new",
@@ -486,11 +451,12 @@ export const mockProducts = [
     name: "Mitsubishi Canter Camion Frigorifique",
     description:
       "Camion frigorifique pour le transport de produits périssables.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591892/BX482642_15dc3edb_r3crai.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591892/BX482642_15dc3edb_r3crai.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591892/BX482642_15dc3edc_iraxqk.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591907/BX482642_15dc3eee_dhajpv.jpg",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591903/BX482642_15dc3eed_kgxplb.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591903/BX482642_15dc3eed_kgxplb.jpg",
     ],
     price: 60000,
     monthlyPayment: 1299.99,
@@ -546,6 +512,8 @@ export const mockProducts = [
     ],
     price: 350,
     monthlyPayment: 12.99,
+    paymentPeriods: "12, 24 mois",
+    installmentPayment: { amount: 29.17, period: "mois" },
     category: "informatique",
     subcategory: "reseaux",
     condition: "new",
@@ -573,6 +541,8 @@ export const mockProducts = [
     ],
     price: 200,
     monthlyPayment: 9.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 16.67, period: "mois" },
     category: "informatique",
     subcategory: "impression",
     condition: "new",
@@ -885,7 +855,6 @@ export const mockProducts = [
     stock: 10,
   },
 
-
   // ============ MACHINES OUTILS ============
   // Ajoutez ici d'autres produits de la catégorie "Machines Outils"
 
@@ -894,13 +863,16 @@ export const mockProducts = [
     name: "Tour à métaux manuel",
     description:
       "Tour manuel robuste pour l'usinage de précision des pièces métalliques.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/ED1000GDIG-Tour-a-metaux-a-affichage-Numerique-Entre-poi-show-full_1_uuutdq.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/ED1000GDIG-Tour-a-metaux-a-affichage-Numerique-Entre-poi-show-full_1_uuutdq.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/Tour-a-Metaux-avec-Affichage-Digital-ED1000-GDIG-show-full_lek3h8.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511023/ED1000GDIG-Accessoires-fournis-avec-le-tour-a-metaux-show-full_crlutl.jpg",
     ],
     price: 15000,
     monthlyPayment: 399.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 1250, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_outils",
     condition: "new",
@@ -910,27 +882,30 @@ export const mockProducts = [
       capacité: "Usinage de pièces jusqu'à 300 mm de diamètre",
       vitesse_max: "1500 RPM",
       contrôle: "Manuel",
-      précision: "0.05 mm"
+      précision: "0.05 mm",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["12", "24", "36"],
-    stock: 6
+    stock: 6,
   },
   {
     id: "mi-009",
     name: "Fraiseuse manuelle universelle",
     description:
       "Fraiseuse polyvalente pour les travaux d'usinage manuel sur métal et plastique.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511117/FRAISEUSE_jr7fhb.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511117/FRAISEUSE_jr7fhb.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511112/Capture02_lq5yme.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511112/Capture02_lq5yme.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511112/Capture_w3aufi.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511115/Capture044_kyyudi.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511114/Capture05_aekulr.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511114/Capture05_aekulr.png",
     ],
     price: 18000,
     monthlyPayment: 499.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 1500, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_outils",
     condition: "new",
@@ -940,38 +915,11 @@ export const mockProducts = [
       capacité: "Table de 800 x 300 mm",
       vitesse_max: "2000 RPM",
       contrôle: "Manuel",
-      précision: "0.02 mm"
+      précision: "0.02 mm",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["12", "24", "36"],
-    stock: 4
-  },
-
-  // Machines Agricoles
-  {
-    id: "mi-002",
-    name: "Tracteur Massey Ferguson 4707",
-    description: "Tracteur tout-terrain puissant pour les travaux agricoles",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510507/20171010_142338_resized_hy3ffs.jpg",
-    gallery: [
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510505/20171010_142400_resized_tpl28w.jpg",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510505/20171010_142406_resized_bvaq92.jpg",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510504/20171010_142345_resized_ajfqns.jpg",
-    ],
-    price: 42000,
-    monthlyPayment: 899.99,
-    category: "agriculture",
-    subcategory: "machines_agricoles",
-    condition: "new",
-    brand: "Massey Ferguson",
-    specifications: {
-      moteur: "4.4L Diesel",
-      puissance: "95 HP",
-      capacité: "Tête de fauche et remorque",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24", "36"],
-    stock: 3,
+    stock: 4,
   },
 
   // Équipement de Chantier
@@ -980,14 +928,17 @@ export const mockProducts = [
     name: "Pelleteuse Caterpillar 320",
     description:
       "Pelleteuse hydraulique pour travaux de terrassement et de construction",
-    image: "https://example.com/pelleteuse-cat-320.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743594283/PELLE_HYDRP_hu0tw1.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743594282/PE_dg68le.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743594281/PELLE_rhhum9.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743594282/PELLE_HYDR0_dhzyu2.png",
     ],
-    price: 80000,
-    monthlyPayment: 1799.99,
+    price: 300000,
+    monthlyPayment: 3799.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 6666.67, period: "36" },
     category: "machines_industrielles",
     subcategory: "equipement_chantier",
     condition: "new",
@@ -1002,20 +953,59 @@ export const mockProducts = [
     stock: 2,
   },
 
+  {
+    id: "mi-011",
+    name: "Mélangeur de Béton Auto-Chargeant Tober",
+    description:
+      "Mélangeur de béton auto-chargeant idéal pour les chantiers de construction, offrant une efficacité et une mobilité accrues.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684168/Capture_dnsxhs.png",
+    gallery: [
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684170/MEL_pmb4pe.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684166/03_e0fljh.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684164/02_veb5mu.png",
+    ],
+    price: 5500,
+    monthlyPayment: 199.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 7916.67, period: "mois" },
+    category: "machines_industrielles",
+    subcategory: "equipement_chantier",
+    condition: "new",
+    brand: "Tober",
+    specifications: {
+      moteur: "4.5L Diesel",
+      puissance: "120 HP",
+      capacité_tambour: "3.5 m³",
+      vitesse_max: "25 km/h",
+      fonctionnalités: [
+        "Système de pesée intégré",
+        "Rotation à 360° du tambour",
+        "Cabine climatisée",
+      ],
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 3,
+  },
+
   // Machines de Production
   {
     id: "mi-004",
     name: "Presses hydrauliques de production",
     description:
       "Presses à haute capacité pour la fabrication de pièces métalliques",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513947/H138f0ea575e14a28b2ce55fe30f7a8cdV.jpg_720x720q50_cgayfi.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684168/Capture_dnsxhs.png",
     gallery: [
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513945/H1d07ed207c5c40a68c9b9c6c551d4a17D.jpg_720x720q50_go84ea.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513949/H8667109d10b745b29722490aaa9f36f1F.jpg_720x720q50_ucg8ir.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743513953/Hd9a3195b67e940f88814ca964703a949A.jpg_720x720q50_wv7445.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684170/MEL_pmb4pe.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684166/03_e0fljh.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684164/02_veb5mu.png",
     ],
     price: 2000,
     monthlyPayment: 49.99,
+    paymentPeriods: "24, 36, 48 mois",
+    installmentPayment: { amount: 83.33, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_production",
     condition: "new",
@@ -1035,7 +1025,8 @@ export const mockProducts = [
     id: "mi-005",
     name: "Machine à tisser automatique",
     description: "Machine de production textile pour tissage rapide et précis",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595313/07_u0u84h.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595313/07_u0u84h.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595321/10_zy2ztt.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743595314/08_cxbflo.png",
@@ -1043,6 +1034,8 @@ export const mockProducts = [
     ],
     price: 25000,
     monthlyPayment: 599.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 2083.33, period: "mois" },
     category: "machines_industrielles",
     subcategory: "machines_textile",
     condition: "new",
@@ -1063,13 +1056,14 @@ export const mockProducts = [
     name: "Fours industriels pour fusion de métaux",
     description:
       "Fours à haute température pour la fusion des métaux précieux et industriels",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596237/03_xl96wc.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596237/03_xl96wc.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596239/04_azwuon.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596298/05_ffbtg9.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596237/02_xitqf7.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596301/F3_wphyxr.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596304/F6_awl75v.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743596304/F6_awl75v.png",
     ],
     price: 120000,
     monthlyPayment: 2999.99,
@@ -1094,11 +1088,12 @@ export const mockProducts = [
     name: "Presse à Huile pour Arachide et Tournesol",
     description:
       "Machine compacte pour extraire l'huile des graines comme l'arachide, le soja et le tournesol.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/Capture_fvxmjn.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/02_hdnmg2.png",
     gallery: [
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/04_j5cw0v.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/03_uq13zf.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/02_hdnmg2.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/04_j5cw0v.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743522310/Capture_fvxmjn.png",
     ],
     price: 3000,
     monthlyPayment: 79.99,
@@ -1178,19 +1173,20 @@ export const mockProducts = [
   // Ajoutez ici d'autres produits de la catégorie "OUTILLAGE"
 
   //outillage pour électriciens, mécaniciens, plombiers, maçons, etc.
-  
-  
+
   {
     id: "kit-006",
     name: "Equipement Maintenance Électricité",
-    description: "Ensemble complet pour les travaux d'électricité industrielle.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600554/EL_a9yi89.jpg",
+    description:
+      "Ensemble complet pour les travaux d'électricité industrielle.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600554/EL_a9yi89.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600554/02_x4v3hn.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600554/BOITE_lvzmmk.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600554/pince-amperemetrique_zzkhib.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600552/_img202107132116381834959996_nkv3zb.jpg",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600553/FOREUSE_goah3b.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743600553/FOREUSE_goah3b.png",
     ],
     price: 1000,
     monthlyPayment: 50,
@@ -1215,8 +1211,10 @@ export const mockProducts = [
   {
     id: "kit-008",
     name: "Equipement Atelier Mécanique Automobile",
-    description: "Équipement complet pour les ateliers de mécanique automobile.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605069/KITMECA_bipmli.png",
+    description:
+      "Équipement complet pour les ateliers de mécanique automobile.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605069/KITMECA_bipmli.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605112/61Lm2_z-t1L._AC_SL1500__a4egze.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605067/palan_mecanique_et_portique_jjjkx7.png",
@@ -1242,10 +1240,48 @@ export const mockProducts = [
     stock: 4,
   },
   {
+    id: "kit-016",
+    name: "Equipement Cordonnerie Professionnelle",
+    description:
+      "Équipement complet pour les ateliers de cordonnerie, idéal pour la réparation et la fabrication de chaussures.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683434/_img20230124113544452346185_1_byfzwu.jpg",
+    gallery: [
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683207/machine-a-coudre-claes-moteur-electronique_zvbuxk.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683389/cc_li4wex.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683207/pistolet-cloueur-finish-pro-18-mg_soppbd.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683206/machine-a-affuter-dick-sm111_ynw8iy.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683206/%C3%A9_o8oyhd.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683207/presse-manuelle-bl2-avec-pompe-a-pedale_auguvl.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683207/Capturee_piv3fk.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743683207/machine-a-coudre-claes-moteur-electronique_zvbuxk.jpg",
+    ],
+    price: 1200,
+    monthlyPayment: 29.99,
+    category: "equipements_professionnels",
+    subcategory: "pour_cordonnerie",
+    condition: "new",
+    brand: "ShoeFix",
+    specifications: {
+      contenu: [
+        "Machine à coudre pour cuir",
+        "Outils de réparation de chaussures",
+        "Colles et adhésifs professionnels",
+        "Matériaux de semelles",
+        "Établi de cordonnier avec rangement",
+      ],
+      normes: "CE, ISO 9001",
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 6,
+  },
+  {
     id: "kit-009",
     name: "Equipement Plomberie Professionnelle",
     description: "Kit complet pour les travaux de plomberie.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605392/kit-plombier-de-demarrage-d-activite-soudage-cuivre-sertisseuse-l2x-multicouche-virax-stanley-gce-charledave-poste-a-souder-1m-cube_jxkha2.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605392/kit-plombier-de-demarrage-d-activite-soudage-cuivre-sertisseuse-l2x-multicouche-virax-stanley-gce-charledave-poste-a-souder-1m-cube_jxkha2.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605389/kit-plombier-de-demarrage-d-activite-soudage-cuivre-sertisseuse-l2x-multicouche-virax-stanley-gce-charledave-poste-a-souder-1m-cube_2_n0ftah.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605387/kit-plombier-de-demarrage-d-activite-soudage-cuivre-sertisseuse-l2x-multicouche-virax-stanley-gce-charledave-poste-a-souder-1m-cube_1_c6marh.jpg",
@@ -1276,7 +1312,8 @@ export const mockProducts = [
     id: "kit-010",
     name: "Equipement Salon de Coiffure Professionnelle",
     description: "Ensemble complet pour équiper un salon de coiffure.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743606876/_img20230124113544452346185_1_rkqkyt.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743606876/_img20230124113544452346185_1_rkqkyt.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743606879/Capture_nwtbdh.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1742994662/kiota_suit/Leasing/Equipement%20pour%20un%20salon%20de%20coiffure/S%C3%A8che-cheveux%20%C3%A0%20capuche%20r%C3%A9glable%20sur%20pied%20avec%20roulettes/epfsjje4p1jcptbbvqi8.png",
@@ -1306,7 +1343,8 @@ export const mockProducts = [
     id: "kit-011",
     name: "Equipement Atelier de Couture Professionnelle",
     description: "Equipement Atelier de Couture Professionnelle",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608082/pack-de-demarrage-atelier-de-couture-1_1_bzrr45.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608082/pack-de-demarrage-atelier-de-couture-1_1_bzrr45.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743607892/PR1055X_main_yapn0o.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743607892/machine-ourlet-invisible-tony-cm500-1_jywfjl.jpg",
@@ -1338,10 +1376,12 @@ export const mockProducts = [
     id: "kit-012",
     name: "Kit de Restauration Rapide",
     description: "Équipement complet pour un service de restauration rapide.",
-    image: "https://example.com/kit-restauration.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743675874/03_x1zhkt.png",
     gallery: [
-      "https://example.com/kit-restauration-1.jpg",
-      "https://example.com/kit-restauration-2.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743675878/Capture_rrkg2z.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743675875/05_bclkip.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743675874/02_vd5wgw.png",
     ],
     price: 20000,
     monthlyPayment: 499.99,
@@ -1366,11 +1406,13 @@ export const mockProducts = [
   {
     id: "kit-018",
     name: "Kit Ophtalmologie",
-    description: "Équipement complet pour un cabinet d'ophtalmologie professionnel.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743609493/MASTER4-FULL04_bp8eut.jpg",
+    description:
+      "Équipement complet pour un cabinet d'ophtalmologie professionnel.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743609493/MASTER4-FULL04_bp8eut.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743609492/0000111_unite-de-consultation-ost-350_550_eh05xz.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743609491/705_Trousse_de_diagnostic_big_1_oun8fp.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743609491/705_Trousse_de_diagnostic_big_1_oun8fp.jpg",
     ],
     price: 45000,
     monthlyPayment: 1149.99,
@@ -1388,22 +1430,25 @@ export const mockProducts = [
         "Table d'examen réglable",
         "Ophthalmoscope",
         "Kératomètre",
-        "Système de gestion des dossiers patients"
+        "Système de gestion des dossiers patients",
       ],
-      normes: "CE, ISO 13485"
+      normes: "CE, ISO 13485",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["24", "36", "48"],
-    stock: 3
+    stock: 3,
   },
   {
     id: "kit-019",
-    name: "Kit Dermatologie",
-    description: "Équipement complet pour un cabinet de dermatologie professionnel.",
-    image: "https://example.com/kit-dermatologie.jpg",
+    name: "Equipement Service Dermatologie",
+    description:
+      "Équipement complet pour un cabinet de dermatologie professionnel.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677144/DER_pzcqy4.jpg",
     gallery: [
-      "https://example.com/kit-dermatologie-1.jpg",
-      "https://example.com/kit-dermatologie-2.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677144/101834-0-dermlite-dl4-dermatoskop-02_ibvipq.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743677145/Capture_e69hv2.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743674789/LAMPE_nfya2g.png",
     ],
     price: 40000,
     monthlyPayment: 999.99,
@@ -1421,22 +1466,25 @@ export const mockProducts = [
         "Système de gestion des dossiers patients",
         "Microscope pour biopsies",
         "Équipement de peeling chimique",
-        "Appareil de radiofréquence pour traitements esthétiques"
+        "Appareil de radiofréquence pour traitements esthétiques",
       ],
-      normes: "CE, ISO 13485"
+      normes: "CE, ISO 13485",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["24", "36", "48"],
-    stock: 4
+    stock: 4,
   },
   {
     id: "kit-020",
-    name: "Kit Vétérinaire",
-    description: "Équipement complet pour une clinique vétérinaire professionnelle.",
-    image: "https://example.com/kit-veterinaire.jpg",
+    name: "Equipement pour Vétérinaire",
+    description:
+      "Équipement complet pour une clinique vétérinaire professionnelle.",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684798/02_ny3w89.png",
     gallery: [
-      "https://example.com/kit-veterinaire-1.jpg",
-      "https://example.com/kit-veterinaire-2.jpg"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684800/04_xe9nsh.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684804/set-tete-fendue-et-ophtalmoscope-beta-200-veterinaire-heine_bvtjyn.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684806/VET02_h1rvcg.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684804/set-tete-fendue-et-ophtalmoscope-beta-200-veterinaire-heine_bvtjyn.jpg",
     ],
     price: 50000,
     monthlyPayment: 1249.99,
@@ -1455,20 +1503,21 @@ export const mockProducts = [
         "Système de radiographie numérique",
         "Pompe à perfusion",
         "Microscope pour analyses biologiques",
-        "Système de gestion des dossiers patients"
+        "Système de gestion des dossiers patients",
       ],
-      normes: "CE, ISO 13485"
+      normes: "CE, ISO 13485",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["24", "36", "48"],
-    stock: 2
+    stock: 2,
   },
 
   {
     id: "kit-014",
     name: "Equipement Dentisterie",
     description: "Équipement complet pour un cabinet dentaire professionnel.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608881/unite-dentaire-high-pack-cabinet.dentaire-complet_0_0_n9im0v.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608881/unite-dentaire-high-pack-cabinet.dentaire-complet_0_0_n9im0v.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608864/fauteuil-dentaire-flex-up-high-bader_0_kdbyi3.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608864/pack-cabinet-dentaire-complet-divers_1_iixmxg.jpg",
@@ -1496,15 +1545,18 @@ export const mockProducts = [
   },
   {
     id: "kit-015",
-    name: "Kit Entretien de Surface",
-    description: "Ensemble complet pour le nettoyage et l'entretien des surfaces.",
-    image: "https://example.com/kit-entretien-surface.jpg",
+    name: "Equipement Entretien de Surface",
+    description:
+      "Ensemble complet pour le nettoyage et l'entretien des surfaces.",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743678300/kit-de-demarrage-entreprise-de-nettoyage_nfgeca.jpg",
     gallery: [
-      "https://example.com/kit-entretien-surface-1.jpg",
-      "https://example.com/kit-entretien-surface-2.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743678300/kit-de-demarrage-entreprise-de-nettoyage_1_cayfda.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743678300/kit-de-demarrage-entreprise-de-nettoyage_3_hhnir3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743678300/kit-de-demarrage-entreprise-de-nettoyage_2_vldqbx.jpg",
     ],
-    price: 8000,
-    monthlyPayment: 199.99,
+    price: 800,
+    monthlyPayment: 19.99,
     category: "equipements_professionnels",
     subcategory: "pour_entretien_surface",
     condition: "new",
@@ -1523,35 +1575,7 @@ export const mockProducts = [
     availableDurations: ["12", "24"],
     stock: 10,
   },
-  {
-    id: "kit-016",
-    name: "Kit Cordonnerie Professionnelle",
-    description: "Équipement complet pour un atelier de cordonnerie.",
-    image: "https://example.com/kit-cordonnerie.jpg",
-    gallery: [
-      "https://example.com/kit-cordonnerie-1.jpg",
-      "https://example.com/kit-cordonnerie-2.jpg",
-    ],
-    price: 12000,
-    monthlyPayment: 299.99,
-    category: "equipements_professionnels",
-    subcategory: "pour_cordonnerie",
-    condition: "new",
-    brand: "ShoeFix",
-    specifications: {
-      contenu: [
-        "Machine à coudre pour cuir",
-        "Outils de réparation de chaussures",
-        "Colles et adhésifs",
-        "Matériaux de semelles",
-        "Établi de cordonnier",
-      ],
-      normes: "CE",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24", "36"],
-    stock: 6,
-  },
+
   {
     id: "kit-017",
     name: "Kit Laboratoire de Microbiologie",
@@ -1582,35 +1606,36 @@ export const mockProducts = [
     stock: 3,
   },
   {
-    id: 'kit-001',
-    name: 'Kit Cuisine Professionnelle - Restauration',
-    description: 'Ensemble complet pour équiper une cuisine professionnelle, idéal pour les restaurants et services hospitaliers.',
-    image: 'https://example.com/kit-cuisine.jpg',
+    id: "kit-001",
+    name: "Kit Cuisine Professionnelle - Restauration",
+    description:
+      "Ensemble complet pour équiper une cuisine professionnelle, idéal pour les restaurants et services hospitaliers.",
+    image: "https://example.com/kit-cuisine.jpg",
     gallery: [
       "https://example.com/kit-cuisine-1.jpg",
       "https://example.com/kit-cuisine-2.jpg",
-      "https://example.com/kit-cuisine-3.jpg"
+      "https://example.com/kit-cuisine-3.jpg",
     ],
     price: 25000,
     monthlyPayment: 599.99,
-    category: 'equipements_professionnels',
-    subcategory: 'materiel_restauration',
-    condition: 'new',
-    brand: 'ProKitchen',
+    category: "equipements_professionnels",
+    subcategory: "materiel_restauration",
+    condition: "new",
+    brand: "ProKitchen",
     specifications: {
       contenu: [
-        'Four combiné professionnel Rational',
-        'Réfrigérateur inox double porte Liebherr',
-        'Plan de travail en acier inoxydable',
-        'Lave-vaisselle industriel Winterhalter',
-        'Batterie de cuisine complète en inox'
+        "Four combiné professionnel Rational",
+        "Réfrigérateur inox double porte Liebherr",
+        "Plan de travail en acier inoxydable",
+        "Lave-vaisselle industriel Winterhalter",
+        "Batterie de cuisine complète en inox",
       ],
-      matériaux: 'Acier inoxydable',
-      puissance_totale: '20 kW',
+      matériaux: "Acier inoxydable",
+      puissance_totale: "20 kW",
     },
-    availableFinancing: ['credit_bail', 'leasing'],
-    availableDurations: ['24', '36', '48'],
-    stock: 5
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["24", "36", "48"],
+    stock: 5,
   },
 
   // ============ AGRICULTURE ============
@@ -1620,17 +1645,18 @@ export const mockProducts = [
     name: "Tracteur John Deere 5050E",
     description:
       "Tracteur agricole polyvalent, idéal pour le labour, la culture, et l’entretien des champs",
-    image: "https://example.com/tracteur-john-deere.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686422/43936090_1691541453_682_ttezep.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686418/43936090_1691541453_584_hi7tr2.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686417/43936090_1691541453_290_b3sdmk.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686416/43936090_1691541453_257_rdjydj.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686415/43936090_1691541453_113_dignj7.jpg",
     ],
-    price: 25000,
-    monthlyPayment: 599.99,
+    price: 10000,
+    monthlyPayment: 299.99,
     category: "agriculture",
     subcategory: "machines_agricoles",
-    condition: "new",
+    condition: "occasion",
     brand: "John Deere",
     specifications: {
       puissance: "50 ch",
@@ -1646,7 +1672,8 @@ export const mockProducts = [
     name: "Motoculteur Multifonctionnel 7HP",
     description:
       "Motoculteur polyvalent pour le labour, le sarclage et le transport agricole.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743520440/04_czesbc.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743520440/04_czesbc.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743520439/3_lpzmnc.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743520439/02_r8htqe.png",
@@ -1675,7 +1702,8 @@ export const mockProducts = [
     name: "Moissonneuse-Batteuse Compacte 4LZ-1.0",
     description:
       "Moissonneuse-batteuse compacte adaptée aux petites exploitations agricoles.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743521616/04_hhfmfy.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743521616/04_hhfmfy.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743521616/02_m6kihf.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743521094/03_tl9lyz.png",
@@ -1702,7 +1730,8 @@ export const mockProducts = [
     name: "Moissonneuse-batteuse Case IH",
     description:
       "Moissonneuse-batteuse de haute capacité pour récoltes de céréales",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743586599/01%C2%B5_m8mdqe.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743586599/01%C2%B5_m8mdqe.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743586599/01%C2%B5_m8mdqe.png",
     ],
@@ -1721,21 +1750,50 @@ export const mockProducts = [
     availableDurations: ["24", "36", "48"],
     stock: 2,
   },
+  // Machines Agricoles
+  {
+    id: "mi-002",
+    name: "Tracteur Massey Ferguson 4707",
+    description: "Tracteur tout-terrain puissant pour les travaux agricoles",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510507/20171010_142338_resized_hy3ffs.jpg",
+    gallery: [
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510505/20171010_142400_resized_tpl28w.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510505/20171010_142406_resized_bvaq92.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743510504/20171010_142345_resized_ajfqns.jpg",
+    ],
+    price: 42000,
+    monthlyPayment: 899.99,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 3500, period: "mois" },
+    category: "agriculture",
+    subcategory: "machines_agricoles",
+    condition: "new",
+    brand: "Massey Ferguson",
+    specifications: {
+      moteur: "4.4L Diesel",
+      puissance: "95 HP",
+      capacité: "Tête de fauche et remorque",
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 3,
+  },
 
   // Équipements d'Élevage
   {
-    id: "ag-003",
+    id: "ag-008",
     name: "Trayeuse Automatique DeLaval",
     description:
       "Trayeuse automatique pour un rendement élevé et une gestion optimale de l’élevage laitier",
-    image: "https://example.com/trayeuse-delaval.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688355/TR_lqxy8q.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688327/04_e17b3l.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688326/Capture_b1ttd3.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688326/05_gqjhdb.png",
     ],
-    price: 5000,
-    monthlyPayment: 1499.99,
+    price: 1000,
+    monthlyPayment: 149.99,
     category: "agriculture",
     subcategory: "equipements_elevage",
     condition: "new",
@@ -1749,46 +1807,20 @@ export const mockProducts = [
     availableDurations: ["12", "24"],
     stock: 5,
   },
-  {
-    id: "ag-004",
-    name: "Pailleuse Kuhn",
-    description:
-      "Pailleuse professionnelle pour la gestion des litières d’animaux",
-    image: "https://example.com/pailleuse-kuhn.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 8500,
-    monthlyPayment: 1999.99,
-    category: "agriculture",
-    subcategory: "equipements_elevage",
-    condition: "new",
-    brand: "Kuhn",
-    specifications: {
-      capacité: "200 m³",
-      type: "Pailleuse rotative",
-      usage: "Distribution de paille pour élevage",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 3,
-  },
 
   // Stockage Agricole
   {
-    id: "ag-005",
+    id: "ag-009",
     name: "Silo de Stockage Céréales",
     description: "Silo en métal pour le stockage sécurisé des céréales",
-    image: "https://example.com/silo-cereales.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689727/04_zydzpa.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689718/02%C2%B5_sly7vi.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689718/03_jlydxz.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689728/Capture_xmfkf1.png",
     ],
-    price: 15000,
-    monthlyPayment: 359.99,
+    price: 5000,
+    monthlyPayment: 59.99,
     category: "agriculture",
     subcategory: "stockage_agricole",
     condition: "new",

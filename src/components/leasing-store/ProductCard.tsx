@@ -15,6 +15,8 @@ interface ProductCardProps {
   category: string;
   condition: string;
   className?: string;
+  paymentPeriods?: string; // Nouvelle propriété
+  installmentPayment?: { amount: number; period: string }; // Nouvelle propriété
 }
 
 export function ProductCard({
@@ -27,6 +29,8 @@ export function ProductCard({
   category,
   condition,
   className,
+  paymentPeriods, // Nouvelle propriété
+  installmentPayment, // Nouvelle propriété
 }: ProductCardProps) {
   const { user } = useAuth();
   const { addToCart } = useCart();
@@ -92,6 +96,21 @@ export function ProductCard({
           </div>
         </div>
       </Link>
+      <div className="mt-4">
+        <h4 className="text-sm font-semibold text-gray-900">Mode de paiement ou financement :</h4>
+        <ul className="mt-2 text-sm text-gray-700">
+          <li>Prix Cash : ${price.toLocaleString('en-US')}</li>
+          <li>Mensualité Leasing : ${monthlyPayment.toLocaleString('en-US')} / mois</li>
+          {installmentPayment && (
+            <li>
+              Paiement échelonné : ${installmentPayment.amount.toLocaleString('en-US')} / {installmentPayment.period}
+            </li>
+          )}
+        </ul>
+        {paymentPeriods && (
+          <p className="mt-1 text-xs text-gray-500">Périodes disponibles : {paymentPeriods}</p>
+        )}
+      </div>
       <Button
         onClick={handleLeaseRequest}
         className="mt-4 w-full"
