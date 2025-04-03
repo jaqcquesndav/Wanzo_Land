@@ -13,6 +13,8 @@ export interface Product {
   specifications: Record<string, string | number | undefined>;
   availableFinancing?: string[];
   availableDurations?: string[];
+  paymentPeriods?: string;
+  installmentPayment?: { amount: number; period: string };
   stock?: number;
   rating?: number;
   reviews?: number;

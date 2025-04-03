@@ -64,13 +64,10 @@ export const categories = {
     name: "Équipements Professionnels",
     subcategories: [
       { id: "pour_electricite_industrielle", name: "Pour Électricité Industrielle" },
-      { id: "pour_electricite_domestique", name: "Pour Électricité Domestique" },
       { id: "pour_mecanique_automobile", name: "Pour Mécanique Automobile" },
       { id: "pour_plomberie", name: "Pour Plomberie" },
       { id: "pour_coiffure_professionnelle", name: "Pour Coiffure Professionnelle" },
       { id: "pour_couture_professionnelle", name: "Pour Couture Professionnelle" },
-      { id: "pour_soins_medicaux", name: "Pour Soins Médicaux" },
-      { id: "pour_bloc_operatoire", name: "Pour Bloc Opératoire" },
       { id: "pour_dentisterie", name: "Pour Dentisterie" },
       { id: "pour_entretien_surface", name: "Pour Entretien de Surface" },
       { id: "pour_cordonnerie", name: "Pour Cordonnerie" },
