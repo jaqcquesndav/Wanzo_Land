@@ -24,7 +24,6 @@ export const categories = {
     { id: "bureaux", name: "Bureaux et Tables de Travail" },
     { id: "coworking_spaces", name: "Mobilier pour Coworking" },
     { id: "rangements_bureau", name: "Rangements et Classements" },
-    { id: "cloisons_separation", name: "Cloisons et Séparations" },
     { id: "accueil_reception", name: "Mobilier d’Accueil et Réception" },
     { id: "salles_reunion", name: "Mobilier pour Salles de Réunion" },
     { id: "eclairage_bureau", name: "Éclairage de Bureau" },
