@@ -13,7 +13,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511024/Tour-a-Metaux-avec-Affichage-Digital-ED1000-GDIG-show-full_lek3h8.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511023/ED1000GDIG-Accessoires-fournis-avec-le-tour-a-metaux-show-full_crlutl.jpg",
     ],
-    price: 15000,
+    price: 12000,
     monthlyPayment: 399.99,
     paymentPeriods: "12, 24, 36 mois",
     installmentPayment: { amount: 1250, period: "mois" },
@@ -293,7 +293,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743505270/d0e833b98ca611d1040d86f0e9ad630c_ezytla.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743505269/7290bef7918d90a48eedb5251f9eb143_aa7mjl.jpg",
     ],
-    price: 75000,
+    price: 50000,
     monthlyPayment: 1599.99,
     paymentPeriods: "24, 36, 48 mois",
     installmentPayment: { amount: 6250, period: "mois" },
@@ -321,11 +321,11 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743506057/005_1_fw31t0.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743506057/002_1_oa90ag.jpg",
     ],
-    price: 30000,
+    price: 7000,
     monthlyPayment: 699.99,
     category: "vehicules",
     subcategory: "vehicules_utilitaires",
-    condition: "new",
+    condition: "occasion",
     brand: "Toyota",
     specifications: {
       moteur: "2.0L Essence",
@@ -347,8 +347,8 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743507378/862df5e8-2dcf-478a-b52e-35f3203f5652_pwkwvs.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743507374/3f66b6f1-8fd5-40ce-867d-8ab0f2e3b3c4_as9xpl.png",
     ],
-    price: 28000,
-    monthlyPayment: 649.99,
+    price: 8000,
+    monthlyPayment: 249.99,
     category: "vehicules",
     subcategory: "vehicules_utilitaires",
     condition: "new",
@@ -377,8 +377,8 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743508349/gun125l-dnfsxn-g12_wde4go.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743508346/gun125l-dnfsxn-g20_dxxald.png",
     ],
-    price: 40000,
-    monthlyPayment: 899.99,
+    price: 17000,
+    monthlyPayment: 400,
     category: "vehicules",
     subcategory: "vehicules_utilitaires",
     condition: "new",
@@ -403,8 +403,8 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743508056/96f16f2a38efa7c91fc736b919e44cda_bm3q3w.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743508057/9b4045aec03465f2d8dd1f77649fa31b_hg8mup.png",
     ],
-    price: 65000,
-    monthlyPayment: 1399.99,
+    price: 25000,
+    monthlyPayment: 599.99,
     category: "vehicules",
     subcategory: "transport_en_commun",
     condition: "new",
@@ -430,7 +430,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743508590/150cc-gasoline-3-wheel-cargo-motorcycle04393_rwfeov.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743508589/150cc-gasoline-3-wheel-cargo-motorcycle2c060_f88ig4.png",
     ],
-    price: 6000,
+    price: 3000,
     monthlyPayment: 199.99,
     category: "vehicules",
     subcategory: "motos",
@@ -458,8 +458,8 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591907/BX482642_15dc3eee_dhajpv.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743591903/BX482642_15dc3eed_kgxplb.jpg",
     ],
-    price: 60000,
-    monthlyPayment: 1299.99,
+    price: 18000,
+    monthlyPayment: 899.99,
     category: "vehicules",
     subcategory: "vehicules_speciaux",
     condition: "new",
@@ -473,31 +473,7 @@ export const mockProducts = [
     availableDurations: ["12", "24", "36"],
     stock: 6,
   },
-  {
-    id: "vh-009",
-    name: "Man Bateau de Transport 20m",
-    description:
-      "Bateau robuste pour le transport de marchandises sur les voies navigables.",
-    image: "https://example.com/man-bateau.jpg",
-    gallery: [
-      "https://example.com/man-bateau-1.jpg",
-      "https://example.com/man-bateau-2.jpg",
-    ],
-    price: 200000,
-    monthlyPayment: 7999.99,
-    category: "vehicules",
-    subcategory: "bateaux",
-    condition: "new",
-    brand: "Man",
-    specifications: {
-      longueur: "20m",
-      capacite: "50 tonnes",
-      moteur: "Diesel marin",
-    },
-    availableFinancing: ["leasing", "credit"],
-    availableDurations: ["12", "24", "36"],
-    stock: 3,
-  },
+
   // ============ ÉQUIPEMENTS INFORMATIQUES ============
   {
     id: "it-001",
@@ -510,7 +486,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743428387/kiota_suit/Leasing/Equipements%20informatiques/reseaux/Routeur%20TP-Link%20Jetstream%20Professionnel/ruiebtedghu4nee1mhl5.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743428386/kiota_suit/Leasing/Equipements%20informatiques/reseaux/Routeur%20TP-Link%20Jetstream%20Professionnel/walhqlaimuydi8dsc0pk.png",
     ],
-    price: 350,
+    price: 250,
     monthlyPayment: 12.99,
     paymentPeriods: "12, 24 mois",
     installmentPayment: { amount: 29.17, period: "mois" },
@@ -567,7 +543,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429835/kiota_suit/Leasing/Equipements%20informatiques/Tablette/iPad%20Pro%2012.9/eqeeedguednw401lr0ih.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743429834/kiota_suit/Leasing/Equipements%20informatiques/Tablette/iPad%20Pro%2012.9/qzemdfjz3pztmavrz6rx.jpg",
     ],
-    price: 1200,
+    price: 1000,
     monthlyPayment: 49.99,
     category: "informatique",
     subcategory: "tablettes",
@@ -902,8 +878,8 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511115/Capture044_kyyudi.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743511114/Capture05_aekulr.png",
     ],
-    price: 18000,
-    monthlyPayment: 499.99,
+    price: 12000,
+    monthlyPayment: 399.99,
     paymentPeriods: "12, 24, 36 mois",
     installmentPayment: { amount: 1500, period: "mois" },
     category: "machines_industrielles",
@@ -992,7 +968,7 @@ export const mockProducts = [
   // Machines de Production
   {
     id: "mi-004",
-    name: "Presses hydrauliques de production",
+    name: "Presses hydrauliques",
     description:
       "Presses à haute capacité pour la fabrication de pièces métalliques",
     image:
@@ -1153,7 +1129,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743585166/BISCUIT02_njvbrf.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743585168/BISCUIT04_alqtqb.png",
     ],
-    price: 12000,
+    price: 4000,
     monthlyPayment: 299.99,
     category: "machines_industrielles",
     subcategory: "machines_agroalimentaires",
@@ -1219,7 +1195,7 @@ export const mockProducts = [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605112/61Lm2_z-t1L._AC_SL1500__a4egze.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743605067/palan_mecanique_et_portique_jjjkx7.png",
     ],
-    price: 65000,
+    price: 15000,
     monthlyPayment: 199.99,
     category: "equipements_professionnels",
     subcategory: "pour_mecanique_automobile",
@@ -1310,7 +1286,7 @@ export const mockProducts = [
   },
   {
     id: "kit-010",
-    name: "Equipement Salon de Coiffure Professionnelle",
+    name: "Equipement Salon de Coiffure Professionnel",
     description: "Ensemble complet pour équiper un salon de coiffure.",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743606876/_img20230124113544452346185_1_rkqkyt.jpg",
@@ -1341,7 +1317,7 @@ export const mockProducts = [
   },
   {
     id: "kit-011",
-    name: "Equipement Atelier de Couture Professionnelle",
+    name: "Equipement Atelier de Couture Professionnel",
     description: "Equipement Atelier de Couture Professionnelle",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743608082/pack-de-demarrage-atelier-de-couture-1_1_bzrr45.jpg",
@@ -1405,7 +1381,7 @@ export const mockProducts = [
   },
   {
     id: "kit-018",
-    name: "Kit Ophtalmologie",
+    name: "Equipement cabinet d'Ophtalmologie moderne",
     description:
       "Équipement complet pour un cabinet d'ophtalmologie professionnel.",
     image:
@@ -1440,7 +1416,7 @@ export const mockProducts = [
   },
   {
     id: "kit-019",
-    name: "Equipement Service Dermatologie",
+    name: "Equipement Cabinet de Dermatologie Moderne",
     description:
       "Équipement complet pour un cabinet de dermatologie professionnel.",
     image:
@@ -1576,72 +1552,11 @@ export const mockProducts = [
     stock: 10,
   },
 
-  {
-    id: "kit-017",
-    name: "Kit Laboratoire de Microbiologie",
-    description: "Équipement complet pour un laboratoire de microbiologie.",
-    image: "https://example.com/kit-laboratoire-microbiologie.jpg",
-    gallery: [
-      "https://example.com/kit-laboratoire-microbiologie-1.jpg",
-      "https://example.com/kit-laboratoire-microbiologie-2.jpg",
-    ],
-    price: 40000,
-    monthlyPayment: 999.99,
-    category: "equipements_professionnels",
-    subcategory: "pour_laboratoire_microbiologie",
-    condition: "new",
-    brand: "LabTech",
-    specifications: {
-      contenu: [
-        "Hotte à flux laminaire",
-        "Microscope optique",
-        "Incubateur microbiologique",
-        "Autoclave de stérilisation",
-        "Réfrigérateur médical",
-      ],
-      normes: "ISO 15189",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["24", "36", "48"],
-    stock: 3,
-  },
-  {
-    id: "kit-001",
-    name: "Kit Cuisine Professionnelle - Restauration",
-    description:
-      "Ensemble complet pour équiper une cuisine professionnelle, idéal pour les restaurants et services hospitaliers.",
-    image: "https://example.com/kit-cuisine.jpg",
-    gallery: [
-      "https://example.com/kit-cuisine-1.jpg",
-      "https://example.com/kit-cuisine-2.jpg",
-      "https://example.com/kit-cuisine-3.jpg",
-    ],
-    price: 25000,
-    monthlyPayment: 599.99,
-    category: "equipements_professionnels",
-    subcategory: "materiel_restauration",
-    condition: "new",
-    brand: "ProKitchen",
-    specifications: {
-      contenu: [
-        "Four combiné professionnel Rational",
-        "Réfrigérateur inox double porte Liebherr",
-        "Plan de travail en acier inoxydable",
-        "Lave-vaisselle industriel Winterhalter",
-        "Batterie de cuisine complète en inox",
-      ],
-      matériaux: "Acier inoxydable",
-      puissance_totale: "20 kW",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["24", "36", "48"],
-    stock: 5,
-  },
 
   // ============ AGRICULTURE ============
   // Ajoutez ici d'autres produits de la catégorie "AGRICULTURE"
   {
-    id: "ag-001",
+    id: "ag-0010",
     name: "Tracteur John Deere 5050E",
     description:
       "Tracteur agricole polyvalent, idéal pour le labour, la culture, et l’entretien des champs",
@@ -2091,11 +2006,10 @@ export const mockProducts = [
     name: "Tente de Réception 10x20m",
     description:
       "Tente de réception spacieuse pour grands événements, idéale pour mariages, salons et événements en extérieur.",
-    image: "https://example.com/tente-reception-10x20m.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694727/Capture_lc7hyh.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694726/02_uhwd6y.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694724/10x20-600x494_svfpzq.jpg",
     ],
     price: 3500,
     monthlyPayment: 89.99,
@@ -2118,11 +2032,13 @@ export const mockProducts = [
     name: "Tente Pliante 3x3m",
     description:
       "Tente pliante légère et portable, idéale pour les événements plus petits, les stands et les expositions.",
-    image: "https://example.com/tente-pliante-3x3m.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694780/001_i8vz2p.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694783/002_ejzeo9.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694786/003_oliibf.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694789/004_b9e1ec.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694789/004_b9e1ec.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694797/008_rxxi60.jpg",
     ],
     price: 250,
     monthlyPayment: 9.99,
@@ -2197,73 +2113,19 @@ export const mockProducts = [
     stock: 3,
   },
 
-  // Matériel de Livraison
-  {
-    id: "ev-005",
-    name: "Chariot Électrique de Livraison",
-    description:
-      "Chariot de livraison électrique avec une capacité de charge élevée pour le transport rapide des équipements lors des événements.",
-    image: "https://example.com/chariot-electrique-livraison.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 4500,
-    monthlyPayment: 112.99,
-    category: "evenementiel",
-    subcategory: "materiel_livraison",
-    condition: "new",
-    brand: "TransLogistics",
-    specifications: {
-      capacité: "500 kg",
-      type: "Chariot Électrique",
-      autonomie: "8 heures",
-      vitesse_max: "20 km/h",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 2,
-  },
-  {
-    id: "ev-006",
-    name: "Chariot à Main pour Livraison",
-    description:
-      "Chariot manuel robuste, facile à transporter pour les livraisons légères dans les événements.",
-    image: "https://example.com/chariot-main-livraison.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 250,
-    monthlyPayment: 9.99,
-    category: "evenementiel",
-    subcategory: "materiel_livraison",
-    condition: "new",
-    brand: "LoadMate",
-    specifications: {
-      capacité: "100 kg",
-      type: "Chariot Manuel",
-      roues: "Pneumatiques",
-      usage: "Livraison de petits objets",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12"],
-    stock: 10,
-  },
+  //Evénementiel
+  
   {
     id: "ev-008",
     name: "Podium Métallique Démontable 8x6m",
     description:
       "Podium métallique démontable, léger et modulable, conçu pour les événements extérieurs. Facile à transporter et à assembler.",
-    image: "https://example.com/podium-metallique-demontable.jpg",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694924/POD01_emoxza.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694923/POD03_pxigyn.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694920/POD02_sqb5gs.jpg",
     ],
-    price: 7500,
+    price: 3500,
     monthlyPayment: 179.99,
     category: "evenementiel",
     subcategory: "tentes",
