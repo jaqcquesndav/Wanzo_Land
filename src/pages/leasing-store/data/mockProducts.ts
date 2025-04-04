@@ -1455,7 +1455,8 @@ export const mockProducts = [
     name: "Equipement pour Vétérinaire",
     description:
       "Équipement complet pour une clinique vétérinaire professionnelle.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684798/02_ny3w89.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684798/02_ny3w89.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684800/04_xe9nsh.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743684804/set-tete-fendue-et-ophtalmoscope-beta-200-veterinaire-heine_bvtjyn.jpg",
@@ -1552,7 +1553,6 @@ export const mockProducts = [
     stock: 10,
   },
 
-
   // ============ AGRICULTURE ============
   // Ajoutez ici d'autres produits de la catégorie "AGRICULTURE"
   {
@@ -1560,7 +1560,8 @@ export const mockProducts = [
     name: "Tracteur John Deere 5050E",
     description:
       "Tracteur agricole polyvalent, idéal pour le labour, la culture, et l’entretien des champs",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686422/43936090_1691541453_682_ttezep.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686422/43936090_1691541453_682_ttezep.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686418/43936090_1691541453_584_hi7tr2.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743686417/43936090_1691541453_290_b3sdmk.jpg",
@@ -1701,7 +1702,8 @@ export const mockProducts = [
     name: "Trayeuse Automatique DeLaval",
     description:
       "Trayeuse automatique pour un rendement élevé et une gestion optimale de l’élevage laitier",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688355/TR_lqxy8q.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688355/TR_lqxy8q.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688327/04_e17b3l.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743688326/Capture_b1ttd3.png",
@@ -1728,7 +1730,8 @@ export const mockProducts = [
     id: "ag-009",
     name: "Silo de Stockage Céréales",
     description: "Silo en métal pour le stockage sécurisé des céréales",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689727/04_zydzpa.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689727/04_zydzpa.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689718/02%C2%B5_sly7vi.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743689718/03_jlydxz.png",
@@ -1780,224 +1783,232 @@ export const mockProducts = [
   // Ajoutez ici d'autres produits de la catégorie "EAU & ENERGIE"
 
   {
-    id: "en-001",
-    name: "Groupe Électrogène Diesel Cummins 50kVA",
+    id: "ee-003",
+    name: "Station de Pompage Mobile Borra",
     description:
-      "Générateur Diesel fiable pour un usage commercial et industriel avec une puissance de 50 kVA.",
-    image: "https://example.com/groupe-electrogene-cummins.jpg",
+      "Station de pompage d'eau mobile et robuste, idéale pour les PME agricoles et industrielles. Facile à installer et à déplacer.",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743766941/Station_de_Pompage_D_eau_Mobile_borra_pzopkh.png",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743766942/03_g11btp.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743766942/%C3%A0%C3%A9_qdo8ba.png",
     ],
-    price: 12000,
-    monthlyPayment: 299.99,
-    category: "energie",
+    price: 3000,
+    monthlyPayment: 83.33,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 250, period: "mois" },
+    category: "energie_eau",
+    subcategory: "pompage",
+    condition: "new",
+    brand: "AquaPumps",
+    specifications: {
+      puissance: "7.5 kW",
+      debit: "5000 L/h",
+      typePompe: "Centrifuge auto-amorçante",
+      materiauCorps: "Fonte",
+      typeControle: "Automatique avec flotteur",
+      raccordements: "Entrée/Sortie 2 pouces",
+      chassis: "Acier galvanisé sur remorque",
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 5,
+  },
+  {
+    id: "ee-004",
+    name: "Système d′énergie solaire à demi-cellule xn-solaire",
+    description:
+      "Système d'énergie solaire hors réseau de 10kW avec stockage, idéal pour les PME et les applications résidentielles.",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743769077/Household-Solar-Mini-Solar-Power-Plant-Solar-Energy-Systems-off-Grid10kw-20kw-30kw-Energy-Storage-System-Solar-Power_uzseka.png",
+    gallery: [
+      
+    ],
+    price: 3288,
+    monthlyPayment: 91.33,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 274, period: "mois" },
+    category: "energie_eau",
+    subcategory: "solaire",
+    condition: "new",
+    brand: "SolarTech",
+    specifications: {
+      puissance: "10 kW",
+      type: "Hors réseau",
+      stockage: "Batteries lithium-ion incluses",
+      panneauxSolaires: "Panneaux monocristallins haute efficacité",
+      onduleur: "Onduleur hybride intégré",
+      duréeDeVie: "25 ans (panneaux), 10 ans (batteries)",
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 10,
+  },
+  {
+    id: "ee-005",
+    name: "Foreuse Hydraulique Compacte HydroDrill 150",
+    description:
+      "Foreuse hydraulique compacte et facile à transporter, conçue pour le forage de puits d'eau pour les PME agricoles et les communautés.",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743769711/01_irevzd.png",
+    gallery: [
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743769716/07_yoprot.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743769714/09_nrw5e9.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743769713/08_tbcixa.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743769712/06_pifcom.png",
+    ],
+    price: 35000,
+    monthlyPayment: 972.22,
+    paymentPeriods: "12, 24, 36, 48 mois",
+    installmentPayment: { amount: 2916.67, period: "mois" },
+    category: "energie_eau",
+    subcategory: "forage",
+    condition: "new",
+    brand: "DrillTech",
+    specifications: {
+      profondeurMaximale: "150 mètres",
+      diametreForage: "75 - 200 mm",
+      typeMoteur: "Hydraulique, 55 kW",
+      systemeForage: "Rotatif avec tête d'injection",
+      vitesseRotation: "0 - 150 tr/min",
+      forceTraction: "10 tonnes",
+      pompeInjection: "Pompe à boue 1000 L/h, 20 bar",
+      chassis: "Monté sur remorque tout-terrain",
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36", "48"],
+    stock: 1,
+  },
+  {
+    id: "ee-006",
+    name: "Kit d'Irrigation Solaire AgroFlow 5",
+    description:
+      "Système d'irrigation solaire complet et prêt à l'emploi pour les petites et moyennes exploitations agricoles. Comprend pompe, panneaux solaires et système de contrôle.",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743771555/Capture_r76qrn.png",
+    gallery: [
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743771552/05_z488f4.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743771554/06_lpmmkx.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743771550/03_tbs2jr.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743771713/09_piqcu2.png",
+    ],
+    price: 2000,
+    monthlyPayment: 33.33,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 1000, period: "mois" },
+    category: "energie_eau",
+    subcategory: "irrigation_solaire",
+    condition: "new",
+    brand: "AgriSolar",
+    specifications: {
+      puissancePompe: "3 kW",
+      debitMaximal: "25000 L/h",
+      hauteurRefoulementMaximale: "40 mètres",
+      panneauxSolaires: "9 x 330W, monocristallin",
+      surfacePanneaux: "15 m²",
+      controleur: "Contrôleur d'irrigation programmable AgroFlow 5",
+      capteursHumiditeSol: "3 capteurs sans fil",
+      systemeDistribution: "Tuyaux PVC et goutteurs intégrés (5 hectares)",
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 4,
+  },
+  {
+    id: "ee-009",
+    name: "Kit d'Irrigation Goutte à Goutte SolarFlow 3",
+    description:
+      "Système d'irrigation goutte à goutte alimenté par énergie solaire, idéal pour les petites et moyennes exploitations agricoles. Comprend pompe, panneaux solaires et accessoires d'irrigation.",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772000/irrigation_goutte_a_goutte.png",
+    gallery: [
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772001/irrigation_goutte_a_goutte_1.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772002/irrigation_goutte_a_goutte_2.png",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772003/irrigation_goutte_a_goutte_3.png"
+    ],
+    price: 2500,
+    monthlyPayment: 69.44,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 833.33, period: "mois" },
+    category: "energie_eau",
+    subcategory: "irrigation_goutte_a_goutte",
+    condition: "new",
+    brand: "AgriSolar",
+    specifications: {
+      puissancePompe: "2.5 kW",
+      debitMaximal: "20000 L/h",
+      hauteurRefoulementMaximale: "30 mètres",
+      panneauxSolaires: "8 x 300W, monocristallin",
+      surfacePanneaux: "12 m²",
+      controleur: "Contrôleur d'irrigation programmable SolarFlow 3",
+      capteursHumiditeSol: "2 capteurs sans fil",
+      systemeDistribution: "Tuyaux PVC et goutteurs intégrés (3 hectares)",
+      accessoires: "Filtres, régulateurs de pression, vannes d'arrêt"
+    },
+    availableFinancing: ["credit_bail", "leasing"],
+    availableDurations: ["12", "24", "36"],
+    stock: 5
+  },
+  {
+    id: "ee-007",
+    name: "Groupe Électrogène Diesel Insonorisé PowerSilent 20",
+    description:
+      "Groupe électrogène diesel insonorisé de 20 kVA, idéal pour les PME. Fournit une alimentation de secours fiable et silencieuse.",
+    image: "https://example.com/powersilent-20.jpg",
+    gallery: [
+      "https://example.com/powersilent-20-1.jpg",
+      "https://example.com/powersilent-20-2.jpg",
+    ],
+    price: 8000,
+    monthlyPayment: 222.22,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 666.67, period: "mois" },
+    category: "energie_eau",
     subcategory: "groupes_electrogenes",
     condition: "new",
-    brand: "Cummins",
+    brand: "PowerGen",
     specifications: {
-      puissance: "50 kVA",
-      moteur: "Diesel",
-      type: "Stationnaire",
-      autonomie: "12 heures",
+      puissanceNominale: "20 kVA / 16 kW",
+      typeCarburant: "Diesel",
+      consommationCarburant: "2.5 L/h à 75% de charge",
+      niveauSonore: "65 dB(A) à 7 mètres",
+      autonomie: "12 heures à 75% de charge",
+      typeDemarrage: "Électrique avec batterie",
+      alternateur: "AVR (régulation automatique de tension)",
+      securite: "Protection surcharge, surchauffe, manque d'huile",
+      capot: "Insonorisé et résistant aux intempéries",
     },
     availableFinancing: ["credit_bail", "leasing"],
     availableDurations: ["12", "24", "36"],
     stock: 3,
   },
   {
-    id: "en-002",
-    name: "Groupe Électrogène Honda 20kVA",
+    id: "ee-008",
+    name: "Kit de Pompage Solaire Immergé SunSub 3",
     description:
-      "Générateur compact et robuste, idéal pour les petites entreprises et les sites à faible consommation.",
-    image: "https://example.com/groupe-electrogene-honda.jpg",
+      "Système de pompage d'eau solaire immergé pour les PME agricoles. Solution économique et écologique pour l'irrigation et l'abreuvage.",
+    image: "https://example.com/sunsub-3.jpg",
     gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
+      "https://example.com/sunsub-3-1.jpg",
+      "https://example.com/sunsub-3-2.jpg",
     ],
-    price: 8000,
-    monthlyPayment: 199.99,
-    category: "energie",
-    subcategory: "groupes_electrogenes",
+    price: 6000,
+    monthlyPayment: 166.67,
+    paymentPeriods: "12, 24, 36 mois",
+    installmentPayment: { amount: 500, period: "mois" },
+    category: "energie_eau",
+    subcategory: "pompage_solaire",
     condition: "new",
-    brand: "Honda",
+    brand: "SunPower Systems",
     specifications: {
-      puissance: "20 kVA",
-      moteur: "Essence",
-      type: "Portable",
-      autonomie: "8 heures",
+      puissancePompe: "2.2 kW",
+      debitMaximal: "10000 L/h",
+      hauteurRefoulementMaximale: "60 mètres",
+      typePompe: "Immergée, multicellulaire",
+      panneauxSolaires: "8 x 380W, monocristallin",
+      controleurPompe: "MPPT intégré, avec protection",
+      capteursNiveauEau: "Oui, pour arrêt automatique",
+      materiauPompe: "Acier inoxydable",
     },
     availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 5,
-  },
-
-  // Pompes à Eau
-  {
-    id: "en-003",
-    name: "Pompe à Eau Submersible Grundfos",
-    description:
-      "Pompe submersible pour les applications domestiques et agricoles, conçue pour une durabilité maximale.",
-    image: "https://example.com/pompe-eau-grundfos.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 1500,
-    monthlyPayment: 39.99,
-    category: "energie",
-    subcategory: "pompes_eau",
-    condition: "new",
-    brand: "Grundfos",
-    specifications: {
-      débit: "5000 L/h",
-      puissance: "1.5 HP",
-      type: "Submersible",
-      usage: "Agricole et Domestique",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 8,
-  },
-  {
-    id: "en-004",
-    name: "Pompe à Eau Pour Irrigation",
-    description:
-      "Pompe à eau pour systèmes d’irrigation agricole, haute performance et faible consommation d’énergie.",
-    image: "https://example.com/pompe-irrigation.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 2500,
-    monthlyPayment: 59.99,
-    category: "energie",
-    subcategory: "pompes_eau",
-    condition: "new",
-    brand: "KSB",
-    specifications: {
-      débit: "8000 L/h",
-      puissance: "3 HP",
-      type: "Centrifuge",
-      usage: "Agriculture",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 4,
-  },
-
-  // Traitement d'Eau
-  {
-    id: "en-005",
-    name: "Filtre à Eau Reverse Osmosis",
-    description:
-      "Système de filtration à osmose inverse pour purifier l’eau potable domestique et industrielle.",
-    image: "https://example.com/filtre-eau-osmose.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 3500,
-    monthlyPayment: 89.99,
-    category: "energie",
-    subcategory: "traitement_eau",
-    condition: "new",
-    brand: "Aquatec",
-    specifications: {
-      capacité: "1000 L/jour",
-      technologie: "Osmose Inverse",
-      usage: "Domestique et Industriel",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
+    availableDurations: ["12", "24", "36"],
     stock: 6,
   },
-  {
-    id: "en-006",
-    name: "Stérilisateur UV pour Eau",
-    description:
-      "Système de stérilisation UV pour éliminer les bactéries et virus dans l’eau potable.",
-    image: "https://example.com/sterilisateur-uv.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 2000,
-    monthlyPayment: 49.99,
-    category: "energie",
-    subcategory: "traitement_eau",
-    condition: "new",
-    brand: "Sterilight",
-    specifications: {
-      capacité: "500 L/h",
-      technologie: "UV",
-      usage: "Domestique et Commercial",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 4,
-  },
-
-  // Réservoirs et Stockage
-  {
-    id: "en-007",
-    name: "Réservoir à Eau Polyéthylène 5000L",
-    description:
-      "Réservoir en polyéthylène résistant pour stockage d’eau potable ou industrielle.",
-    image: "https://example.com/reservoir-eau-polyethylene.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 1200,
-    monthlyPayment: 29.99,
-    category: "energie",
-    subcategory: "reservoirs",
-    condition: "new",
-    brand: "Plastico",
-    specifications: {
-      capacité: "5000 L",
-      matériau: "Polyéthylène",
-      usage: "Stockage d’eau potable",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 5,
-  },
-  {
-    id: "en-008",
-    name: "Réservoir en Acier Inoxydable 10,000L",
-    description:
-      "Réservoir en acier inoxydable de grande capacité pour le stockage d’eau ou de produits chimiques.",
-    image: "https://example.com/reservoir-acier-inoxydable.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 3500,
-    monthlyPayment: 89.99,
-    category: "energie",
-    subcategory: "reservoirs",
-    condition: "new",
-    brand: "StainlessTank",
-    specifications: {
-      capacité: "10,000 L",
-      matériau: "Acier inoxydable",
-      usage: "Stockage d’eau et produits chimiques",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24"],
-    stock: 3,
-  },
-
   // ============ EVENEMENTIEL ============
   // Ajoutez ici d'autres produits de la catégorie "EVENEMENTIEL"
 
@@ -2006,7 +2017,8 @@ export const mockProducts = [
     name: "Tente de Réception 10x20m",
     description:
       "Tente de réception spacieuse pour grands événements, idéale pour mariages, salons et événements en extérieur.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694727/Capture_lc7hyh.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694727/Capture_lc7hyh.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694726/02_uhwd6y.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694724/10x20-600x494_svfpzq.jpg",
@@ -2032,7 +2044,8 @@ export const mockProducts = [
     name: "Tente Pliante 3x3m",
     description:
       "Tente pliante légère et portable, idéale pour les événements plus petits, les stands et les expositions.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694780/001_i8vz2p.jpg",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694780/001_i8vz2p.jpg",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694783/002_ejzeo9.jpg",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694786/003_oliibf.jpg",
@@ -2114,13 +2127,14 @@ export const mockProducts = [
   },
 
   //Evénementiel
-  
+
   {
     id: "ev-008",
     name: "Podium Métallique Démontable 8x6m",
     description:
       "Podium métallique démontable, léger et modulable, conçu pour les événements extérieurs. Facile à transporter et à assembler.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694924/POD01_emoxza.png",
+    image:
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694924/POD01_emoxza.png",
     gallery: [
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694923/POD03_pxigyn.png",
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743694920/POD02_sqb5gs.jpg",

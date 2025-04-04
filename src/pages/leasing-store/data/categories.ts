@@ -82,13 +82,18 @@ export const categories = {
       { id: "stockage_agricole", name: "Stockage Agricole" },
     ],
   },
-  energie: {
+  energie_eau: {
     name: "Énergie et Eau",
     subcategories: [
       { id: "groupes_electrogenes", name: "Groupes Électrogènes" },
       { id: "pompes_eau", name: "Pompes à Eau" },
       { id: "traitement_eau", name: "Traitement d'Eau" },
       { id: "reservoirs", name: "Réservoirs et Stockage" },
+      { id: "pompage", name: "Pompage" }, // New subcategory
+      { id: "solaire", name: "Énergie Solaire" }, // New subcategory
+      { id: "forage", name: "Forage" }, // New subcategory
+      { id: "irrigation_solaire", name: "Irrigation Solaire" }, // New subcategory
+      { id: "pompage_solaire", name: "Pompage Solaire" }, // New subcategory
     ],
   },
   evenementiel: {

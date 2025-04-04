@@ -38,7 +38,7 @@ const steps = [
     ]
   },
   {
-    title: "Mise en Relation",
+    title: "Accès au Financement & Economie d'Usage",
     description: "Bénéficiez des opportunités de financement illimitées. Accédez à notre réseau des partenaires, dont les institutions financières et les invetisseurs institutionnels.",
     duration: "6+ mois",
     icon: LineChart,
@@ -46,7 +46,7 @@ const steps = [
     features: [
       "Visibilité auprès des investisseurs, fonds de garanties et Institutions financières",
       "Accès intégral aux instruments de financement via l'outil de gestion de portefeuille PME",
-      "Facilitation de l'acquisitions des matériels et équipements de production spécialisés",
+      "Facilitation de l'acquisitions des matériels et équipements de production par des mécanisme d'économie d'usage",
       "Via Kiota Store, Achetez, louez, payez ces équipements à votre rythme",
       "Accès aux instruments de financement diversifiés: Crédits, Leasing, Capital Investissement, etc.",
     ]
