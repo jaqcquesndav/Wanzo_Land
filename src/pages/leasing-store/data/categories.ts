@@ -19,23 +19,23 @@ export const categories = {
 
   Mobilier_accessoirs_workspace: {
     name: "Mobilier des Espaces de Travail et Accessoires",
-  subcategories: [
-    { id: "chaises_bureau", name: "Chaises de Bureau" },
-    { id: "bureaux", name: "Bureaux et Tables de Travail" },
-    { id: "coworking_spaces", name: "Mobilier pour Coworking" },
-    { id: "rangements_bureau", name: "Rangements et Classements" },
-    { id: "accueil_reception", name: "Mobilier d’Accueil et Réception" },
-    { id: "salles_reunion", name: "Mobilier pour Salles de Réunion" },
-    { id: "eclairage_bureau", name: "Éclairage de Bureau" },
-    { id: "accessoires_ergonomiques", name: "Accessoires Ergonomiques" },
-    { id: "espaces_detente", name: "Mobilier pour Espaces de Détente" },
-    { id: "mobilier_open_space", name: "Mobilier pour Open Space" },
-    { id: "panneaux_phonique", name: "Panneaux Acoustiques et Phoniques" },
-    { id: "mobilier_direction", name: "Mobilier de Direction" },
-    { id: "baches_projection", name: "Bâches de Projection" }, // Nouvelle sous-catégorie
-    { id: "ecrans_formation", name: "Écrans pour Salles de Formation" }, // Nouvelle sous-catégorie
-    { id: "whiteboards", name: "Tableaux Blancs" }, // Nouvelle sous-catégorie
-  ],
+    subcategories: [
+      { id: "chaises_bureau", name: "Chaises de Bureau" },
+      { id: "bureaux", name: "Bureaux et Tables de Travail" },
+      { id: "coworking_spaces", name: "Mobilier pour Coworking" },
+      { id: "rangements_bureau", name: "Rangements et Classements" },
+      { id: "accueil_reception", name: "Mobilier d’Accueil et Réception" },
+      { id: "salles_reunion", name: "Mobilier pour Salles de Réunion" },
+      { id: "eclairage_bureau", name: "Éclairage de Bureau" },
+      { id: "accessoires_ergonomiques", name: "Accessoires Ergonomiques" },
+      { id: "espaces_detente", name: "Mobilier pour Espaces de Détente" },
+      { id: "mobilier_open_space", name: "Mobilier pour Open Space" },
+      { id: "panneaux_phonique", name: "Panneaux Acoustiques et Phoniques" },
+      { id: "mobilier_direction", name: "Mobilier de Direction" },
+      { id: "baches_projection", name: "Bâches de Projection" }, // Nouvelle sous-catégorie
+      { id: "ecrans_formation", name: "Écrans pour Salles de Formation" }, // Nouvelle sous-catégorie
+      { id: "whiteboards", name: "Tableaux Blancs" }, // Nouvelle sous-catégorie
+    ],
   },
   vehicules: {
     name: "Véhicules et Transport",
