@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { PageContainer } from '../../components/layout/PageContainer';
 import { Button } from '../../components/ui/Button';
@@ -15,6 +15,7 @@ export function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const { products } = useProducts();
   const [isLeaseModalOpen, setIsLeaseModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const product = products.find(p => p.id === id);
 
@@ -38,13 +39,13 @@ export function ProductDetails() {
       <div className="bg-white">
         <Container className="py-16">
           {/* Retour */}
-          <Link
-            to="/leasing-store"
+          <button
+            onClick={() => navigate(-1)}
             className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 mb-8"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Retour à la boutique
-          </Link>
+          </button>
 
           {/* Produit principal */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

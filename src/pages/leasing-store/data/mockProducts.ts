@@ -1915,18 +1915,18 @@ export const mockProducts = [
     name: "Kit d'Irrigation Goutte à Goutte SolarFlow 3",
     description:
       "Système d'irrigation goutte à goutte alimenté par énergie solaire, idéal pour les petites et moyennes exploitations agricoles. Comprend pompe, panneaux solaires et accessoires d'irrigation.",
-    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772000/irrigation_goutte_a_goutte.png",
+    image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772251/kit-pompage-solaire-immerge-goutte-a-goutte-sans-pression-100m2-70m-2m3_1_my0ddx.jpg",
     gallery: [
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772001/irrigation_goutte_a_goutte_1.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772002/irrigation_goutte_a_goutte_2.png",
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772003/irrigation_goutte_a_goutte_3.png"
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772251/kit-pompage-solaire-immerge-goutte-a-goutte-sans-pression-100m2-70m-2m3_3_f9c60a.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772251/kit-pompage-solaire-immerge-goutte-a-goutte-sans-pression-100m2-70m-2m3_shwwdi.jpg",
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743772251/kit-pompage-solaire-immerge-goutte-a-goutte-sans-pression-100m2-70m-2m3_2_gdelfp.jpg"
     ],
     price: 2500,
     monthlyPayment: 69.44,
     paymentPeriods: "12, 24, 36 mois",
     installmentPayment: { amount: 833.33, period: "mois" },
     category: "energie_eau",
-    subcategory: "irrigation_goutte_a_goutte",
+    subcategory: "irrigation_solaire",
     condition: "new",
     brand: "AgriSolar",
     specifications: {
@@ -1944,71 +1944,7 @@ export const mockProducts = [
     availableDurations: ["12", "24", "36"],
     stock: 5
   },
-  {
-    id: "ee-007",
-    name: "Groupe Électrogène Diesel Insonorisé PowerSilent 20",
-    description:
-      "Groupe électrogène diesel insonorisé de 20 kVA, idéal pour les PME. Fournit une alimentation de secours fiable et silencieuse.",
-    image: "https://example.com/powersilent-20.jpg",
-    gallery: [
-      "https://example.com/powersilent-20-1.jpg",
-      "https://example.com/powersilent-20-2.jpg",
-    ],
-    price: 8000,
-    monthlyPayment: 222.22,
-    paymentPeriods: "12, 24, 36 mois",
-    installmentPayment: { amount: 666.67, period: "mois" },
-    category: "energie_eau",
-    subcategory: "groupes_electrogenes",
-    condition: "new",
-    brand: "PowerGen",
-    specifications: {
-      puissanceNominale: "20 kVA / 16 kW",
-      typeCarburant: "Diesel",
-      consommationCarburant: "2.5 L/h à 75% de charge",
-      niveauSonore: "65 dB(A) à 7 mètres",
-      autonomie: "12 heures à 75% de charge",
-      typeDemarrage: "Électrique avec batterie",
-      alternateur: "AVR (régulation automatique de tension)",
-      securite: "Protection surcharge, surchauffe, manque d'huile",
-      capot: "Insonorisé et résistant aux intempéries",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24", "36"],
-    stock: 3,
-  },
-  {
-    id: "ee-008",
-    name: "Kit de Pompage Solaire Immergé SunSub 3",
-    description:
-      "Système de pompage d'eau solaire immergé pour les PME agricoles. Solution économique et écologique pour l'irrigation et l'abreuvage.",
-    image: "https://example.com/sunsub-3.jpg",
-    gallery: [
-      "https://example.com/sunsub-3-1.jpg",
-      "https://example.com/sunsub-3-2.jpg",
-    ],
-    price: 6000,
-    monthlyPayment: 166.67,
-    paymentPeriods: "12, 24, 36 mois",
-    installmentPayment: { amount: 500, period: "mois" },
-    category: "energie_eau",
-    subcategory: "pompage_solaire",
-    condition: "new",
-    brand: "SunPower Systems",
-    specifications: {
-      puissancePompe: "2.2 kW",
-      debitMaximal: "10000 L/h",
-      hauteurRefoulementMaximale: "60 mètres",
-      typePompe: "Immergée, multicellulaire",
-      panneauxSolaires: "8 x 380W, monocristallin",
-      controleurPompe: "MPPT intégré, avec protection",
-      capteursNiveauEau: "Oui, pour arrêt automatique",
-      materiauPompe: "Acier inoxydable",
-    },
-    availableFinancing: ["credit_bail", "leasing"],
-    availableDurations: ["12", "24", "36"],
-    stock: 6,
-  },
+
   // ============ EVENEMENTIEL ============
   // Ajoutez ici d'autres produits de la catégorie "EVENEMENTIEL"
 
