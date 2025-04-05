@@ -24,7 +24,7 @@ const plans = [
     description: 'Suite complète de gestion assistée par IA',
     price: '19,9',
     features: [
-      'Application de comptabilité avancée',
+      'Application de comptabilité avancée avec passation des écritures en languange naturel',
       'Intégration à vos outils actuels ou migration facile',
       "Jusqu'à 10 utilisateurs par application",
       'Gestion de portefeuille PME',
@@ -98,7 +98,7 @@ export function Pricing() {
             Choisissez votre forfait
           </p>
           <p className="mt-2 text-sm text-gray-500">
-            Les outils sont conçus pour les entreprises établies, si vous êtes une startup ou nouvelle entreprise, nous vous recommandons de commencer par le plan free.
+            Les services payants sont adressés aux entreprises établies, si vous êtes une startup ou nouvelle entreprise, nous vous recommandons de commencer par le plan free.
           </p>
           <div className="mt-4 flex justify-center">
             <button

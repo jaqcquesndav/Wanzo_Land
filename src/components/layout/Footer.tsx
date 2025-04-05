@@ -20,13 +20,12 @@ const navigation = {
   company: [
     { name: 'À propos', href: '/under-development' },
     { name: 'Blog', href: '/under-development' },
-    { name: 'Équipe', href: '/under-development' },
+    { name: 'Équipe', href: '/team' },
     { name: 'Partenaires', href: '/under-development' },
   ],
   legal: [
     { name: 'Confidentialité', href: '/under-development' },
     { name: 'CGU', href: '/under-development' },
-    { name: 'Cookies', href: '/under-development' },
   ],
   social: [
     { name: 'Facebook', href: '#', icon: Facebook },
