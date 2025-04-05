@@ -56,10 +56,6 @@ export function ChatInput({
     }
   };
 
-  const handleMicroClick = () => {
-    console.log("Microphone button clicked"); // Ajoutez ici la logique pour gérer l'enregistrement audio
-  };
-
   return (
     <div className={cn("space-y-2 bg-white border-t border-gray-200 p-2 relative", isKeyboardOpen ? 'pb-16' : '', className)}>
       {attachments.length > 0 && (
@@ -122,16 +118,6 @@ export function ChatInput({
         >
           <Paperclip className="h-4 w-4" />
         </Button>
-
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={handleMicroClick} // Gère le clic sur le bouton micro
-          disabled={isLoading || isRecording}
-        >
-          🎤
-        </Button>
-
         <Button
           onClick={handleSend} // Gère l'envoi du message
           disabled={!message.trim() || isLoading || isRecording}

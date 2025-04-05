@@ -39,8 +39,7 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
   const [isCopied, setIsCopied] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const navigate = useNavigate();
+  const [isFullscreen] = useState(false);
 
   const handleCopy = async () => {
     if (onCopy) {
@@ -168,12 +167,6 @@ export function ChatMessage({ message, onLike, onDislike, onCopy }: ChatMessageP
           )}
         </div>
       </div>
-      <button
-        onClick={() => navigate("/chat/fullscreen")}
-        className="absolute top-2 right-2 text-sm text-primary hover:underline"
-      >
-        Mode plein écran
-      </button>
     </div>
   );
 }
