@@ -70,13 +70,14 @@ const teamMembers: TeamMember[] = [
       },
       {
         school: "Programme de formation dSkills@EA",
-        degree: "Programme de leadership et de gestion de la R&D pour les universités de l'EAC",
+        degree:
+          "Programme de leadership et de gestion de la R&D pour les universités de l'EAC",
         year: "2024-2025",
       },
       {
-        school: "African German Entrepreneurship Academy, Université de Leipzig",
-        degree:
-          "Formation continue en Entrepreneuriat",
+        school:
+          "African German Entrepreneurship Academy, Université de Leipzig",
+        degree: "Formation continue en Entrepreneuriat",
         year: "2020-2022",
       },
       {
@@ -232,47 +233,54 @@ const teamMembers: TeamMember[] = [
       "pilotage des performances",
     ],
   },
+
   {
     id: "4",
-    name: "Anthony WANNY",
-    role: "Directeur de la Communication",
+    name: "Anthony RUBONEKA",
+    role: "Directeur de communication",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1742916817/kiota_suit/Team/k3iq7ynuuxebkcl92o6t.jpg",
-    bio: "Spécialiste des opérations avec une expertise particulière dans le développement de partenariats stratégiques en Afrique. Passionnée par l'impact social.",
-    linkedin: "https://www.linkedin.com/in/victoire-kasereka-33603b20b/",
-    email: "aminata.diallo@kiota.com",
+    bio: "Ingénieur en réseau et télécommunications. Chargé de communication expérimenté en gestion de l'image, création de contenus et coordination des communications internes et externes. Passionné par la créativité et l'innovation.",
+    linkedin:
+      "https://www.linkedin.com/in/anthony-wany-ab1a921bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    email: "anthonyrub@ikiotahub.com",
     experience: [
       {
-        company: "Orange Money",
-        role: "Directrice Régionale",
-        period: "2016-2022",
+        company: "i-Kiotahub",
+        role: "Directeur Developpement Commercial et Croissance",
+        period: "2022 à nos jours",
         description:
-          "Supervision des opérations de mobile money en Afrique de l'Ouest.",
+          "Gestion de l’image, création des contenus, relations médias, coordination des communications internes et externes.",
       },
       {
-        company: "African Development Bank",
-        role: "Project Manager",
-        period: "2012-2016",
-        description: "Gestion de projets d'inclusion financière.",
+        company: "CRES",
+        role: "Analyste informaticien",
+        period: "2019-2020",
+        description:
+          "Analyse des besoins dans la création de bases de données restreintes.",
       },
     ],
     education: [
       {
-        school: "HEC Paris",
-        degree: "Master en Management",
-        year: "2012",
+        school: "ISIG Goma",
+        degree: "Licence en Réseau et télécommunications",
+        year: "2022",
       },
       {
-        school: "ESP Dakar",
-        degree: "Licence en Gestion",
-        year: "2010",
+        school: "ISIG Goma",
+        degree: "Grade en Informatique de Gestion",
+        year: "2020",
       },
     ],
     skills: [
-      "Gestion des opérations",
-      "Développement commercial",
-      "Partenariats",
-      "Mobile Money",
+      "Stratégie de communication",
+      "Communication digitale",
+      "Création des contenus",
+      "Administration réseau",
+      "Gestion informatique",
+      "Outils de gestion de la croissance (Analyse et optimisation du parcours utilisateurs)",
+      "Plateformes d'engagement utilisateurs (CRM)",
+      "Analyse de données (Mixpanel, Google Analytics)",
     ],
   },
   {

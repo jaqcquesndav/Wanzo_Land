@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: "Comment fonctionne l'intelligence artificielle (Adha) dans Kiota Suit ?",
-    answer: "Il s'agit d'un ensemble d'assistants spécialisés en comptabilité, fiscalité, droit des affaires, finance, analyste marché, etc. Ils apportent aux entrepreneurs et gestionnaires de portefeuille un soutien précieux dans leur quotidien. ils facilitent l'analyse de données, la conception des projets, la production des rapports, etc."
+    answer: "Il s'agit d'un ensemble d'assistants spécialisés en comptabilité, fiscalité, droit des affaires, finance, analyste marché, etc. Ils apportent aux entrepreneurs et gestionnaires de portefeuille un soutien précieux dans leur quotidien. ils facilitent la passation des écritures comptable en language naturel, l'analyse de données, la conception des projets, la production des rapports, etc."
   },
   {
     question: "Dans quelles villes Kiota Suit est-elle opérationnelle ?",

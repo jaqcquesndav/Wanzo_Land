@@ -1754,32 +1754,6 @@ export const mockProducts = [
     availableDurations: ["12", "24", "36"],
     stock: 6,
   },
-  {
-    id: "ag-006",
-    name: "Entrepôt de Stockage Agricole",
-    description:
-      "Entrepôt pour le stockage de grandes quantités de produits agricoles, conçu pour offrir une ventilation optimale",
-    image: "https://example.com/entrepot-agricole.jpg",
-    gallery: [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    price: 30000,
-    monthlyPayment: 749.99,
-    category: "agriculture",
-    subcategory: "stockage_agricole",
-    condition: "new",
-    brand: "AgriStorage",
-    specifications: {
-      taille: "100 m²",
-      matériau: "Acier inoxydable, PVC",
-      ventilation: "Système de ventilation forcée",
-    },
-    availableFinancing: ["Paiement Échelonné", "leasing"],
-    availableDurations: ["24", "36", "48"],
-    stock: 4,
-  },
 
   // ============ EAU & ENERGIE ============
   // Ajoutez ici d'autres produits de la catégorie "EAU & ENERGIE"

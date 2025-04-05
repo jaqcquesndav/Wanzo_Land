@@ -78,11 +78,13 @@ export function Footer() {
                 <span className="text-sm">contact@kiota.com</span>
               </div>
             </div>
+            /*
             <div className="space-y-2 text-sm text-gray-400">
               <p>RCCM: CD/GOMA/RCCM/23-B-00196</p>
               <p>ID NAT: 19-H5300-N40995F</p>
               <p>NIF: A2321658S</p>
             </div>
+            
           </div>
 
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">

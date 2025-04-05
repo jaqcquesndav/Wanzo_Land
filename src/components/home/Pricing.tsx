@@ -30,7 +30,7 @@ const plans = [
       'Gestion de portefeuille PME',
       'Acces au Leasing Store',
       'Assistant IA Adha intégré',
-      '1 Million de Tokens offerts',
+      '1 Million de Tokens (mots) offerts',
       'Conformité SYSCOHADA et IFRS',
       'Audit automatique',
       'Support 24/7'
@@ -54,7 +54,7 @@ const plans = [
       'Prévision des crises',
       'Conformité Bâle III',
       'Assistant IA Adha Premium',
-      '10 Million de Tokens offerts',
+      '10 Million de Tokens (mots) offerts',
       'Support dédié 24/7'
     ],
     tokenPrice: '5',
