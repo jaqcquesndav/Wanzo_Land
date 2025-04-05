@@ -18,9 +18,10 @@ const navigation = {
     { name: 'Contact', href: '/under-development' },
   ],
   company: [
-    { name: 'À propos', href: '/under-development' },
+    { name: 'À propos', href: '/about' },
     { name: 'Blog', href: '/under-development' },
     { name: 'Équipe', href: '/team' },
+    { name: 'Carrière', href: '/under-development' },
     { name: 'Partenaires', href: '/under-development' },
   ],
   legal: [

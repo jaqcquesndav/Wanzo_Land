@@ -109,7 +109,7 @@ export function AppRoutes() {
         path="*"
         element={
           <UnderDevelopment
-            pageName="Page non trouvée"
+            pageName="Cette page est en cours de développement. Revenez bientôt !"
             description="La page que vous recherchez n'existe pas."
           />
         }

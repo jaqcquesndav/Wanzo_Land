@@ -237,7 +237,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "4",
     name: "Anthony RUBONEKA",
-    role: "Directeur de communication",
+    role: "Developpement Commercial et Croissance",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1742916817/kiota_suit/Team/k3iq7ynuuxebkcl92o6t.jpg",
     bio: "Ingénieur en réseau et télécommunications. Chargé de communication expérimenté en gestion de l'image, création de contenus et coordination des communications internes et externes. Passionné par la créativité et l'innovation.",
@@ -290,8 +290,8 @@ const teamMembers: TeamMember[] = [
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743091820/kiota_suit/Team/placeholder.jpg", // Remplacez par l'URL de son image
     bio: "Consultante en marketing et communication, spécialisée dans les relations publiques et l'inclusion sociale, avec une expertise dans l'accompagnement des PMEs et Startups.",
-    linkedin: "https://linkedin.com/in/stephanie-kahindo", // Remplacez par son lien LinkedIn si disponible
-    email: "kelvinesteph@gmail.com",
+    linkedin: "https://www.linkedin.com/in/st%C3%A9phanie-kahindo-kelvine-a34847186/", // Remplacez par son lien LinkedIn si disponible
+    email: "kelvinesteph@ikiotahub.com",
     experience: [
       {
         company: "Ikiotahub",

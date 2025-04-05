@@ -35,9 +35,6 @@ export const UnderDevelopment: React.FC<UnderDevelopmentProps> = ({
               </span>
             </div>
           </div>
-          <footer>
-            <p>Footer content here</p>
-          </footer>
         </div>
       </Container>
     </div>

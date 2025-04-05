@@ -11,6 +11,7 @@ const navigation = [
   { name: 'À propos', href: '/about' },
   { name: 'Equipe', href: '/team' },
   { name: 'Applications', href: '/auth/select' },
+  { name: 'Apprendre', href: '/under-development' },
   { name: 'Kiota Store', href: '/leasing-store', icon: <ShoppingCart className="inline-block ml-2 h-5 w-5 text-blue-500" /> },
   
   //{ name: 'FAQ', href: '/faq' },
