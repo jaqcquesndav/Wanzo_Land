@@ -33,6 +33,7 @@ const steps = [
     features: [
       "Vous n'avez pas besoin d'être rentable pour bénéficier de nos services",
       "Nos experts Analysent vos données comptables et financières",
+      "Pilotage de la performance de votre entreprise",
       "Obtenez votre note ESG et côte crédit automatiquement, cette dernière sera basée sur les transactions et non les états financiers",
       "Montage des projets basés sur les réalités de votre PME",
     ]
