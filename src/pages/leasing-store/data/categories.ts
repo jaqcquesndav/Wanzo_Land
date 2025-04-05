@@ -38,7 +38,7 @@ export const categories = {
     ],
   },
   vehicules: {
-    name: "Véhicules et Transport",
+    name: "Transport et Logistique",
     subcategories: [
       { id: "vehicules_utilitaires", name: "Véhicules Utilitaires" },
       { id: "motos", name: "Motos" },
@@ -51,7 +51,7 @@ export const categories = {
   machines_industrielles: {
     name: "Machines Industrielles",
     subcategories: [
-      { id: "machines_outils", name: "Machines-Outils" },
+      { id: "machines_outils", name: "Machines Outils" },
       { id: "equipement_chantier", name: "Équipement de Chantier" },
       { id: "machines_production", name: "Machines de Production" },
       { id: "machines_textile", name: "Machines Textiles" },

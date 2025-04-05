@@ -10,9 +10,11 @@ const navigation = [
   { name: 'Accueil', href: '/', icon: <Home className="inline-block mr-2 h-5 w-5 text-blue-500" /> },
   { name: 'À propos', href: '/about' },
   { name: 'Equipe', href: '/team' },
+  { name: 'Applications', href: '/auth/select' },
   { name: 'Kiota Store', href: '/leasing-store', icon: <ShoppingCart className="inline-block ml-2 h-5 w-5 text-blue-500" /> },
-  { name: 'FAQ', href: '/faq' },
-  { name: 'Contact', href: '/contact' },
+  
+  //{ name: 'FAQ', href: '/faq' },
+  //{ name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {

@@ -41,7 +41,7 @@ const journey = [
   {
     year: '2025',
     title: 'Innovation & Tests',
-    description: " Après un test pilote réussi avec 20 PME, la première version de Kiota Suit — anciennement KiotaData — sera lancée en mai 2025. Kiota Suit intègre l’Intelligence Artificielle dans ses différents outils, dont la comptabilité pour assister les utilisateurs dans le nettoyage des comptes, audits, et support intelligent. Le déploiement des apps de gestion de portefeuille suivra en septembre 2025 sur Lubumbashi, Butembo et Beni en République Démocratique du Congo.",
+    description: " Après un test pilote réussi avec 20 PME, la première version de Kiota Suit — anciennement KiotaData — sera lancée en mai 2025. Kiota Suit intègre l’Intelligence Artificielle dans ses différents outils, dont la comptabilité pour assister les utilisateurs dans le nettoyage des comptes, passage des écritures avec le language naturel, et support intelligent. Le déploiement des apps de gestion de portefeuille suivra en septembre 2025 sur Lubumbashi, Butembo et Beni en République Démocratique du Congo.",
     image: 'https://res.cloudinary.com/daxvxdecv/image/upload/v1742918110/kiota_suit/x7dshq0jwbibdjzx4yqr.jpg'
   },
   {
