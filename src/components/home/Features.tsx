@@ -17,9 +17,9 @@ const steps = [
     features: [
       "Demarrez votre parcour dès la formalisation de votre entreprise",
       "Nos partenaires locaux vous accompagnent dans cette transition",
-      "Gestion comptable assistée par l'Intelligence Artificielle (IA)",
-      "Passez vos écritures comptables en language naturel grâce à l'IA",
-      "Importatez facilement vos anciens exercices comptables",
+      "Formation et sensibilisation de votre personnel",
+      "Passez facilement vos écritures comptables et engagez des discussions avec vos données grâce à l'IA",
+      "Importez facilement vos anciens exercices comptables",
       "Digitalisez vos processus de vente, production, etc.",
       "Béneficiez d'un Accompagnement personnalisé"
     ]
