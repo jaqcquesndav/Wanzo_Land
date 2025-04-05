@@ -61,7 +61,7 @@ export function Hero() {
             </div>
             <p className="mt-8 text-lg leading-8 text-gray-600">
             Notre ambition est simple : Accélérer l’inclusion financière des PMEs Africaines, en assurant leur transition numérique.
-            Kiota Suit, c’est l’intelligence collective du terrain en RDC, augmentée par la technologie. 
+            Kiota Suit, c’est l’intelligence collective du terrain en RDC, augmentée par la technologie (IA). 
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
               <button
