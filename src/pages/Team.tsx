@@ -65,7 +65,7 @@ const teamMembers: TeamMember[] = [
     education: [
       {
         school: "Université Libre des Pays des Grands Lacs",
-        degree: "Diplôme d’Ingénieur Civil en Génie Électrique",
+        degree: "Diplôme d’Ingénieur Civil en Génie Électroénergétique",
         year: "2015-2022",
       },
       {
@@ -84,11 +84,6 @@ const teamMembers: TeamMember[] = [
         school: "Institut de la Francophonie pour le Développement Durable",
         degree: "Formation en Technologies de l’Environnement",
         year: "2022",
-      },
-      {
-        school: "Université Libre des Pays des Grands Lacs",
-        degree: "Formation en Didactique Universitaire",
-        year: "2019",
       },
     ],
     skills: [

@@ -13,7 +13,7 @@ const navigation = {
   ],
   support: [
     { name: 'Documentation', href: '/under-development' },
-    { name: 'Guides', href: '/under-development' },
+    { name: 'Apprendre', href: '/under-development' },
     { name: 'FAQ', href: '/under-development' },
     { name: 'Contact', href: '/under-development' },
   ],
@@ -72,14 +72,13 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3 text-gray-300">
                 <Phone className="h-5 w-5" />
-                <span className="text-sm">+243 123 456 789</span>
+                <span className="text-sm">+243 979 588 462</span>
               </div>
               <div className="flex items-center gap-3 text-gray-300">
                 <Mail className="h-5 w-5" />
-                <span className="text-sm">contact@kiota.com</span>
+                <span className="text-sm">ikiota@ikiotahub.com</span>
               </div>
             </div>
-            /*
             <div className="space-y-2 text-sm text-gray-400">
               <p>RCCM: CD/GOMA/RCCM/23-B-00196</p>
               <p>ID NAT: 19-H5300-N40995F</p>
