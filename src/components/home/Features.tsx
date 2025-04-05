@@ -40,7 +40,7 @@ const steps = [
   },
   {
     title: "Accès au Financement & Economie d'Usage",
-    description: "Bénéficiez des opportunités de financement illimitées. Accédez à notre réseau des partenaires financiers et notre store d'équipements et matériels de production disponible en location, achat echelonné, etc.",
+    description: "Bénéficiez des opportunités de financement illimitées. Accédez à notre réseau des partenaires financiers et notre store d'équipements et matériels de production disponibles en location, achat echelonné, etc.",
     duration: "6+ mois",
     icon: LineChart,
     image: "https://res.cloudinary.com/daxvxdecv/image/upload/v1742930300/kiota_suit/wiyivnk9wgf6zvniyo0t.jpg",
