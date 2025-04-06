@@ -142,13 +142,6 @@ const teamMembers: TeamMember[] = [
         description: "Gestion et direction du Centre Informatique.",
       },
       {
-        company: "AMADI",
-        role: "Animateur d’un Séminaire de formation",
-        period: "20-23 septembre 2011",
-        description:
-          "Formation sur la Gestion des achats, de la chaine d’approvisionnement et la gestion des entreprises.",
-      },
-      {
         company: "Université Libre des Pays des Grands Lacs",
         role: "Secrétaire Académique de la Faculté des Sciences Economiques et de Gestion",
         period: "2008-2012",
@@ -171,12 +164,6 @@ const teamMembers: TeamMember[] = [
         school: "ULPGL-Goma",
         degree: "Diplôme de Licence en Gestion des Entreprises",
         year: "2000-2003",
-      },
-      {
-        school: "ULPGL-Goma",
-        degree:
-          "Diplôme de Graduat en Gestion et Administration des entreprises",
-        year: "1996-2000",
       },
     ],
     skills: [
@@ -302,26 +289,6 @@ const teamMembers: TeamMember[] = [
         description: "Gestion des campagnes marketing et communication.",
       },
       {
-        company: "KALIBA Corporation",
-        role: "Stage académique en communication et marketing",
-        period: "Décembre 2019",
-        description:
-          "Participation aux activités de communication et marketing.",
-      },
-      {
-        company: "PEV / Goma",
-        role: "Commission vaccination contre le MVE",
-        period: "Aut 2019-Janvier 2020",
-        description:
-          "Participation à la campagne de vaccination contre le MVE.",
-      },
-      {
-        company: "RAJECOPOD Nord-Kivu",
-        role: "Animatrice sociale",
-        period: "Décembre 2018-Juillet 2019",
-        description: "Animation sociale et sensibilisation communautaire.",
-      },
-      {
         company: "Virunga Business Radio",
         role: "Stage académique en journalisme",
         period: "Juillet 2017",
@@ -339,21 +306,6 @@ const teamMembers: TeamMember[] = [
         school: "Université de Goma",
         degree: "Licence en communication des organisations",
         year: "2019-2020",
-      },
-      {
-        school: "Université de Goma",
-        degree: "Graduat en science de l’information et de la communication",
-        year: "2017-2018",
-      },
-      {
-        school: "Institut Jikaze",
-        degree: "Diplôme d'État",
-        year: "2014-2015",
-      },
-      {
-        school: "E.P Bukoma",
-        degree: "Certificat d'Études primaires",
-        year: "2007-2008",
       },
     ],
     skills: [
@@ -416,11 +368,6 @@ const teamMembers: TeamMember[] = [
         school: "Université Libre des Pays des Grands Lacs (ULPGL), Goma/RDC",
         degree: "Licence en Sciences Économiques et de Gestion",
         year: "2007-2009",
-      },
-      {
-        school: "Université Libre des Pays des Grands Lacs (ULPGL), Goma/RDC",
-        degree: "Grade en Sciences Économiques",
-        year: "2002-2006",
       },
     ],
     skills: [
