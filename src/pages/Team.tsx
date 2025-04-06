@@ -35,7 +35,7 @@ const teamMembers: TeamMember[] = [
     role: "Directeur Exécutif",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743090202/kiota_suit/Team/a9p17zju63rrht1sf9nl.jpg",
-    bio: "Ingénieur civil en génie électrique et consultant en analyse de données et montage de projets industriels, avec une expertise en transformation numérique et inclusion financière.",
+    bio: "Ingénieur civil en génie électrique, consultant en analyse de données et montage de projets industriels, avec une expertise en transformation numérique et inclusion financière des PME.",
     linkedin: "https://www.linkedin.com/in/jacques-ndavaro-b02b25111",
     email: "jacquesndav@ikiotahub.com",
     experience: [
