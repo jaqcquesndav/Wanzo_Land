@@ -32,7 +32,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "1",
     name: "Jacques NDAVARO",
-    role: "Directeur Exécutif et Architecte d’Affaires",
+    role: "Directeur Exécutif",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743090202/kiota_suit/Team/a9p17zju63rrht1sf9nl.jpg",
     bio: "Ingénieur civil en génie électrique et consultant en analyse de données et montage de projets industriels, avec une expertise en transformation numérique et inclusion financière.",
@@ -283,7 +283,7 @@ const teamMembers: TeamMember[] = [
     name: "Stéphanie KAHINDO",
     role: "Responsable des relations publiques et inclusion sociale",
     image:
-      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743091820/kiota_suit/Team/placeholder.jpg", // Remplacez par l'URL de son image
+      "https://res.cloudinary.com/daxvxdecv/image/upload/v1743925556/IMG_6731_hkw58h.jpg", // Remplacez par l'URL de son image
     bio: "Consultante en marketing et communication, spécialisée dans les relations publiques et l'inclusion sociale, avec une expertise dans l'accompagnement des PMEs et Startups.",
     linkedin: "https://www.linkedin.com/in/st%C3%A9phanie-kahindo-kelvine-a34847186/", // Remplacez par son lien LinkedIn si disponible
     email: "kelvinesteph@ikiotahub.com",
