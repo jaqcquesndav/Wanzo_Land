@@ -35,7 +35,7 @@ const teamMembers: TeamMember[] = [
     role: "Directeur Exécutif",
     image:
       "https://res.cloudinary.com/daxvxdecv/image/upload/v1743090202/kiota_suit/Team/a9p17zju63rrht1sf9nl.jpg",
-    bio: "Ingénieur civil en génie électrique, consultant en analyse de données et montage de projets industriels, avec une expertise en transformation numérique et inclusion financière des PME.",
+    bio: "Ingénieur civil en génie électrique, consultant en analyse de données et montage de projets industriels, avec une expertise en transformation numérique des PME",
     linkedin: "https://www.linkedin.com/in/jacques-ndavaro-b02b25111",
     email: "jacquesndav@ikiotahub.com",
     experience: [
@@ -44,7 +44,7 @@ const teamMembers: TeamMember[] = [
         role: "Architecte d’Affaires",
         period: "2023-2024",
         description:
-          "Conception de modèles d’affaires innovants basés sur l’analyse des données des PMEs, intégrant des technologies d’intelligence artificielle et de machine learning pour l’évaluation des risques. Supervision.",
+          "Conception de modèles d’affaires innovants basés sur l’analyse des données des PMEs, intégrant des technologies d’intelligence artificielle et de machine learning pour l’évaluation des risques.",
       },
       {
         company: "Centre de Recherche et Transfert des Technologies (CRES)",
