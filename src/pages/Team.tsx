@@ -202,7 +202,7 @@ const teamMembers: TeamMember[] = [
     education: [
       {
         school: "ULPGL/Goma",
-        degree: "Licence(Bac+6) en Polytecthnique",
+        degree: "Licence(Bac+6) en Polytecthique",
         year: "2022",
       },
     ],
@@ -390,193 +390,198 @@ export function Team() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
-    <PageContainer>
-      <div className="bg-gradient-to-b from-gray-50">
-        <Container className="py-24">
-          {/* En-tête */}
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Notre équipe
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Une équipe passionnée combinant expertise technologique et
-              connaissance approfondie du Marché local.
-            </p>
-          </div>
+    <div className="relative overflow-hidden min-h-screen" style={{ background: 'linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%)' }}>
+      {/* SVG curves for fluidity and section connection */}
+      <svg className="absolute top-0 left-0 w-full h-32 z-0" viewBox="0 0 1440 160" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,80 C360,160 1080,0 1440,80 L1440,0 L0,0 Z" fill="#e5e7eb" />
+      </svg>
+      <svg className="absolute top-32 left-0 w-full h-24 z-0" viewBox="0 0 1440 96" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,48 C480,96 960,0 1440,48 L1440,0 L0,0 Z" fill="#f3f4f6" />
+      </svg>
+      <Container className="relative z-10 py-12 lg:py-20">
+        {/* En-tête */}
+        <div className="text-center max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Notre équipe
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Une équipe passionnée combinant expertise technologique et
+            connaissance approfondie du Marché local.
+          </p>
+        </div>
 
-          {/* Grille des membres */}
-          <div className="mt-24 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.map((member) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="relative group"
-              >
-                <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-gray-100">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        {/* Grille des membres */}
+        <div className="mt-24 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          {teamMembers.map((member) => (
+            <motion.div
+              key={member.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative group"
+            >
+              <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-gray-100">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-xl font-semibold">{member.name}</h3>
+                <p className="mt-1 text-gray-300">{member.role}</p>
+
+                <div className="mt-4 flex gap-3">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={`mailto:${member.email}`}
+                    className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                  >
+                    <Mail className="h-5 w-5" />
+                  </a>
+                  <button
+                    onClick={() => setSelectedMember(member)}
+                    className="text-sm bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-colors"
+                  >
+                    Voir le profil
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Modal de détails */}
+        {selectedMember && (
+          <div className="fixed inset-0 z-50 overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+
+              <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl">
+                <div className="absolute right-0 top-0 pr-4 pt-4">
+                  <button
+                    onClick={() => setSelectedMember(null)}
+                    className="rounded-md bg-white text-gray-400 hover:text-gray-500"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-semibold">{member.name}</h3>
-                  <p className="mt-1 text-gray-300">{member.role}</p>
+                <div className="bg-white px-4 pb-4 pt-5 sm:p-6">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                      <div className="flex items-center gap-4 mb-6">
+                        <img
+                          src={selectedMember.image}
+                          alt={selectedMember.name}
+                          className="h-16 w-16 rounded-full object-cover"
+                        />
+                        <div>
+                          <h3 className="text-xl font-semibold text-gray-900">
+                            {selectedMember.name}
+                          </h3>
+                          <p className="text-gray-500">
+                            {selectedMember.role}
+                          </p>
+                        </div>
+                      </div>
 
-                  <div className="mt-4 flex gap-3">
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-                    >
-                      <Mail className="h-5 w-5" />
-                    </a>
-                    <button
-                      onClick={() => setSelectedMember(member)}
-                      className="text-sm bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-colors"
-                    >
-                      Voir le profil
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                      <p className="text-gray-600 mb-8">
+                        {selectedMember.bio}
+                      </p>
 
-          {/* Modal de détails */}
-          {selectedMember && (
-            <div className="fixed inset-0 z-50 overflow-y-auto">
-              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-
-                <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl">
-                  <div className="absolute right-0 top-0 pr-4 pt-4">
-                    <button
-                      onClick={() => setSelectedMember(null)}
-                      className="rounded-md bg-white text-gray-400 hover:text-gray-500"
-                    >
-                      <X className="h-6 w-6" />
-                    </button>
-                  </div>
-
-                  <div className="bg-white px-4 pb-4 pt-5 sm:p-6">
-                    <div className="sm:flex sm:items-start">
-                      <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
-                        <div className="flex items-center gap-4 mb-6">
-                          <img
-                            src={selectedMember.image}
-                            alt={selectedMember.name}
-                            className="h-16 w-16 rounded-full object-cover"
-                          />
-                          <div>
-                            <h3 className="text-xl font-semibold text-gray-900">
-                              {selectedMember.name}
-                            </h3>
-                            <p className="text-gray-500">
-                              {selectedMember.role}
-                            </p>
+                      <div className="space-y-8">
+                        {/* Expérience */}
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                            Expérience
+                          </h4>
+                          <div className="space-y-4">
+                            {selectedMember.experience.map((exp, index) => (
+                              <div
+                                key={index}
+                                className="border-l-2 border-primary pl-4"
+                              >
+                                <h5 className="font-medium text-gray-900">
+                                  {exp.company}
+                                </h5>
+                                <p className="text-sm text-gray-600">
+                                  {exp.role}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  {exp.period}
+                                </p>
+                                <p className="mt-2 text-sm text-gray-600">
+                                  {exp.description}
+                                </p>
+                              </div>
+                            ))}
                           </div>
                         </div>
 
-                        <p className="text-gray-600 mb-8">
-                          {selectedMember.bio}
-                        </p>
-
-                        <div className="space-y-8">
-                          {/* Expérience */}
-                          <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                              Expérience
-                            </h4>
-                            <div className="space-y-4">
-                              {selectedMember.experience.map((exp, index) => (
-                                <div
-                                  key={index}
-                                  className="border-l-2 border-primary pl-4"
-                                >
-                                  <h5 className="font-medium text-gray-900">
-                                    {exp.company}
-                                  </h5>
-                                  <p className="text-sm text-gray-600">
-                                    {exp.role}
-                                  </p>
-                                  <p className="text-sm text-gray-500">
-                                    {exp.period}
-                                  </p>
-                                  <p className="mt-2 text-sm text-gray-600">
-                                    {exp.description}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
+                        {/* Formation */}
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                            Formation
+                          </h4>
+                          <div className="space-y-4">
+                            {selectedMember.education.map((edu, index) => (
+                              <div key={index}>
+                                <h5 className="font-medium text-gray-900">
+                                  {edu.school}
+                                </h5>
+                                <p className="text-sm text-gray-600">
+                                  {edu.degree}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  {edu.year}
+                                </p>
+                              </div>
+                            ))}
                           </div>
+                        </div>
 
-                          {/* Formation */}
-                          <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                              Formation
-                            </h4>
-                            <div className="space-y-4">
-                              {selectedMember.education.map((edu, index) => (
-                                <div key={index}>
-                                  <h5 className="font-medium text-gray-900">
-                                    {edu.school}
-                                  </h5>
-                                  <p className="text-sm text-gray-600">
-                                    {edu.degree}
-                                  </p>
-                                  <p className="text-sm text-gray-500">
-                                    {edu.year}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Compétences */}
-                          <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                              Compétences
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {selectedMember.skills.map((skill, index) => (
-                                <span
-                                  key={index}
-                                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm"
-                                >
-                                  {skill}
-                                </span>
-                              ))}
-                            </div>
+                        {/* Compétences */}
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                            Compétences
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedMember.skills.map((skill, index) => (
+                              <span
+                                key={index}
+                                className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm"
+                              >
+                                {skill}
+                              </span>
+                            ))}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <Button onClick={() => setSelectedMember(null)}>
-                      Fermer
-                    </Button>
-                  </div>
+                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  <Button onClick={() => setSelectedMember(null)}>
+                    Fermer
+                  </Button>
                 </div>
               </div>
             </div>
-          )}
-        </Container>
-      </div>
-    </PageContainer>
+          </div>
+        )}
+      </Container>
+    </div>
   );
 }

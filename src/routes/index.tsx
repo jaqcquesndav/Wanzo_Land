@@ -15,6 +15,8 @@ import { CustomRequest } from "../pages/leasing-store/CustomRequest";
 import { UnderDevelopment } from "../components/ui/UnderDevelopment";
 import { Team } from "../pages/Team";
 import { FullscreenChat } from "../pages/chat/FullscreenChat";
+import Tarification from '../pages/Tarification';
+import FaqPage from '../pages/Faq';
 
 export function AppRoutes() {
   return (
@@ -59,12 +61,7 @@ export function AppRoutes() {
       />
       <Route
         path="/faq"
-        element={
-          <UnderDevelopment
-            pageName="FAQ"
-            description="Notre FAQ est en cours de développement."
-          />
-        }
+        element={<FaqPage />}
       />
       <Route
         path="/contact"
@@ -96,6 +93,7 @@ export function AppRoutes() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/team" element={<Team />} />
       <Route path="/resources" element={<Resources />} />
+      <Route path="/tarification" element={<Tarification />} />
       <Route
         path="/unauthorized"
         element={

@@ -25,7 +25,7 @@ export class AIService {
   private config: AIConfig;
 
   constructor() {
-    this.apiUrl = 'https://api.kiota.com/v1/ai';
+    this.apiUrl = 'https://api.wanzo.com/v1/ai';
     this.config = {
       model: 'adha-3',
       temperature: 0.7,

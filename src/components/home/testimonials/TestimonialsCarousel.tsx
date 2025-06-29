@@ -36,12 +36,12 @@ export function TestimonialsCarousel({
 
   return (
     <div 
-      className="relative"
+      className="relative w-full max-w-6xl mx-auto"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="overflow-hidden">
-        <div className="flex gap-6">
+        <div className="flex gap-8 md:gap-12">
           <AnimatePresence mode="wait">
             {[0, 1].map((offset) => {
               const index = (currentIndex + offset) % testimonials.length;
@@ -51,7 +51,7 @@ export function TestimonialsCarousel({
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 2 }}
+                  transition={{ duration: 1.2 }}
                   className="w-full md:w-1/2 flex-shrink-0"
                 >
                   <TestimonialCard testimonial={testimonials[index]} />

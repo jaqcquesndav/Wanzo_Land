@@ -47,7 +47,7 @@ export function LeasingStore() {
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-gray-700 mt-4">
-                Kiota Store
+                Wanzo Store
               </h1>
               <h3 className="text-xl font-medium tracking-tight text-green-700 mt-2">
                 Achetez, Louez, payez à votre rythme !

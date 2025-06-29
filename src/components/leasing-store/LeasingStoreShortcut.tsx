@@ -37,7 +37,7 @@ export function LeasingStoreShortcut() {
         <div className="bg-white rounded-lg shadow-xl p-4 w-64 animate-fade-in">
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-              Kiota Store
+              Wanzo Store
               <ShoppingCart className="h-4 w-4 text-gray-500" /> {/* Added cart icon */}
             </h3>
             <button

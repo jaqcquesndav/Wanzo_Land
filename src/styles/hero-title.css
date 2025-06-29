@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.hero-title-special {
+  font-family: 'Permanent Marker', cursive, 'ui-sans-serif', 'system-ui', 'sans-serif';
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.chalk-underline {
+  display: inline-block;
+  position: relative;
+  color: #16a34a; /* Vert plus foncé (tailwind green-600) */
+}
+.chalk-underline::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -0.18em;
+  height: 0.22em;
+  background: repeating-linear-gradient(90deg, #f59e42 0 7px, #fbbf24 7px 14px); /* orange */
+  border-radius: 0.18em 0.22em 0.18em 0.22em;
+  box-shadow: 0 1.5px 0 0 #fbbf24;
+  opacity: 0.95;
+  z-index: 0;
+  pointer-events: none;
+}
+.chalk-underline span, .chalk-underline strong, .chalk-underline em {
+  position: relative;
+  z-index: 1;
+}
