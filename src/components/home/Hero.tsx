@@ -58,11 +58,13 @@ function parseToTableRows(input: string, response: string) {
 // Floating tags data (uniform gray style)
 const floatingTags = [
   "Écriture comptable simplifiée",
-  "Reconciliation bancaire automatisée",
+  "Repprochement bancaire automatisé",
   "Gestion de portefeuille",
+  "Note ESG des PME",
   "Analyse de risque",
+  "Conseil financier & juridique",
   "Espace de Prospection",
-  "ERP tout-en-un PME",
+  "Authentification numérique des documents",
   "Location d'équipement de production",
   "Conseils pratiques",
   "Gestion multi-établissements",
@@ -127,7 +129,7 @@ export function Hero() {
               </h1>
             </div>
             <div className="mt-2 text-lg text-gray-700 font-medium max-w-2xl mx-auto">
-              L’intelligence artificielle est une opportunité pour accélérer la croissance et assurer la durabilité des PME.
+              L’intelligence artificielle est une opportunité unique pour accélérer la croissance et assurer la durabilité des PME en RDC.
             </div>
             <div className="mt-4 flex justify-center">
               <span

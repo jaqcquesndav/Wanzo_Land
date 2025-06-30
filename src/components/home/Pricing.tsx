@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from '../ui/Container';
 import { Brain, Shield, LineChart, Check } from 'lucide-react';
 import { useState } from 'react';
+import React from 'react';
 
-const plans = [
+export const plans = [
 	{
 		name: 'Free',
 		description: 'Commencez gratuitement avec nos fonctionnalités de base',
@@ -67,6 +68,20 @@ export function Pricing() {
 	const navigate = useNavigate();
 	const [isAnnual, setIsAnnual] = useState(false);
 
+	// Détection utilisateur connecté (comme dans Header)
+	const user = React.useMemo(() => {
+		const stored = localStorage.getItem('auth0_user');
+		return stored ? JSON.parse(stored) : null;
+	}, [localStorage.getItem('auth0_user')]);
+
+	// Détermination du plan actuel (par défaut Free)
+	let currentPlan = 'Free';
+	if (user && user.plan) {
+		currentPlan = user.plan;
+	} else if (user && user['https://ksuit.app/plan']) {
+		currentPlan = user['https://ksuit.app/plan'];
+	}
+
 	const handlePlanSelect = (plan: typeof plans[0]) => {
 		if (plan.demo) {
 			navigate('/auth/select?type=demo');
@@ -125,74 +140,78 @@ export function Pricing() {
 					</div>
 
 					<div className="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-						{plans.map((plan) => (
-							<motion.div
-								key={plan.name}
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
-								className={`relative flex flex-col rounded-2xl bg-white p-8 shadow-sm ring-1 ${
-									plan.highlighted ? 'ring-primary' : plan.demo ? 'ring-success' : 'ring-gray-200'
-								}`}
-							>
-								{plan.highlighted && (
-									<div className="absolute -top-4 -right-4 w-24 h-24 bg-primary rounded-full opacity-10 blur-2xl" />
-								)}
-								
-								<div className="mb-6">
-									<h3 className="text-lg font-semibold text-gray-900">
-										{plan.name}
-									</h3>
-									<p className="mt-2 text-sm text-gray-500">
-										{plan.description}
-									</p>
-									<p className="mt-6">
-										{isAnnual && (
-											<span className="text-sm font-semibold text-red-500 line-through mr-2">
-												${getOriginalAnnualPrice(plan.price)}
-											</span>
-										)}
-										<span className="text-4xl font-bold tracking-tight text-gray-900">
-											${getPrice(plan.price)}
-										</span>
-										<span className="text-sm font-semibold text-gray-600">
-											{isAnnual ? '/an' : '/mois'}
-										</span>
-									</p>
-								</div>
-
-								<ul className="flex-1 space-y-4">
-									{plan.features.map((feature) => (
-										<li key={feature} className="flex items-start">
-											<div className="flex-shrink-0">
-												<Check className="h-5 w-5 text-primary" />
-											</div>
-											<span className="ml-3 text-sm text-gray-600">{feature}</span>
-										</li>
-									))}
-								</ul>
-
-								{!plan.demo && (
-									<div className="mt-8 border-t border-gray-200 pt-6">
-										<div className="flex items-center justify-between text-sm">
-											<span className="font-medium text-gray-900">Tokens supplémentaires</span>
-											<span className="text-gray-500">
-												${plan.tokenPrice} / {plan.tokenAmount}
-											</span>
-										</div>
-									</div>
-								)}
-
-								<button 
-									onClick={() => handlePlanSelect(plan)}
-									className={`mt-8 w-full rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ${
-										plan.demo ? 'bg-success hover:bg-success-600' : 'bg-primary hover:bg-primary-hover'
-									}`}
+						{plans.map((plan) => {
+							const isCurrent = user && (plan.name.toLowerCase() === currentPlan.toLowerCase());
+							return (
+								<motion.div
+									key={plan.name}
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									viewport={{ once: true }}
+									className={`relative flex flex-col rounded-2xl bg-white p-8 shadow-sm ring-1 ${plan.highlighted ? 'ring-primary' : plan.demo ? 'ring-success' : 'ring-gray-200'}`}
 								>
-									{plan.demo ? 'Essayer gratuitement' : 'Commencer maintenant'}
-								</button>
-							</motion.div>
-						))}
+									{/* Badge plan actuel */}
+									{isCurrent && (
+										<span className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full z-20 shadow">Plan actuel</span>
+									)}
+									{plan.highlighted && (
+										<div className="absolute -top-4 -right-4 w-24 h-24 bg-primary rounded-full opacity-10 blur-2xl" />
+									)}
+									
+									<div className="mb-6">
+										<h3 className="text-lg font-semibold text-gray-900">
+											{plan.name}
+										</h3>
+										<p className="mt-2 text-sm text-gray-500">
+											{plan.description}
+										</p>
+										<p className="mt-6">
+											{isAnnual && (
+												<span className="text-sm font-semibold text-red-500 line-through mr-2">
+													${getOriginalAnnualPrice(plan.price)}
+												</span>
+											)}
+											<span className="text-4xl font-bold tracking-tight text-gray-900">
+												${getPrice(plan.price)}
+											</span>
+											<span className="text-sm font-semibold text-gray-600">
+												{isAnnual ? '/an' : '/mois'}
+											</span>
+										</p>
+									</div>
+
+									<ul className="flex-1 space-y-4">
+										{plan.features.map((feature) => (
+											<li key={feature} className="flex items-start">
+												<div className="flex-shrink-0">
+													<Check className="h-5 w-5 text-primary" />
+												</div>
+												<span className="ml-3 text-sm text-gray-600">{feature}</span>
+											</li>
+										))}
+									</ul>
+
+									{!plan.demo && (
+										<div className="mt-8 border-t border-gray-200 pt-6">
+											<div className="flex items-center justify-between text-sm">
+												<span className="font-medium text-gray-900">Tokens supplémentaires</span>
+												<span className="text-gray-500">
+													${plan.tokenPrice} / {plan.tokenAmount}
+												</span>
+											</div>
+										</div>
+									)}
+
+									<button
+										onClick={() => handlePlanSelect(plan)}
+										className={`mt-8 w-full rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ${plan.demo ? 'bg-success hover:bg-success-600' : 'bg-primary hover:bg-primary-hover'} ${isCurrent ? 'opacity-60 cursor-not-allowed' : ''}`}
+										disabled={isCurrent}
+									>
+										{isCurrent ? 'Votre plan' : user ? (plan.demo ? 'Essayer gratuitement' : 'Souscrire') : (plan.demo ? 'Essayer gratuitement' : 'Commencer maintenant')}
+									</button>
+								</motion.div>
+							);
+						})}
 					</div>
 
 					{/* 

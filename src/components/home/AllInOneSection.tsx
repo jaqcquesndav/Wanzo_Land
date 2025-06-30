@@ -7,13 +7,14 @@ import stepEvaluation from '../../assets/images/step_evaluation.svg';
 import stepFinance from '../../assets/images/step_finance.svg';
 
 const floatingApps = [
-  { label: 'Comptabilité', icon: stepAccount, group: 'PME', top: '10%', left: '60%' },
-  { label: 'Facturation', icon: stepApps, group: 'PME', top: '30%', left: '85%' },
-  { label: 'Gestion commerciale', icon: stepApps, group: 'PME', top: '60%', left: '80%' },
-  { label: 'Reporting', icon: stepEvaluation, group: 'Investisseurs', top: '10%', left: '30%' },
-  { label: 'Analyse crédit', icon: stepFinance, group: 'Institutions', top: '70%', left: '20%' },
+  { label: 'Comptabilité', icon: stepAccount, group: 'PME', top: '15%', left: '60%' },
+   { label: 'Vente', icon: stepAccount, group: 'PME', top: '18%', left: '85%' },
+  { label: 'Facturation', icon: stepApps, group: 'PME', top: '40%', left: '85%' },
+  { label: 'Inventaire', icon: stepApps, group: 'PME', top: '60%', left: '80%' },
+  { label: 'Reporting', icon: stepEvaluation, group: 'Investisseurs', top: '10%', left: '25%' },
+  { label: 'Analyse crédit', icon: stepFinance, group: 'Institutions', top: '80%', left: '20%' },
   { label: 'Scoring', icon: stepFinance, group: 'Institutions', top: '50%', left: '5%' },
-  { label: 'Portail Investisseur', icon: stepEvaluation, group: 'Investisseurs', top: '80%', left: '50%' },
+  { label: 'Portail Investisseur', icon: stepEvaluation, group: 'Investisseurs', top: '90%', left: '50%' },
 ];
 
 export function AllInOneSection() {

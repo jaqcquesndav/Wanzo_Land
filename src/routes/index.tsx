@@ -13,6 +13,8 @@ import { FullscreenChat } from "../pages/chat/FullscreenChat";
 import Tarification from '../pages/Tarification';
 import FaqPage from '../pages/Faq';
 import { Callback } from '../pages/auth/Callback';
+import Profile from '../pages/Profile';
+import Abonnement from '../pages/Abonnement';
 
 export function AppRoutes() {
   return (
@@ -82,6 +84,8 @@ export function AppRoutes() {
       <Route path="/team" element={<Team />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/tarification" element={<Tarification />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/abonnement" element={<Abonnement />} />
       <Route
         path="/unauthorized"
         element={
