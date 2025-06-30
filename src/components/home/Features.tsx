@@ -11,22 +11,23 @@ import FinanceSvg from '../../assets/images/step_finance.svg';
 const simpleSteps = [
 	{
 		icon: AccountSvg,
-		label: 'Créer un compte',
-		short: 'Inscription rapide',
+		label: 'Créez un compte Wanzo',
+		short: 'Inscription rapide et sécurisée',
+	},
+		{
+		icon: EvaluationSvg,
+		label: 'Suivi & Évaluation',
+		short: 'Audit comptable, financier et technique',
 	},
 	{
 		icon: AppsSvg,
-		label: 'Utiliser Wanzo',
+		label: 'Valorisez votre entreprise',
 		short: 'Obtenez votre cote crédit',
 	},
-	{
-		icon: EvaluationSvg,
-		label: 'Suivi & Évaluation',
-		short: 'Analyse automatique',
-	},
+
 	{
 		icon: FinanceSvg,
-		label: 'Financement',
+		label: "Financement & Economie d'usage",
 		short: 'Accès simplifié au crédit, Leasing et capital Investissement',
 	},
 ];
