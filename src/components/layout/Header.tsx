@@ -225,7 +225,13 @@ export function Header() {
                     <span className="bg-pink-100 text-pink-600 rounded-full p-2 mb-1"><ShoppingBag className="w-6 h-6" /></span>
                     <span className="text-xs font-medium text-gray-700 text-center">Wanzo Store</span>
                   </Link>
+                  
                   {/* Apps à venir */}
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><BarChart2 className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Somo</span>
+                  </div>
                   <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
                     <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
                     <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><BarChart2 className="w-6 h-6" /></span>

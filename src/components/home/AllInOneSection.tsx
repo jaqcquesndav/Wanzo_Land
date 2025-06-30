@@ -9,11 +9,11 @@ import stepFinance from '../../assets/images/step_finance.svg';
 const floatingApps = [
   { label: 'Comptabilité', icon: stepAccount, group: 'PME', top: '15%', left: '60%' },
    { label: 'Vente', icon: stepAccount, group: 'PME', top: '18%', left: '85%' },
-  { label: 'Facturation', icon: stepApps, group: 'PME', top: '40%', left: '85%' },
-  { label: 'Inventaire', icon: stepApps, group: 'PME', top: '60%', left: '80%' },
+  { label: 'Facturation', icon: stepApps, group: 'PME', top: '35%', left: '60%' },
+  { label: 'Inventaire', icon: stepApps, group: 'PME', top: '80%', left: '80%' },
   { label: 'Reporting', icon: stepEvaluation, group: 'Investisseurs', top: '10%', left: '25%' },
   { label: 'Analyse crédit', icon: stepFinance, group: 'Institutions', top: '80%', left: '20%' },
-  { label: 'Scoring', icon: stepFinance, group: 'Institutions', top: '50%', left: '5%' },
+  { label: 'Scoring', icon: stepFinance, group: 'Institutions', top: '30%', left: '10%' },
   { label: 'Portail Investisseur', icon: stepEvaluation, group: 'Investisseurs', top: '90%', left: '50%' },
 ];
 
@@ -26,10 +26,13 @@ export function AllInOneSection() {
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Pensée pour vous satisfaire
           </p>
+          <p className="mt-4 text-base text-gray-600 max-w-xl mx-auto">
+            La plateforme congolaise où PME, investisseurs et institutions financières se connectent et grandissent ensemble.
+          </p>
         </div>
         <div className="relative flex justify-center items-center min-h-[520px]">
           {/* Image centrale */}
-          <img src={allInOneImg} alt="Wanzo All In One" className="w-96 h-96 rounded-2xl shadow-2xl object-contain z-10" />
+          <img src={allInOneImg} alt="Wanzo All In One" className="w-[1100px] h-[700px] max-w-full rounded-2xl shadow-2xl object-contain z-10 mx-auto" />
           {/* Apps flottantes */}
           {floatingApps.map((app) => (
             <div

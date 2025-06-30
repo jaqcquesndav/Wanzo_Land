@@ -60,6 +60,7 @@ const floatingTags = [
   "Écriture comptable simplifiée",
   "Repprochement bancaire automatisé",
   "Gestion de portefeuille",
+  "Cote crédit",
   "Note ESG des PME",
   "Analyse de risque",
   "Conseil financier & juridique",
