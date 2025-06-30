@@ -17,7 +17,7 @@ const simpleSteps = [
 	{
 		icon: AppsSvg,
 		label: 'Utiliser Wanzo',
-		short: 'Générez vos données',
+		short: 'Obtenez votre cote crédit',
 	},
 	{
 		icon: EvaluationSvg,
@@ -27,7 +27,7 @@ const simpleSteps = [
 	{
 		icon: FinanceSvg,
 		label: 'Financement',
-		short: 'Accès simplifié',
+		short: 'Accès simplifié au crédit, Leasing et capital Investissement',
 	},
 ];
 

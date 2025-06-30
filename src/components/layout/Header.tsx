@@ -221,32 +221,49 @@ export function Header() {
                     <span className="bg-green-100 text-green-600 rounded-full p-2 mb-1"><Briefcase className="w-6 h-6" /></span>
                     <span className="text-xs font-medium text-gray-700 text-center">Gestion commerciale</span>
                   </Link>
-                  {/* Disponibles */}
                   <Link to="/leasing-store" onClick={() => setAppsOpen(false)} className="flex flex-col items-center p-2 hover:bg-pink-50 rounded-lg transition">
                     <span className="bg-pink-100 text-pink-600 rounded-full p-2 mb-1"><ShoppingBag className="w-6 h-6" /></span>
                     <span className="text-xs font-medium text-gray-700 text-center">Wanzo Store</span>
                   </Link>
+                  {/* Apps à venir */}
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><BarChart2 className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Gestion de la production</span>
+                  </div>
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><BarChart2 className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Adha CREA</span>
+                  </div>
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><DollarSign className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Facturation</span>
+                  </div>
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><Layers className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Projet</span>
+                  </div>
                 </div>
               </div>
-              {/* APPS MODAL: Finance */}
+              {/* APPS MODAL: Financement */}
               <div>
-                <div className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wider">Finance</div>
+                <div className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wider">Financement</div>
                 <div className="grid grid-cols-2 gap-2 min-h-[180px] items-start">
-                  <Link to="/apps/invoicing" onClick={() => setAppsOpen(false)} className="flex flex-col items-center p-2 hover:bg-blue-50 rounded-lg transition relative">
-                    <span className="absolute top-1 right-1 bg-blue-500 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">N</span>
-                    <span className="bg-blue-100 text-blue-600 rounded-full p-2 mb-1"><DollarSign className="w-6 h-6" /></span>
-                    <span className="text-xs font-medium text-gray-700 text-center">Facturation</span>
-                  </Link>
-                  <Link to="/apps/expenses" onClick={() => setAppsOpen(false)} className="flex flex-col items-center p-2 hover:bg-green-50 rounded-lg transition relative">
-                    <span className="absolute top-1 right-1 bg-green-500 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">N</span>
-                    <span className="bg-green-100 text-green-600 rounded-full p-2 mb-1"><Layers className="w-6 h-6" /></span>
-                    <span className="text-xs font-medium text-gray-700 text-center">Dépenses</span>
-                  </Link>
-                  <Link to="/apps/payments" onClick={() => setAppsOpen(false)} className="flex flex-col items-center p-2 hover:bg-pink-50 rounded-lg transition relative">
-                    <span className="absolute top-1 right-1 bg-pink-500 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">N</span>
-                    <span className="bg-pink-100 text-pink-600 rounded-full p-2 mb-1"><ShoppingCart className="w-6 h-6" /></span>
-                    <span className="text-xs font-medium text-gray-700 text-center">Paiements</span>
-                  </Link>
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><Briefcase className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Gestion de Portefeuille</span>
+                  </div>
+                  <div className="flex flex-col items-center p-2 rounded-lg opacity-60 relative border border-dashed border-gray-200 bg-gray-50">
+                    <span className="absolute top-1 right-1 bg-gray-400 text-white text-[9px] px-1 py-0.5 rounded-full font-bold">À venir</span>
+                    <span className="bg-gray-200 text-gray-400 rounded-full p-2 mb-1"><BarChart2 className="w-6 h-6" /></span>
+                    <span className="text-xs font-medium text-gray-500 text-center">Analyse des risques</span>
+                  </div>
+                  {/* Apps existantes */}
+                  
                 </div>
               </div>
             </div>
