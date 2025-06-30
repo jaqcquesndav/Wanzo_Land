@@ -59,14 +59,15 @@ function parseToTableRows(input: string, response: string) {
 const floatingTags = [
   "Écriture comptable simplifiée",
   "Reconciliation bancaire automatisée",
-  "Assistance optimale",
-  "Facturation",
-  "Inventaire",
   "Gestion de portefeuille",
   "Analyse de risque",
-  "Espace institution financière",
-  "Prospection & financement",
-  "ERP tout-en-un PME"
+  "Espace de Prospection",
+  "ERP tout-en-un PME",
+  "Location d'équipement de production",
+  "Conseils pratiques",
+  "Gestion multi-établissements",
+  "Gestion du patrimoine",
+  "etc."
 ];
 
 export function Hero() {
@@ -122,8 +123,11 @@ export function Hero() {
                   textTransform: 'none'
                 }}
               >
-                la plateforme pour gérer et financer votre PME
+                la plateforme pour gérer et financer votre PME...
               </h1>
+            </div>
+            <div className="mt-2 text-lg text-gray-700 font-medium max-w-2xl mx-auto">
+              L’intelligence artificielle est une opportunité pour accélérer la croissance et assurer la durabilité des PME.
             </div>
             <div className="mt-4 flex justify-center">
               <span

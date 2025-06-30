@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Maximize2, Minimize2, Mic, Globe } from 'lucide-react';
 import { cn } from '../../utils/cn';
-import { useAuth } from '../../hooks/useAuth';
 import { useAI } from '../../hooks/useAI';
 import { ChatHeader } from './ChatHeader';
 import { ChatMessage } from './ChatMessage';
@@ -50,7 +49,6 @@ export function Chatbot() {
   const [isDemoMode, setIsDemoMode] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
-  const { isAuthenticated, login } = useAuth();
   const { chat, transcribeAudio } = useAI();
 
   useEffect(() => {
@@ -58,8 +56,8 @@ export function Chatbot() {
   }, [messages]);
 
   const handleSendMessage = async (content: string, attachments?: File[]) => {
-    if (!isDemoMode && !isAuthenticated) {
-      login();
+    if (!isDemoMode) {
+      // login();
       return;
     }
 

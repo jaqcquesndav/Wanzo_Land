@@ -4,11 +4,6 @@ import { About } from '../pages/About';
 import { Blog } from "../pages/Blog";
 import { Contact } from "../pages/Contact";
 import { Resources } from "../pages/Resources";
-import { UserTypeSelection } from "../pages/auth/UserTypeSelection";
-import { AppSelection } from "../pages/auth/AppSelection";
-import { Login } from "../pages/auth/Login";
-import { Register } from "../pages/auth/Register";
-import { AuthCallback } from "../pages/auth/AuthCallback";
 import { LeasingStore } from "../pages/leasing-store/LeasingStore";
 import { ProductDetails } from "../pages/leasing-store/ProductDetails";
 import { CustomRequest } from "../pages/leasing-store/CustomRequest";
@@ -17,19 +12,12 @@ import { Team } from "../pages/Team";
 import { FullscreenChat } from "../pages/chat/FullscreenChat";
 import Tarification from '../pages/Tarification';
 import FaqPage from '../pages/Faq';
+import { Callback } from '../pages/auth/Callback';
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      {/* Routes d'authentification */}
-      <Route path="/auth">
-        <Route path="select" element={<UserTypeSelection />} />
-        <Route path="apps/:userType" element={<AppSelection />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="callback" element={<AuthCallback />} />
-      </Route>
       <Route
         path="/products/*"
         element={
@@ -113,6 +101,7 @@ export function AppRoutes() {
         }
       />
       <Route path="/chat/fullscreen" element={<FullscreenChat />} />
+      <Route path="/auth/callback" element={<Callback />} />
     </Routes>
   );
 }

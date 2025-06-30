@@ -1,9 +1,7 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { apiService } from '../services/api';
 import { useState, useCallback } from 'react';
 
 export function useApi() {
-  const { getAccessTokenSilently } = useAuth0();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -14,8 +12,7 @@ export function useApi() {
     setIsLoading(true);
     setError(null);
     try {
-      const token = await getAccessTokenSilently();
-      const result = await apiMethod(token, ...args);
+      const result = await apiMethod('', ...args);
       return result;
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Une erreur est survenue'));
@@ -23,7 +20,7 @@ export function useApi() {
     } finally {
       setIsLoading(false);
     }
-  }, [getAccessTokenSilently]);
+  }, []);
 
   const getUserProfile = useCallback(async () => {
     return callApi(apiService.getUserProfile);

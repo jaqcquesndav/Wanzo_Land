@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import { useCart } from '../../hooks/useCart';
 import { Button } from '../ui/Button';
 import { cn } from '../../utils/cn';
@@ -32,15 +31,9 @@ export function ProductCard({
   paymentPeriods, // Nouvelle propriété
   installmentPayment, // Nouvelle propriété
 }: ProductCardProps) {
-  const { user } = useAuth();
   const { addToCart } = useCart();
 
   const handleLeaseRequest = () => {
-    if (!user) {
-      window.location.href = 'https://auth.kiota.com/login';
-      return;
-    }
-
     addToCart({
       id,
       name,
@@ -115,7 +108,7 @@ export function ProductCard({
         onClick={handleLeaseRequest}
         className="mt-4 w-full"
       >
-        {user ? 'Ajouter au panier' : 'Se connecter pour commander'}
+        Se connecter pour commander
       </Button>
     </div>
   );

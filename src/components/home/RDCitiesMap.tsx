@@ -21,6 +21,7 @@ export function RDCitiesMap() {
         </h3>
         <div className="w-full flex justify-center">
           <div className="relative w-[340px] h-[400px] sm:w-[420px] sm:h-[500px]">
+            
             <svg
               viewBox="0 0 1200 1200"
               className="w-full h-full"

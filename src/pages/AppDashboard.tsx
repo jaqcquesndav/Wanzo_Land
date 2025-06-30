@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Settings, Calculator, LineChart, BarChart } from 'lucide-react';
 import { Container } from '../components/ui/Container';
-import { useAuth0 } from '@auth0/auth0-react';
-import { User } from '../types/auth';
 
 const apps = {
   sme: [
@@ -41,10 +39,9 @@ const apps = {
 };
 
 export function AppDashboard() {
-  const { user } = useAuth0<User>();
   const [selectedApp, setSelectedApp] = useState<string | null>(null);
   
-  const userApps = user?.userType === 'financial_institution' ? apps.financial_institution : apps.sme;
+  const userApps = apps.sme; // Par défaut, on affiche les applications SME
 
   return (
     <div className="relative overflow-hidden min-h-screen" style={{ background: 'linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%)' }}>
@@ -58,7 +55,7 @@ export function AppDashboard() {
       <Container className="relative z-10 py-12 lg:py-20">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold text-gray-900">
-            Bienvenue, {user?.name}
+            Bienvenue
           </h1>
           <p className="mt-4 text-lg text-gray-600">
             Sélectionnez une application pour commencer

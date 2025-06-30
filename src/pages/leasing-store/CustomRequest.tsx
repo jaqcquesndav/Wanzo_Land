@@ -4,18 +4,19 @@ import { Container } from '../../components/ui/Container';
 import { PageContainer } from '../../components/layout/PageContainer';
 import { Button } from '../../components/ui/Button';
 import { ArrowLeft, FileText } from 'lucide-react';
+import { categories } from '../../components/leasing-store/filters/categories';
 
 export function CustomRequest() {
   const [formData, setFormData] = useState({
+    requestType: 'leasing',
+    leasingCode: '',
     equipmentType: '',
     description: '',
     budget: '',
     timeline: '',
     specifications: '',
-    company: '',
-    contactName: '',
-    email: '',
-    phone: '',
+    deliveryAddress: '',
+    message: '',
   });
 
   const [filePreviews, setFilePreviews] = useState<{ url: string; isPdf: boolean; name: string }[]>([]);
@@ -61,6 +62,10 @@ export function CustomRequest() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (formData.requestType === 'leasing' && (!formData.leasingCode || !/^WL-\w{8}$/.test(formData.leasingCode))) {
+      alert('Veuillez saisir un code de leasing valide (WL-XXXXXXXX).');
+      return;
+    }
     console.log('Custom request submitted:', formData);
     console.log('Uploaded files:', filePreviews);
     // TODO: Implement submission logic
@@ -81,14 +86,55 @@ export function CustomRequest() {
 
             <div className="mt-8">
               <h1 className="text-3xl font-bold text-gray-900">
-                Demande d'équipement personnalisée
+                Demande personnalisée
               </h1>
               <p className="mt-4 text-gray-600">
-                Vous ne trouvez pas l'équipement que vous recherchez ? Décrivez vos besoins et nous vous aiderons à trouver la meilleure solution.
+                Décrivez vos besoins et nous vous aiderons à trouver la meilleure solution.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-8">
                 <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Type de demande
+                    </label>
+                    <select
+                      value={formData.requestType}
+                      onChange={e => setFormData({ ...formData, requestType: e.target.value })}
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      required
+                    >
+                      <option value="leasing">Leasing</option>
+                      <option value="location">Location simple</option>
+                      <option value="achat">Achat échelonné</option>
+                    </select>
+                  </div>
+
+                  {/* Code de leasing et message Wanzo si leasing */}
+                  {formData.requestType === 'leasing' && (
+                    <>
+                      <div className="mb-2 p-3 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 text-sm rounded">
+                        Vous devez avoir un <b>compte Wanzo actif</b> pour passer une commande de leasing.<br />
+                        Le <b>code de leasing</b> est généré dans l’app mobile ou l’app Financement PME.<br />
+                        Exemple de code : <span className="font-mono">WL-XXXXXXXX</span>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Code de leasing <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.leasingCode}
+                          onChange={e => setFormData({ ...formData, leasingCode: e.target.value.toUpperCase() })}
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary font-mono"
+                          placeholder="WL-XXXXXXXX"
+                          required={formData.requestType === 'leasing'}
+                          maxLength={11}
+                        />
+                      </div>
+                    </>
+                  )}
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Type d'équipement
@@ -100,9 +146,13 @@ export function CustomRequest() {
                       required
                     >
                       <option value="">Sélectionnez un type</option>
-                      <option value="informatique">Matériel informatique</option>
-                      <option value="vehicules">Véhicules</option>
-                      <option value="machines">Machines industrielles</option>
+                      {Object.entries(categories).map(([catKey, cat]) => (
+                        <optgroup key={catKey} label={cat.name}>
+                          {cat.subcategories.map((sub) => (
+                            <option key={sub.id} value={sub.id}>{sub.name}</option>
+                          ))}
+                        </optgroup>
+                      ))}
                       <option value="autre">Autre</option>
                     </select>
                   </div>
@@ -225,62 +275,36 @@ export function CustomRequest() {
 
                   <div className="border-t border-gray-200 pt-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                      Informations de contact
+                      Informations de livraison
                     </h2>
 
                     <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700">
-                          Entreprise
+                          Adresse de livraison <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
-                          value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          value={formData.deliveryAddress}
+                          onChange={e => setFormData({ ...formData, deliveryAddress: e.target.value })}
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                          Nom du contact
-                        </label>
-                        <input
-                          type="text"
-                          value={formData.contactName}
-                          onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                          Téléphone
-                        </label>
-                        <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                          placeholder="Adresse complète de livraison"
                           required
                         />
                       </div>
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Message (optionnel)
+                    </label>
+                    <textarea
+                      value={formData.message}
+                      onChange={e => setFormData({ ...formData, message: e.target.value })}
+                      rows={3}
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    />
                   </div>
 
                   <div className="flex justify-end">
