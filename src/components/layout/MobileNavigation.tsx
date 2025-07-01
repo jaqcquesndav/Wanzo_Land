@@ -149,8 +149,35 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
                           <svg className="w-14 h-14 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 4-6 8-6s8 2 8 6" /></svg>
                         )}
                         <span className="text-base font-medium text-gray-700 max-w-[160px] truncate text-center">{user.name || user.email}</span>
+                        
+                        <div className="w-full flex flex-col gap-2 mt-2">
+                          <Link
+                            to="/profile"
+                            className="w-full text-center py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+                            onClick={onClose}
+                          >
+                            Votre profil
+                          </Link>
+                          
+                          <Link
+                            to="/organization"
+                            className="w-full text-center py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+                            onClick={onClose}
+                          >
+                            Votre entreprise
+                          </Link>
+                          
+                          <Link
+                            to="/abonnement"
+                            className="w-full text-center py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+                            onClick={onClose}
+                          >
+                            Abonnement
+                          </Link>
+                        </div>
+                        
                         <button
-                          className="w-full rounded-full bg-gray-300 text-gray-700 text-base font-semibold py-2 hover:bg-gray-400 transition"
+                          className="w-full rounded-full bg-gray-300 text-gray-700 text-base font-semibold py-2 hover:bg-gray-400 transition mt-2"
                           onClick={handleLogout}
                         >
                           Déconnexion

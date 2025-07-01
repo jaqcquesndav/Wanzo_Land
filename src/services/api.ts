@@ -1,219 +1,114 @@
-import { AUTH0_CONFIG, API_ENDPOINTS } from '../config/auth';
+import { getToken } from '../utils/storage';
 
+export interface ApiError {
+  status: number;
+  message: string;
+  errors?: Record<string, string[]>;
+}
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.ksuit.app/v1';
+
+/**
+ * Generic API service for handling HTTP requests.
+ */
 class ApiService {
-  private baseUrl: string;
-  private authBaseUrl: string;
+  private getAuthHeaders(isFormData = false): HeadersInit {
+    const token = getToken(); // Assumes getToken retrieves the stored JWT
+    const headers: HeadersInit = {};
 
-  constructor() {
-    this.baseUrl = AUTH0_CONFIG.apiBaseUrl;
-    this.authBaseUrl = AUTH0_CONFIG.authBaseUrl;
-  }
-
-  private async getHeaders() {
-    return {
-      'Content-Type': 'application/json',
-    };
-  }
-
-  private async handleResponse(response: Response) {
-    if (!response.ok) {
-      let errorData;
-      try {
-        errorData = await response.json();
-      } catch (e) {
-        errorData = { message: `Erreur HTTP ${response.status}` };
-      }
-      console.error('Erreur dans la réponse API:', errorData);
-
-      if (response.status === 401) {
-        const event = new CustomEvent('auth:failed');
-        window.dispatchEvent(event);
-      }
-
-      throw new Error(errorData.message || errorData.error || 'Une erreur est survenue');
+    if (!isFormData) {
+      headers['Content-Type'] = 'application/json';
     }
+    headers['Accept'] = 'application/json';
+
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return headers;
+  }
+
+  private async handleResponse<T>(response: Response): Promise<T> {
+    if (!response.ok) {
+      let errorData: ApiError;
+      try {
+        const res = await response.json();
+        errorData = {
+          status: response.status,
+          message: res.message || 'An unknown error occurred.',
+          errors: res.errors,
+        };
+      } catch (e) {
+        errorData = { status: response.status, message: response.statusText };
+      }
+      throw errorData;
+    }
+
+    if (response.status === 204) { // No Content
+      return {} as T;
+    }
+
     return response.json();
   }
 
-  async getUserProfile() {
-    const response = await fetch(`${this.baseUrl}${API_ENDPOINTS.auth.me}`, {
-      headers: await this.getHeaders(),
-      credentials: 'include',
+  async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
+    const url = new URL(`${API_BASE_URL}${endpoint}`);
+    if (params) {
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    }
+    const response = await fetch(url.toString(), {
+      method: 'GET',
+      headers: this.getAuthHeaders(),
     });
-    return this.handleResponse(response);
+    return this.handleResponse<T>(response);
   }
 
-  async updateUserProfile(data: any) {
-    const response = await fetch(`${this.baseUrl}${API_ENDPOINTS.users.profile}`, {
-      method: 'PUT',
-      headers: await this.getHeaders(),
-      credentials: 'include',
+  async post<T>(endpoint: string, data: any): Promise<T> {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
     });
-    return this.handleResponse(response);
+    return this.handleResponse<T>(response);
   }
 
-  async getUserSettings() {
-    const response = await fetch(`${this.baseUrl}${API_ENDPOINTS.users.settings}`, {
-      headers: await this.getHeaders(),
-      credentials: 'include',
-    });
-    return this.handleResponse(response);
-  }
-
-  async getAppData(appName: string) {
-    const endpoint = API_ENDPOINTS.apps?.[appName];
-    if (!endpoint) {
-      throw new Error('Application non trouvée');
-    }
-
-    const response = await fetch(`${this.baseUrl}${endpoint}`, {
-      headers: await this.getHeaders(),
-      credentials: 'include',
-    });
-    return this.handleResponse(response);
-  }
-
-  async exchangeAuthCode(code: string, codeVerifier: string, state?: string) {
-    console.log("Échange du code d'autorisation contre des cookies");
-
-    const isSignup = sessionStorage.getItem('auth_is_signup') === 'true';
-    const exchangeId = Date.now().toString() + Math.random().toString(36).substring(2, 15);
-
-    try {
-      // Utiliser authBaseUrl pour l'échange de code
-      const response = await fetch(`${this.authBaseUrl}${API_ENDPOINTS.auth.exchange}`, {
-        method: 'POST',
-        headers: await this.getHeaders(),
-        credentials: 'include',
-        body: JSON.stringify({
-          code,
-          code_verifier: codeVerifier,
-          state,
-          exchange_id: exchangeId,
-          is_signup: isSignup
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Échec de l\'échange du code');
-      }
-
-      // Le backend définit maintenant les cookies httpOnly pour le token ET les infos utilisateur
-      return this.handleResponse(response);
-    } catch (error) {
-      console.error("Erreur lors de l'échange du code:", error);
-      throw error;
-    } finally {
-      sessionStorage.removeItem('auth_is_signup');
-    }
-  }
-
-  async login(loginData: { email: string; password: string }) {
-    // Utiliser authBaseUrl pour la connexion
-    const response = await fetch(`${this.authBaseUrl}${API_ENDPOINTS.auth.login}`, {
-      method: 'POST',
-      headers: await this.getHeaders(),
-      credentials: 'include', // Important pour recevoir et envoyer les cookies
-      body: JSON.stringify(loginData),
-    });
-
-    // Le backend définit les cookies httpOnly pour le token ET les infos utilisateur
-    return this.handleResponse(response);
-  }
-
-  async signup(signupData: {
-    email: string;
-    password: string;
-    companyName: string;
-    firstName: string;
-    lastName: string;
-  }) {
-    // Utiliser authBaseUrl pour l'inscription
-    const response = await fetch(`${this.authBaseUrl}${API_ENDPOINTS.auth.signup}`, {
-      method: 'POST',
-      headers: await this.getHeaders(),
-      credentials: 'include', // Important pour recevoir et envoyer les cookies
-      body: JSON.stringify(signupData),
-    });
-
-    // Le backend définit les cookies httpOnly pour le token ET les infos utilisateur
-    return this.handleResponse(response);
-  }
-
-  async logout() {
-    const response = await fetch(`${this.authBaseUrl}${API_ENDPOINTS.auth.logout}`, {
-      method: 'POST',
-      headers: await this.getHeaders(),
-      credentials: 'include',
-    });
-    return this.handleResponse(response);
-  }
-
-  async inviteUser(inviteData: {
-    email: string;
-    firstName: string;
-    lastName: string;
-    role: string;
-    permissions: string[];
-  }) {
-    const response = await fetch(`${this.baseUrl}/users/invite`, {
-      method: 'POST',
-      headers: await this.getHeaders(),
-      credentials: 'include',
-      body: JSON.stringify(inviteData),
-    });
-    return this.handleResponse(response);
-  }
-
-  async createCompany(companyData: {
-    name: string;
-    address?: string;
-    phone?: string;
-    industry?: string;
-  }) {
-    const response = await fetch(`${this.baseUrl}/companies`, {
-      method: 'POST',
-      headers: await this.getHeaders(),
-      credentials: 'include',
-      body: JSON.stringify(companyData),
-    });
-    return this.handleResponse(response);
-  }
-
-  async getAllCompanies() {
-    const response = await fetch(`${this.baseUrl}/companies`, {
-      headers: await this.getHeaders(),
-      credentials: 'include',
-    });
-    return this.handleResponse(response);
-  }
-
-  async getCompanyById(companyId: string) {
-    const response = await fetch(`${this.baseUrl}/companies/${companyId}`, {
-      headers: await this.getHeaders(),
-      credentials: 'include',
-    });
-    return this.handleResponse(response);
-  }
-
-  async updateCompany(companyId: string, companyData: any) {
-    const response = await fetch(`${this.baseUrl}/companies/${companyId}`, {
+  async put<T>(endpoint: string, data: any): Promise<T> {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'PUT',
-      headers: await this.getHeaders(),
-      credentials: 'include',
-      body: JSON.stringify(companyData),
+      headers: this.getAuthHeaders(),
+      body: JSON.stringify(data),
     });
-    return this.handleResponse(response);
+    return this.handleResponse<T>(response);
   }
 
-  async deleteCompany(companyId: string) {
-    const response = await fetch(`${this.baseUrl}/companies/${companyId}`, {
-      method: 'DELETE',
-      headers: await this.getHeaders(),
-      credentials: 'include',
+  async patch<T>(endpoint: string, data: any): Promise<T> {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'PATCH',
+      headers: this.getAuthHeaders(),
+      body: JSON.stringify(data),
     });
-    return this.handleResponse(response);
+    return this.handleResponse<T>(response);
+  }
+
+  async delete<T>(endpoint: string): Promise<T> {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'DELETE',
+      headers: this.getAuthHeaders(),
+    });
+    return this.handleResponse<T>(response);
+  }
+
+  async upload<T>(endpoint: string, file: File, fieldName = 'file'): Promise<T> {
+    const formData = new FormData();
+    formData.append(fieldName, file);
+
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: this.getAuthHeaders(true), // isFormData = true
+      body: formData,
+    });
+
+    return this.handleResponse<T>(response);
   }
 }
 

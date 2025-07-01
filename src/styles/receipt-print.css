@@ -1,0 +1,77 @@
+/* Styles pour l'impression de facture */
+@media print {
+  body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+  }
+  
+  /* Cacher les éléments non nécessaires pour l'impression */
+  header, nav, button, footer, .no-print {
+    display: none !important;
+  }
+  
+  /* Style pour le conteneur principal de la facture */
+  .print-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+  
+  .receipt-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    page-break-inside: avoid !important;
+  }
+  
+  /* Ajustement des éléments de la facture */
+  .receipt-header {
+    margin-bottom: 15mm !important;
+  }
+  
+  .receipt-logo {
+    height: 25mm !important;
+    max-width: 40mm !important;
+  }
+  
+  .receipt-table {
+    width: 100% !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .receipt-table table, 
+  .receipt-table th, 
+  .receipt-table td {
+    border: 1px solid #000 !important;
+    border-collapse: collapse !important;
+  }
+  
+  .receipt-parties {
+    margin-bottom: 10mm !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .receipt-summary {
+    page-break-inside: avoid !important;
+  }
+  
+  .receipt-footer {
+    margin-top: 15mm !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .receipt-address {
+    margin-top: 10mm !important;
+    text-align: center !important;
+  }
+}

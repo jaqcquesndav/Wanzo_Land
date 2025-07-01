@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
-import { plans } from '../components/home/Pricing';
+import React, { useState, useEffect } from 'react';
+import { useSubscription } from '../hooks/useSubscription';
+import { useUser } from '../hooks/useUser';
 import { UserCircle } from 'lucide-react';
 import Receipt from '../components/abonnement/Receipt';
-
-// Simule la récupération du profil utilisateur et de l'abonnement
-function getUserProfile() {
-  const stored = localStorage.getItem('auth0_user');
-  return stored ? JSON.parse(stored) : {};
-}
+import { PaymentDetails, PaymentRecord, PricingPlan } from '../types/user';
 
 const paymentMethods = [
   { key: 'card', label: 'Carte bancaire (VISA/Mastercard)' },
@@ -16,7 +12,7 @@ const paymentMethods = [
 ];
 
 // Composant : Sélecteur de plan
-function PlanSelector({ plans, currentPlan, onSelect }: { plans: any[]; currentPlan: string; onSelect: (plan: string) => void }) {
+function PlanSelector({ plans, currentPlan, onSelect }: { plans: PricingPlan[]; currentPlan: string; onSelect: (plan: string) => void }) {
   return (
     <div>
       <h3 className="text-lg font-semibold mb-2">Changer de plan</h3>
@@ -41,7 +37,7 @@ function PlanSelector({ plans, currentPlan, onSelect }: { plans: any[]; currentP
 }
 
 // Composant : Paiement enrichi
-function PaymentPanel({ paymentType, setPaymentType, paymentInfo, setPaymentInfo, error, onSubmit, paymentMethods, selectedPlan }: any) {
+function PaymentPanel({ paymentType, setPaymentType, paymentInfo, setPaymentInfo, error, onSubmit, paymentMethods, selectedPlan, plans }: any) {
   function sanitize(str: string) {
     return String(str).replace(/[<>"'`;\\]/g, '');
   }
@@ -163,75 +159,94 @@ function SubscriptionOptions() {
 }
 
 export default function Abonnement() {
-  const user = getUserProfile();
-  const [currentPlan, setCurrentPlan] = useState(user.plan || 'Free');
-  const [tokenBalance] = useState(50000); // exemple
-  const [tokenTotal] = useState(100000); // exemple
-  const [selectedPlan, setSelectedPlan] = useState(currentPlan);
-  const [paymentType, setPaymentType] = useState('card');
-  const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: '',
-    cardCvv: '',
-    cardExp: '',
-    mobileNumber: '',
-    mobilePin: '',
-    proof: null as File | null,
-    amount: '', // Ajout du champ montant
-  });
-  const [error, setError] = useState('');
-  const [tab, setTab] = useState<'plan' | 'payment' | 'options' | 'confirm'>('plan');
+  const { user } = useUser();
+  const { 
+    subscription, 
+    plans, 
+    isLoading, 
+    error: subscriptionError, 
+    changePlan, 
+    rechargeTokens, 
+    reload 
+  } = useSubscription();
 
-  // Plan virtuel pour la recharge si non présent dans la liste
+  const [selectedPlan, setSelectedPlan] = useState('');
+  const [paymentType, setPaymentType] = useState<'card' | 'mobile' | 'manual'>('card');
+  const [paymentInfo, setPaymentInfo] = useState<PaymentDetails>({
+    paymentMethod: 'card',
+    amount: '',
+    cardNumber: '',
+    cvv: '',
+    expiryDate: '',
+    mobileMoneyNumber: '',
+    transactionId: '',
+    proofScreenshot: null,
+  });
+  const [formError, setFormError] = useState('');
+  const [tab, setTab] = useState<'plan' | 'payment' | 'options' | 'confirm'>('plan');
+  const [showReceipt, setShowReceipt] = useState<PaymentRecord | null>(null);
+
+  useEffect(() => {
+    if (subscription) {
+      setSelectedPlan(subscription.currentPlan);
+    }
+  }, [subscription]);
+
+  // Plan virtuel pour la recharge
   const rechargePlanName = 'Recharge tokens';
-  const allPlans = plans.some(p => /recharge|token/i.test(p.name))
-    ? plans
-    : [...plans, { name: rechargePlanName, description: 'Achetez des tokens à la demande', price: '', features: [] }];
 
   // Paiement
-  function handlePaymentSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handlePaymentSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setError('');
-    const isRecharge = typeof selectedPlan === 'string' && /recharge|token/i.test(selectedPlan);
+    setFormError('');
+
+    const isRecharge = selectedPlan === rechargePlanName;
+
     if (isRecharge && (!paymentInfo.amount || isNaN(Number(paymentInfo.amount)) || Number(paymentInfo.amount) <= 0)) {
-      setError('Veuillez saisir un montant valide pour la recharge.');
+      setFormError('Veuillez saisir un montant valide pour la recharge.');
       return;
     }
     if (paymentType === 'card') {
-      if (!paymentInfo.cardNumber || !paymentInfo.cardCvv || !paymentInfo.cardExp) {
-        setError('Veuillez remplir tous les champs de la carte.');
+      if (!paymentInfo.cardNumber || !paymentInfo.cvv || !paymentInfo.expiryDate) {
+        setFormError('Veuillez remplir tous les champs de la carte.');
         return;
       }
     } else if (paymentType === 'mobile') {
-      if (!paymentInfo.mobileNumber || !paymentInfo.mobilePin) {
-        setError('Veuillez remplir tous les champs Mobile Money.');
+      if (!paymentInfo.mobileMoneyNumber || !paymentInfo.transactionId) {
+        setFormError('Veuillez remplir tous les champs Mobile Money.');
         return;
       }
     } else if (paymentType === 'manual') {
-      if (!paymentInfo.proof) {
-        setError('Veuillez charger une preuve de paiement.');
+      if (!paymentInfo.proofScreenshot) {
+        setFormError('Veuillez charger une preuve de paiement.');
         return;
       }
     }
-    setTab('confirm');
-    setCurrentPlan(selectedPlan);
+    try {
+      if (isRecharge) {
+        await rechargeTokens({ ...paymentInfo, paymentMethod: paymentType });
+      } else {
+        await changePlan(selectedPlan, paymentType);
+      }
+      setTab('confirm');
+      reload(); // Recharger les données pour voir les changements
+    } catch (err) {
+      const error = err as Error;
+      setFormError(error.message || 'Une erreur est survenue lors du paiement.');
+    }
   }
 
-  // Historique de paiements simulé
-  type Payment = {
-    id: string;
-    date: string;
-    amount: number;
-    method: string;
-    plan: string;
-    status: string;
-    receiptUrl?: string;
-  };
-  const [payments] = useState<Payment[]>([
-    { id: 'PAY-001', date: '2025-06-01', amount: 19.9, method: 'Carte bancaire', plan: 'PME', status: 'Payé' },
-    { id: 'PAY-002', date: '2025-05-01', amount: 19.9, method: 'Mobile Money', plan: 'PME', status: 'Payé' },
-    { id: 'PAY-003', date: '2025-04-01', amount: 5, method: 'Carte bancaire', plan: 'Recharge tokens', status: 'Payé' },
-  ]);
-  const [showReceipt, setShowReceipt] = useState<Payment | null>(null);
+  if (isLoading) {
+    return <div className="text-center p-8">Chargement de votre abonnement...</div>;
+  }
+
+  if (subscriptionError) {
+    return <div className="text-center p-8 text-red-600">Erreur: {subscriptionError}</div>;
+  }
+
+  if (!subscription) {
+    return <div className="text-center p-8">Aucun abonnement trouvé.</div>;
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-4 sm:p-8 mt-8 bg-white rounded-xl shadow-lg">
@@ -239,19 +254,19 @@ export default function Abonnement() {
       {/* Affichage du plan actuel et des tokens */}
       <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
         <div className="flex items-center gap-4">
-          {user.picture ? (
+          {user?.picture ? (
             <img src={user.picture} alt="Profil" className="w-16 h-16 rounded-full object-cover border-2 border-primary" />
           ) : (
             <UserCircle className="w-16 h-16 text-gray-300" />
           )}
           <div>
-            <div className="text-lg font-semibold text-gray-800">{user.name || 'Utilisateur'}</div>
-            <div className="text-sm text-gray-500">Plan actuel : <span className="font-bold text-primary">{currentPlan}</span></div>
+            <div className="text-lg font-semibold text-gray-800">{user?.name || 'Utilisateur'}</div>
+            <div className="text-sm text-gray-500">Plan actuel : <span className="font-bold text-primary">{subscription.currentPlan}</span></div>
           </div>
         </div>
         <div className="flex-1 flex flex-col items-center sm:items-end">
           <div className="text-sm text-gray-600">Tokens restants</div>
-          <div className="text-2xl font-bold text-primary">{tokenBalance.toLocaleString()} / {tokenTotal.toLocaleString()}</div>
+          <div className="text-2xl font-bold text-primary">{subscription.tokenBalance.toLocaleString()} / {subscription.tokenTotal.toLocaleString()}</div>
           <button
             className="mt-2 px-4 py-1 rounded bg-primary text-white hover:bg-primary-dark text-sm"
             onClick={() => {
@@ -261,6 +276,7 @@ export default function Abonnement() {
           >Recharger des tokens</button>
         </div>
       </div>
+      
       {/* Navigation par onglets */}
       <div className="flex gap-2 mb-6 border-b">
         <button
@@ -278,7 +294,7 @@ export default function Abonnement() {
       </div>
       {/* Affichage du panneau selon l’onglet */}
       {tab === 'plan' && (
-        <PlanSelector plans={allPlans} currentPlan={currentPlan} onSelect={(plan) => { setSelectedPlan(plan); setTab('payment'); }} />
+        <PlanSelector plans={plans} currentPlan={subscription.currentPlan} onSelect={(plan) => { setSelectedPlan(plan); setTab('payment'); }} />
       )}
       {tab === 'payment' && (
         <PaymentPanel
@@ -286,10 +302,11 @@ export default function Abonnement() {
           setPaymentType={setPaymentType}
           paymentInfo={paymentInfo}
           setPaymentInfo={setPaymentInfo}
-          error={error}
+          error={formError}
           onSubmit={handlePaymentSubmit}
           paymentMethods={paymentMethods}
           selectedPlan={selectedPlan}
+          plans={plans}
         />
       )}
       {tab === 'confirm' && (
@@ -316,7 +333,7 @@ export default function Abonnement() {
               </tr>
             </thead>
             <tbody>
-              {payments.map((p) => (
+              {subscription.paymentHistory.map((p) => (
                 <tr key={p.id}>
                   <td className="px-3 py-2 border-b">{p.date}</td>
                   <td className="px-3 py-2 border-b">${p.amount}</td>

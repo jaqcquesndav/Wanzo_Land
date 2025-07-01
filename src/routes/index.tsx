@@ -15,6 +15,7 @@ import FaqPage from '../pages/Faq';
 import { Callback } from '../pages/auth/Callback';
 import Profile from '../pages/Profile';
 import Abonnement from '../pages/Abonnement';
+import OrganizationPage from '../pages/Organization';
 
 export function AppRoutes() {
   return (
@@ -85,6 +86,7 @@ export function AppRoutes() {
       <Route path="/resources" element={<Resources />} />
       <Route path="/tarification" element={<Tarification />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/organization" element={<OrganizationPage />} />
       <Route path="/abonnement" element={<Abonnement />} />
       <Route
         path="/unauthorized"

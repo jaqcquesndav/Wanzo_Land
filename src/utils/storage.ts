@@ -87,3 +87,7 @@ const STORAGE_KEYS = {
       }
     }
   };
+
+  export function getToken(): string | null {
+    return secureStorage.getItem('ACCESS_TOKEN');
+  }
