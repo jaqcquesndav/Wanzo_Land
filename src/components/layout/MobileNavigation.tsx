@@ -6,6 +6,7 @@ import { cn } from '../../utils/cn';
 import { NavigationItem } from './types';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CALLBACK_URL, AUTH0_LOGOUT_URL } from '../../config/auth0';
 import { startAuth0PKCE } from '../../utils/auth0pkce';
+import { useUser } from '../../hooks/useUser';
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -14,22 +15,25 @@ interface MobileNavigationProps {
 }
 
 export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigationProps) {
-  // Lecture du profil utilisateur depuis localStorage
-  const user = React.useMemo(() => {
-    const stored = localStorage.getItem('auth0_user');
-    return stored ? JSON.parse(stored) : null;
-  }, [localStorage.getItem('auth0_user')]);
+  // Utiliser le hook useUser pour récupérer les informations utilisateur enrichies
+  const { user, isEnrichingData, isAuthenticated } = useUser();
 
   // Fonction de déconnexion (identique à Header)
   function handleLogout() {
+    // Nettoyer tous les tokens Auth0 du localStorage
     localStorage.removeItem('auth0_user');
     localStorage.removeItem('auth0_token');
     localStorage.removeItem('auth0_id_token');
     localStorage.removeItem('auth0_refresh_token');
     localStorage.removeItem('auth0_expires_in');
     localStorage.removeItem('auth0_token_type');
+    
+    // Nettoyer la session
     sessionStorage.removeItem('auth0_code_verifier');
     sessionStorage.removeItem('auth0_state');
+    sessionStorage.removeItem('auth0_just_logged_in');
+    sessionStorage.removeItem('auth0_redirect_after_login');
+    
     const domain = AUTH0_DOMAIN;
     const clientId = AUTH0_CLIENT_ID;
     const returnTo = AUTH0_LOGOUT_URL;
@@ -125,7 +129,7 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
 
                   <div className="border-t border-gray-200 pt-4">
                     {/* Gestion de l'authentification mobile */}
-                    {!user ? (
+                    {!isAuthenticated ? (
                       <div className="flex flex-col gap-3">
                         <button
                           className="text-base font-semibold underline underline-offset-2 text-primary hover:text-warning bg-transparent border-0 px-2 py-2 text-left"
@@ -143,12 +147,31 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
                       </div>
                     ) : (
                       <div className="flex flex-col items-center gap-3">
-                        {user.picture ? (
-                          <img src={user.picture} alt={user.name} className="w-14 h-14 rounded-full border object-cover" />
-                        ) : (
-                          <svg className="w-14 h-14 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 4-6 8-6s8 2 8 6" /></svg>
-                        )}
-                        <span className="text-base font-medium text-gray-700 max-w-[160px] truncate text-center">{user.name || user.email}</span>
+                        <div className="relative">
+                          {user?.picture ? (
+                            <img 
+                              src={user.picture} 
+                              alt={user.name || "Photo de profil"} 
+                              className="w-14 h-14 rounded-full border object-cover" 
+                              onError={(e) => {
+                                // Fallback si l'image ne charge pas
+                                (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || user.email || 'U')}`;
+                              }}
+                            />
+                          ) : (
+                            <svg className="w-14 h-14 text-gray-400 fallback-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 4-6 8-6s8 2 8 6" /></svg>
+                          )}
+                          {/* Indicateur de chargement lors de l'enrichissement des données */}
+                          {isEnrichingData && (
+                            <div className="absolute top-0 right-0 w-4 h-4">
+                              <svg className="animate-spin h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                        <span className="text-base font-medium text-gray-700 max-w-[160px] truncate text-center">{user?.name || user?.email || "Mon compte"}</span>
                         
                         <div className="w-full flex flex-col gap-2 mt-2">
                           <Link
@@ -160,7 +183,7 @@ export function MobileNavigation({ isOpen, onClose, navigation }: MobileNavigati
                           </Link>
                           
                           <Link
-                            to="/organization"
+                            to="/company"
                             className="w-full text-center py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
                             onClick={onClose}
                           >

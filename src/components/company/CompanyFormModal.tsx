@@ -3,9 +3,7 @@ import { Company, Associate } from '../../types/user';
 import { useCompany } from '../../hooks/useCompany';
 import { Loader2 } from 'lucide-react';
 
-// DEPRECATED: Ce composant est déprécié et sera supprimé dans une future version.
-// Utilisez plutôt CompanyFormModal du dossier src/components/company/
-interface OrganizationFormModalProps {
+interface CompanyFormModalProps {
   company: Company;
   isOpen: boolean;
   onClose: () => void;
@@ -56,9 +54,7 @@ const initializeFormData = (company: Company) => ({
   logoPreview: company.logo || '',
 });
 
-// DEPRECATED: Ce composant est déprécié et sera supprimé dans une future version.
-// Utilisez plutôt CompanyFormModal du dossier src/components/company/
-export function OrganizationFormModal({ company, isOpen, onClose }: OrganizationFormModalProps) {
+export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalProps) {
   const { updateCompany, uploadLogo, isUpdating } = useCompany(company.id);
   
   const [currentStep, setCurrentStep] = useState(1);
@@ -258,6 +254,31 @@ export function OrganizationFormModal({ company, isOpen, onClose }: Organization
       case 1: // Informations Générales
         return (
           <div className="space-y-5">
+            {/* Logo upload */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Logo</label>
+              <div className="mt-1 flex items-center space-x-4">
+                <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                  {formData.logoPreview ? (
+                    <img src={formData.logoPreview} alt="Aperçu du logo" className="h-full w-full object-cover" />
+                  ) : company.logo ? (
+                    <img src={company.logo} alt="Logo actuel" className="h-full w-full object-cover" />
+                  ) : (
+                    <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 20.993V24H0v-2.997A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  )}
+                </span>
+                <label
+                  htmlFor="logo-upload"
+                  className="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
+                >
+                  <span>Changer le logo</span>
+                  <input id="logo-upload" name="logo-upload" type="file" className="sr-only" onChange={handleLogoChange} accept="image/*" />
+                </label>
+              </div>
+            </div>
+            
             {/* ... Contenu du formulaire pour l'étape 1 ... */}
             {/* Name, LegalForm, Identifiers, Industry, Size, Website, Description */}
             <div>

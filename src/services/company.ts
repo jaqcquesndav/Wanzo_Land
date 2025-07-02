@@ -86,13 +86,13 @@ const mockCompany: Company = {
 
 // The service now uses localStorage to persist changes, simulating a backend.
 export class CompanyService {
-  private getCompanyData(): Company {
-    const data = localStorage.getItem(`company_${mockCompany.id}`);
+  private getCompanyData(id: string = mockCompany.id): Company {
+    const data = localStorage.getItem(`company_${id}`);
     if (data) {
       return JSON.parse(data);
     }
     // If no data in localStorage, initialize with mock data
-    localStorage.setItem(`company_${mockCompany.id}`, JSON.stringify(mockCompany));
+    localStorage.setItem(`company_${id}`, JSON.stringify(mockCompany));
     return mockCompany;
   }
 
@@ -104,7 +104,7 @@ export class CompanyService {
     console.log(`Fetching company with id: ${companyId}`);
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(this.getCompanyData());
+        resolve(this.getCompanyData(companyId));
       }, 300);
     });
   }
@@ -113,7 +113,7 @@ export class CompanyService {
     console.log(`Updating company ${companyId} with`, data);
     return new Promise((resolve) => {
       setTimeout(() => {
-        const currentData = this.getCompanyData();
+        const currentData = this.getCompanyData(companyId);
         const updatedData = { ...currentData, ...data };
         this.saveCompanyData(updatedData);
         resolve(updatedData);
@@ -128,7 +128,7 @@ export class CompanyService {
         const reader = new FileReader();
         reader.onloadend = () => {
           const newLogoUrl = reader.result as string;
-          const currentData = this.getCompanyData();
+          const currentData = this.getCompanyData(companyId);
           currentData.logo = newLogoUrl;
           this.saveCompanyData(currentData);
           resolve({ url: newLogoUrl });

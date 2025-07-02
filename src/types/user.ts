@@ -1,4 +1,24 @@
+import * as z from 'zod';
 import { UserType } from './common';
+
+export const addressSchema = z.object({
+  street: z.string().optional(),
+  city: z.string().optional(),
+  commune: z.string().optional(),
+  province: z.string().optional(),
+  country: z.string().optional(),
+});
+
+export type Address = z.infer<typeof addressSchema>;
+
+export const contactPersonSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().email().optional().or(z.literal('')),
+  phone: z.string().optional(),
+  role: z.string().optional(),
+});
+
+export type ContactPerson = z.infer<typeof contactPersonSchema>;
 
 export interface User {
   id: string;
@@ -17,12 +37,18 @@ export interface User {
   role?: string;
   birthdate?: string;
   bio?: string;
-  companyId?: string;
+  
+  // The user's entity type, determining which profile is active.
+  userType?: UserType; // 'sme' (for PME/Company) | 'financial_institution'
+
+  // A user is linked to ONE of the following entities, based on userType.
+  companyId?: string; // Link to the PME/Company profile
+  financialInstitutionId?: string; // Link to the Financial Institution profile
+
   isCompanyOwner?: boolean;
   createdAt: string;
   updatedAt?: string;
   settings?: UserSettings;
-  userType?: UserType;
   language?: 'fr' | 'en';
   permissions?: string[];
   plan?: string; // From Abonnement.tsx

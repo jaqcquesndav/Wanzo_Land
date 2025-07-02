@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSubscription } from '../hooks/useSubscription';
 import { useUser } from '../hooks/useUser';
-import { UserCircle } from 'lucide-react';
-import Receipt from '../components/abonnement/Receipt';
+import { UserCircle, Download } from 'lucide-react';
+import Receipt, { ReceiptRef } from '../components/abonnement/Receipt';
 import { PaymentDetails, PaymentRecord, PricingPlan } from '../types/user';
+import TokenRing from '../components/abonnement/TokenRing';
 
 const paymentMethods = [
   { key: 'card', label: 'Carte bancaire (VISA/Mastercard)' },
@@ -185,6 +186,7 @@ export default function Abonnement() {
   const [formError, setFormError] = useState('');
   const [tab, setTab] = useState<'plan' | 'payment' | 'options' | 'confirm'>('plan');
   const [showReceipt, setShowReceipt] = useState<PaymentRecord | null>(null);
+  const receiptRef = useRef<ReceiptRef>(null);
 
   useEffect(() => {
     if (subscription) {
@@ -248,136 +250,176 @@ export default function Abonnement() {
     return <div className="text-center p-8">Aucun abonnement trouvé.</div>;
   }
 
+  const handleDownloadReceipt = () => {
+    if (receiptRef.current) {
+      receiptRef.current.downloadPDF();
+    }
+  };
+
   return (
-    <div className="max-w-3xl mx-auto p-4 sm:p-8 mt-8 bg-white rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">Gestion de l'abonnement</h2>
-      {/* Affichage du plan actuel et des tokens */}
-      <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-        <div className="flex items-center gap-4">
-          {user?.picture ? (
-            <img src={user.picture} alt="Profil" className="w-16 h-16 rounded-full object-cover border-2 border-primary" />
-          ) : (
-            <UserCircle className="w-16 h-16 text-gray-300" />
-          )}
-          <div>
-            <div className="text-lg font-semibold text-gray-800">{user?.name || 'Utilisateur'}</div>
-            <div className="text-sm text-gray-500">Plan actuel : <span className="font-bold text-primary">{subscription.currentPlan}</span></div>
-          </div>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="bg-white rounded-2xl border border-gray-200">
+        <div className="p-6 sm:p-8 border-b border-gray-200">
+          <h1 className="text-3xl font-bold text-gray-900">Abonnement & Facturation</h1>
+          <p className="text-gray-600 mt-1">Gérez votre plan, vos tokens et consultez votre historique de paiement.</p>
         </div>
-        <div className="flex-1 flex flex-col items-center sm:items-end">
-          <div className="text-sm text-gray-600">Tokens restants</div>
-          <div className="text-2xl font-bold text-primary">{subscription.tokenBalance.toLocaleString()} / {subscription.tokenTotal.toLocaleString()}</div>
-          <button
-            className="mt-2 px-4 py-1 rounded bg-primary text-white hover:bg-primary-dark text-sm"
-            onClick={() => {
-              setSelectedPlan(rechargePlanName);
-              setTab('payment');
-            }}
-          >Recharger des tokens</button>
-        </div>
-      </div>
-      
-      {/* Navigation par onglets */}
-      <div className="flex gap-2 mb-6 border-b">
-        <button
-          className={`px-4 py-2 font-semibold border-b-2 transition-colors ${tab === 'plan' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-primary'}`}
-          onClick={() => setTab('plan')}
-        >Changer de plan</button>
-        <button
-          className={`px-4 py-2 font-semibold border-b-2 transition-colors ${tab === 'payment' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-primary'}`}
-          onClick={() => setTab('payment')}
-        >Paiement</button>
-        <button
-          className={`px-4 py-2 font-semibold border-b-2 transition-colors ${tab === 'options' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-primary'}`}
-          onClick={() => setTab('options')}
-        >Options avancées</button>
-      </div>
-      {/* Affichage du panneau selon l’onglet */}
-      {tab === 'plan' && (
-        <PlanSelector plans={plans} currentPlan={subscription.currentPlan} onSelect={(plan) => { setSelectedPlan(plan); setTab('payment'); }} />
-      )}
-      {tab === 'payment' && (
-        <PaymentPanel
-          paymentType={paymentType}
-          setPaymentType={setPaymentType}
-          paymentInfo={paymentInfo}
-          setPaymentInfo={setPaymentInfo}
-          error={formError}
-          onSubmit={handlePaymentSubmit}
-          paymentMethods={paymentMethods}
-          selectedPlan={selectedPlan}
-          plans={plans}
-        />
-      )}
-      {tab === 'confirm' && (
-        <div className="text-center py-12">
-          <div className="text-2xl text-primary font-bold mb-2">Merci !</div>
-          <div className="text-gray-700 mb-4">Votre paiement a été reçu. Votre abonnement sera mis à jour sous peu.</div>
-          <button className="px-4 py-2 rounded bg-primary text-white hover:bg-primary-dark" onClick={() => setTab('plan')}>Retour</button>
-        </div>
-      )}
-      {tab === 'options' && <SubscriptionOptions />}
-      {/* Historique des paiements */}
-      <div className="mt-10">
-        <h3 className="text-lg font-semibold mb-2">Historique des paiements</h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm border rounded-xl bg-white">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="px-3 py-2 border-b text-left">Date</th>
-                <th className="px-3 py-2 border-b text-left">Montant</th>
-                <th className="px-3 py-2 border-b text-left">Méthode</th>
-                <th className="px-3 py-2 border-b text-left">Plan</th>
-                <th className="px-3 py-2 border-b text-left">Statut</th>
-                <th className="px-3 py-2 border-b text-left">Reçu</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subscription.paymentHistory.map((p) => (
-                <tr key={p.id}>
-                  <td className="px-3 py-2 border-b">{p.date}</td>
-                  <td className="px-3 py-2 border-b">${p.amount}</td>
-                  <td className="px-3 py-2 border-b">{p.method}</td>
-                  <td className="px-3 py-2 border-b">{p.plan}</td>
-                  <td className="px-3 py-2 border-b">{p.status}</td>
-                  <td className="px-3 py-2 border-b">
-                    <button className="text-primary underline text-xs" onClick={() => setShowReceipt(p)}>Télécharger</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {/* Modal de reçu (inchangé) */}
-        {showReceipt && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-            <div className="bg-white rounded-xl shadow-lg p-6 max-w-lg w-full relative">
-              <button className="absolute top-2 right-2 text-gray-400 hover:text-primary" onClick={() => setShowReceipt(null)}>✕</button>
-              <Receipt payment={showReceipt} />
-              <div className="mt-4 flex justify-end">
-                <button
-                  className="px-4 py-2 rounded bg-primary text-white hover:bg-primary-dark"
-                  onClick={() => {
-                    const printContent = document.getElementById('receipt-print');
-                    const win = window.open('', '', 'width=600,height=800');
-                    if (printContent && win) {
-                      win.document.write('<html><head><title>Reçu de paiement</title></head><body>' + printContent.innerHTML + '</body></html>');
-                      win.document.close();
-                      win.print();
-                    }
-                  }}
-                >
-                  Imprimer / Télécharger
-                </button>
-              </div>
+
+        {/* Affichage du plan actuel et des tokens */}
+        <div className="p-4 sm:p-6">
+            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                        {user?.picture ? (
+                            <img src={user.picture} alt="Profil" className="w-16 h-16 rounded-full object-cover border-2 border-white" />
+                        ) : (
+                            <UserCircle className="w-16 h-16 text-gray-300" />
+                        )}
+                        <div>
+                            <div className="text-sm text-gray-500">Plan actuel</div>
+                            <div className="text-xl font-bold text-primary">{subscription.currentPlan}</div>
+                            <div className="text-sm text-gray-600">Géré par : <span className="font-semibold">{user?.name || 'Utilisateur'}</span></div>
+                            
+                            <div className="flex flex-wrap gap-2 mt-2">
+                                <div className="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-medium">
+                                    Accès complet
+                                </div>
+                                <div className="bg-green-50 text-green-700 px-2 py-0.5 rounded text-xs font-medium">
+                                    Actif
+                                </div>
+                                <div className="inline-flex items-center gap-1 text-xs text-gray-600 px-3 py-1 bg-gray-100 rounded-full">
+                                    <span className="font-semibold">{subscription.tokenBalance.toLocaleString()}</span>
+                                    <span className="ml-0.5">tokens</span>
+                                    <button
+                                        className="ml-2 text-primary hover:underline text-xs font-medium"
+                                        onClick={() => {
+                                            setSelectedPlan(rechargePlanName);
+                                            setTab('payment');
+                                        }}
+                                    >
+                                        Recharger
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="flex flex-col items-center self-center sm:self-start mt-2 sm:mt-0">
+                        <TokenRing 
+                            tokenBalance={subscription.tokenBalance} 
+                            tokenTotal={subscription.tokenTotal || 1000000}
+                            size={80}
+                            strokeWidth={5}
+                            showLabels={true}
+                            className="ml-auto" 
+                        />
+                    </div>
+                </div>
             </div>
-            {/* Zone invisible pour print */}
-            <div style={{ display: 'none' }} id="receipt-print">
-              <Receipt payment={showReceipt} />
+        </div>
+            
+        <div className="px-6 sm:px-8">
+            {/* Navigation par onglets */}
+            <div className="flex gap-2 border-b border-gray-200">
+                <button
+                className={`px-4 py-2 font-semibold border-b-2 transition-colors ${tab === 'plan' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-primary'}`}
+                onClick={() => setTab('plan')}
+                >Changer de plan</button>
+                <button
+                className={`px-4 py-2 font-semibold border-b-2 transition-colors ${tab === 'payment' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-primary'}`}
+                onClick={() => setTab('payment')}
+                >Paiement</button>
+                <button
+                className={`px-4 py-2 font-semibold border-b-2 transition-colors ${tab === 'options' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-primary'}`}
+                onClick={() => setTab('options')}
+                >Options avancées</button>
+            </div>
+        </div>
+
+        {/* Contenu des onglets */}
+        <div className="p-6 sm:p-8">
+            {tab === 'plan' && (
+                <PlanSelector plans={plans} currentPlan={subscription.currentPlan} onSelect={(plan) => { setSelectedPlan(plan); setTab('payment'); }} />
+            )}
+            {tab === 'payment' && (
+                <PaymentPanel
+                paymentType={paymentType}
+                setPaymentType={setPaymentType}
+                paymentInfo={paymentInfo}
+                setPaymentInfo={setPaymentInfo}
+                error={formError}
+                onSubmit={handlePaymentSubmit}
+                paymentMethods={paymentMethods}
+                selectedPlan={selectedPlan}
+                plans={plans}
+                />
+            )}
+            {tab === 'confirm' && (
+                <div className="text-center py-12">
+                <div className="text-2xl text-primary font-bold mb-2">Merci !</div>
+                <div className="text-gray-700 mb-4">Votre paiement a été reçu. Votre abonnement sera mis à jour sous peu.</div>
+                <button className="px-4 py-2 rounded bg-primary text-white hover:bg-primary-dark" onClick={() => setTab('plan')}>Retour</button>
+                </div>
+            )}
+            {tab === 'options' && <SubscriptionOptions />}
+        </div>
+
+        {/* Historique des paiements */}
+        <div className="p-6 sm:p-8 border-t border-gray-200">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Historique des paiements</h3>
+            <div className="overflow-x-auto rounded-lg border border-gray-200">
+            <table className="min-w-full text-sm bg-white">
+                <thead className="bg-gray-50">
+                <tr >
+                    <th className="px-4 py-3 font-semibold text-left text-gray-600">Date</th>
+                    <th className="px-4 py-3 font-semibold text-left text-gray-600">Montant</th>
+                    <th className="px-4 py-3 font-semibold text-left text-gray-600">Méthode</th>
+                    <th className="px-4 py-3 font-semibold text-left text-gray-600">Plan</th>
+                    <th className="px-4 py-3 font-semibold text-left text-gray-600">Statut</th>
+                    <th className="px-4 py-3 font-semibold text-left text-gray-600">Reçu</th>
+                </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                {subscription.paymentHistory.map((p) => (
+                    <tr key={p.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 text-gray-700">{p.date}</td>
+                    <td className="px-4 py-3 text-gray-800 font-medium">${p.amount}</td>
+                    <td className="px-4 py-3 text-gray-700">{p.method}</td>
+                    <td className="px-4 py-3 text-gray-700">{p.plan}</td>
+                    <td className="px-4 py-3 text-gray-700"><span className="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">{p.status}</span></td>
+                    <td className="px-4 py-3">
+                        <button className="text-primary hover:underline text-sm font-semibold" onClick={() => setShowReceipt(p)}>Afficher</button>
+                    </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            </div>
+        </div>
+      </div>
+
+        {/* Modal de reçu */}
+        {showReceipt && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setShowReceipt(null)}>
+            <div className="bg-white rounded-xl max-w-4xl w-full relative m-4 flex flex-col" style={{ maxHeight: '90vh' }} onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white rounded-t-xl">
+                    <h3 className="font-semibold text-lg">Reçu de paiement</h3>
+                    <div className="flex items-center gap-2">
+                        <button
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 font-semibold transition-colors text-sm"
+                            onClick={handleDownloadReceipt}
+                        >
+                            <Download size={14}/>
+                            Télécharger (PDF)
+                        </button>
+                        <button className="text-gray-400 hover:text-primary" onClick={() => setShowReceipt(null)}>✕</button>
+                    </div>
+                </div>
+                <div className="p-2 sm:p-4 overflow-y-auto">
+                    <Receipt ref={receiptRef} payment={showReceipt} />
+                </div>
             </div>
           </div>
         )}
-      </div>
     </div>
   );
 }

@@ -15,7 +15,10 @@ import FaqPage from '../pages/Faq';
 import { Callback } from '../pages/auth/Callback';
 import Profile from '../pages/Profile';
 import Abonnement from '../pages/Abonnement';
-import OrganizationPage from '../pages/Organization';
+import CompanyPage from '../pages/Company';
+import FinancialInstitutionPage from '../pages/FinancialInstitution';
+import OrganizationLegacy from '../pages/Organization';
+import { ProtectedRoute } from "../components/auth/ProtectedRoute";
 
 export function AppRoutes() {
   return (
@@ -85,9 +88,15 @@ export function AppRoutes() {
       <Route path="/team" element={<Team />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/tarification" element={<Tarification />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/organization" element={<OrganizationPage />} />
-      <Route path="/abonnement" element={<Abonnement />} />
+      
+      {/* Routes protégées nécessitant une authentification */}
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/company" element={<ProtectedRoute><CompanyPage /></ProtectedRoute>} />
+      <Route path="/company/:companyId" element={<ProtectedRoute><CompanyPage /></ProtectedRoute>} />
+      <Route path="/financial-institution/:institutionId" element={<ProtectedRoute><FinancialInstitutionPage /></ProtectedRoute>} />
+      <Route path="/abonnement" element={<ProtectedRoute><Abonnement /></ProtectedRoute>} />
+      <Route path="/organization" element={<ProtectedRoute><OrganizationLegacy /></ProtectedRoute>} />
+      
       <Route
         path="/unauthorized"
         element={
@@ -97,17 +106,9 @@ export function AppRoutes() {
           />
         }
       />
-      <Route
-        path="*"
-        element={
-          <UnderDevelopment
-            pageName="Cette page est en cours de développement. Revenez bientôt !"
-            description="La page que vous recherchez n'existe pas."
-          />
-        }
-      />
-      <Route path="/chat/fullscreen" element={<FullscreenChat />} />
       <Route path="/auth/callback" element={<Callback />} />
+      <Route path="/callback" element={<Callback />} />
+      <Route path="/chat" element={<ProtectedRoute><FullscreenChat /></ProtectedRoute>} />
     </Routes>
   );
 }

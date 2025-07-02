@@ -4,15 +4,21 @@ import { CompanyService } from '../services/company';
 
 const companyService = new CompanyService();
 
-export function useCompany(companyId: string) {
+interface UseCompanyOptions {
+  enabled?: boolean;
+}
+
+export function useCompany(companyId: string | undefined, options: UseCompanyOptions = { enabled: true }) {
   const [company, setCompany] = useState<Company | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(options.enabled ?? true);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   const fetchCompany = useCallback(async () => {
-    if (!companyId) {
+    // Si aucun ID n'est fourni ou que options.enabled est false, on ne charge pas les données
+    if (!companyId || !options.enabled) {
       setLoading(false);
+      setCompany(null);
       return;
     }
     try {
@@ -22,11 +28,11 @@ export function useCompany(companyId: string) {
       setError(null);
     } catch (err) {
       const error = err as Error;
-      setError(error.message || 'Erreur lors du chargement de l\'entreprise');
+      setError(error);
     } finally {
       setLoading(false);
     }
-  }, [companyId]);
+  }, [companyId, options.enabled]);
 
   useEffect(() => {
     fetchCompany();
@@ -42,7 +48,7 @@ export function useCompany(companyId: string) {
       return updatedCompany;
     } catch (err) {
       const error = err as Error;
-      setError(error.message || 'Erreur lors de la mise à jour de l\'entreprise');
+      setError(error);
       throw err; // Re-throw to be caught in the component
     } finally {
       setIsUpdating(false);
@@ -59,7 +65,7 @@ export function useCompany(companyId: string) {
       return result;
     } catch (err) {
       const error = err as Error;
-      setError(error.message || 'Erreur lors de l\'envoi du logo');
+      setError(error);
       throw err;
     } finally {
       setIsUpdating(false);

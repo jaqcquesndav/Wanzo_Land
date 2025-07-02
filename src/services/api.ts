@@ -110,6 +110,17 @@ class ApiService {
 
     return this.handleResponse<T>(response);
   }
+
+  async postFormData<T>(endpoint: string, formData: FormData): Promise<T> {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: this.getAuthHeaders(true), // Pass true to indicate FormData
+      body: formData,
+    });
+    return this.handleResponse<T>(response);
+  }
 }
 
-export const apiService = new ApiService();
+// Export a singleton instance of the ApiService
+const api = new ApiService();
+export default api;

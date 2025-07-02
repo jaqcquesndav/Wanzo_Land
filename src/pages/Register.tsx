@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../components/ui/Button';
+import { UserType } from '../types/common';
 
 export function Register() {
   const [formData, setFormData] = useState({
@@ -8,10 +9,20 @@ export function Register() {
     confirmPassword: '',
     companyName: '',
   });
+  const [userType, setUserType] = useState<UserType>('sme');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Logique d'inscription
+    // La logique d'inscription appellerait un service (ex: useAuth.register)
+    const registrationData = {
+      email: formData.email,
+      password: formData.password,
+      userType: userType,
+      // Le nom de l'entité serait utilisé pour créer l'organisation ou l'institution associée
+      entityName: formData.companyName, 
+    };
+    console.log('Données d\'inscription à envoyer:', registrationData);
+    // Exemple: register(registrationData);
   };
 
   return (
@@ -33,6 +44,30 @@ export function Register() {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Vous êtes ?</label>
+                <div className="mt-2 grid grid-cols-2 gap-2 rounded-md bg-gray-100 p-1">
+                  <button
+                    type="button"
+                    onClick={() => setUserType('sme')}
+                    className={`w-full px-3 py-2 text-sm font-semibold text-center rounded-md transition-colors ${
+                      userType === 'sme' ? 'bg-white text-primary shadow-sm' : 'bg-transparent text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    PME
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setUserType('financial_institution')}
+                    className={`w-full px-3 py-2 text-sm font-semibold text-center rounded-md transition-colors ${
+                      userType === 'financial_institution' ? 'bg-white text-primary shadow-sm' : 'bg-transparent text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    Institution Financière
+                  </button>
+                </div>
+              </div>
+
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email
@@ -63,7 +98,7 @@ export function Register() {
 
               <div>
                 <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
-                  Nom de l'entreprise
+                  {userType === 'sme' ? "Nom de l'entreprise" : "Nom de l'institution"}
                 </label>
                 <input
                   id="companyName"

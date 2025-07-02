@@ -9,6 +9,7 @@ import wanzoLogo from '../../assets/images/wanzo_logo.png';
 // Import de la config Auth0 centralisée
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CALLBACK_URL, AUTH0_LOGOUT_URL } from '../../config/auth0';
 import { startAuth0PKCE } from '../../utils/auth0pkce';
+import { useUser } from '../../hooks/useUser';
 
 const navigation = [
   { name: 'Accueil', href: '/' },
@@ -25,22 +26,41 @@ export function Header() {
   const location = useLocation();
   const appsBtnRef = useRef<HTMLButtonElement>(null);
   const profileBtnRef = useRef<HTMLDivElement>(null);
-  // Toujours lire le profil utilisateur depuis localStorage à chaque rendu
+  
+  // Utiliser le hook useUser pour récupérer les informations utilisateur enrichies
+  const { user: backendUser, isEnrichingData, isAuthenticated } = useUser();
+  
+  // Fusionner les données Auth0 locales avec celles du backend
   const user = React.useMemo(() => {
+    // Récupérer l'utilisateur Auth0 du localStorage comme fallback
     const stored = localStorage.getItem('auth0_user');
-    return stored ? JSON.parse(stored) : null;
-  }, [localStorage.getItem('auth0_user')]);
+    const auth0User = stored ? JSON.parse(stored) : null;
+    
+    // Si on a un utilisateur backend, il a priorité (car il inclut déjà les données Auth0)
+    if (backendUser) {
+      return backendUser;
+    }
+    
+    // Sinon on utilise les données Auth0 locales
+    return auth0User;
+  }, [backendUser]);
 
   // Fonction de déconnexion
   function handleLogout() {
+    // Nettoyer tous les tokens Auth0 du localStorage
     localStorage.removeItem('auth0_user');
     localStorage.removeItem('auth0_token');
     localStorage.removeItem('auth0_id_token');
     localStorage.removeItem('auth0_refresh_token');
     localStorage.removeItem('auth0_expires_in');
     localStorage.removeItem('auth0_token_type');
+    
+    // Nettoyer la session
     sessionStorage.removeItem('auth0_code_verifier');
     sessionStorage.removeItem('auth0_state');
+    sessionStorage.removeItem('auth0_just_logged_in');
+    sessionStorage.removeItem('auth0_redirect_after_login');
+    
     // Redirection vers le logout Auth0 global
     const domain = AUTH0_DOMAIN;
     const clientId = AUTH0_CLIENT_ID;
@@ -135,7 +155,7 @@ export function Header() {
           </div>
           {/* Section droite (profil, login, etc.) */}
           <div className="hidden lg:flex items-center gap-x-4 ml-auto">
-            {user ? (
+            {isAuthenticated ? (
               <div ref={profileBtnRef} className="relative">
                 <button
                   className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200 hover:bg-gray-200 transition focus:outline-none"
@@ -143,17 +163,52 @@ export function Header() {
                   aria-haspopup="true"
                   aria-expanded={profileMenuOpen}
                 >
-                  {user.picture ? (
-                    <img src={user.picture} alt={user.name} className="w-8 h-8 rounded-full border object-cover" />
+                  {isEnrichingData ? (
+                    <div className="w-8 h-8 rounded-full border flex items-center justify-center bg-gray-100 relative">
+                      {user?.picture && (
+                        <img 
+                          src={user.picture} 
+                          alt={user.name || "Photo de profil"} 
+                          className="w-8 h-8 rounded-full border object-cover" 
+                          onError={(e) => {
+                            // Fallback si l'image ne charge pas
+                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || user.email || 'U')}`;
+                          }}
+                        />
+                      )}
+                      {/* Petit indicateur de chargement en superposition */}
+                      <div className="absolute top-0 right-0 w-3 h-3">
+                        <svg className="animate-spin h-3 w-3 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  ) : user?.picture ? (
+                    <img 
+                      src={user.picture} 
+                      alt={user.name || "Photo de profil"} 
+                      className="w-8 h-8 rounded-full border object-cover" 
+                      onError={(e) => {
+                        // Fallback si l'image ne charge pas
+                        (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || user.email || 'U')}`;
+                      }} 
+                    />
                   ) : (
-                    <UserCircle className="w-8 h-8 text-gray-400" />
+                    <UserCircle className="w-8 h-8 text-gray-400 fallback-icon" />
                   )}
-                  <span className="text-sm font-medium text-gray-700 max-w-[120px] truncate">{user.name || user.email}</span>
+                  <span className="text-sm font-medium text-gray-700 max-w-[120px] truncate">
+                    {user?.name || user?.email || "Mon compte"}
+                  </span>
                 </button>
                 {profileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg z-50 py-2 animate-fade-in">
+                    <div className="px-4 py-2 border-b border-gray-200 mb-1">
+                      <p className="text-sm font-medium text-gray-900 truncate">{user?.name || user?.email || "Mon compte"}</p>
+                      <p className="text-xs text-gray-500 truncate">{user?.email || ""}</p>
+                    </div>
                     <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Votre profil</Link>
-                    <Link to="/organization" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Votre entreprise</Link>
+                    <Link to="/company" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Votre entreprise</Link>
                     <Link to="/abonnement" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Abonnement</Link>
                     <button
                       className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
