@@ -79,6 +79,7 @@ export interface UserSettings {
 export interface Associate {
   id?: string;
   name: string;
+  gender?: 'male' | 'female';
   role?: string;
   shares?: number;
   email?: string;
@@ -134,6 +135,7 @@ export interface Company {
   owner?: {
     id: string;
     name: string;
+    gender?: 'male' | 'female';
     email?: string;
     phone?: string;
     hasOtherJob?: boolean;
@@ -181,6 +183,103 @@ export interface Company {
     currentPeriodEnd?: string;
   };
 }
+
+// Schéma de validation Zod pour Company
+export const companySchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(2, "Le nom de l'entreprise doit contenir au moins 2 caractères."),
+  logo: z.string().url().optional().or(z.literal('')),
+  description: z.string().optional(),
+  legalForm: z.string().optional(),
+  industry: z.string().optional(),
+  size: z.string().optional(),
+  website: z.string().url("L'URL du site web est invalide.").optional().or(z.literal('')),
+  facebookPage: z.string().url("L'URL de la page Facebook est invalide.").regex(/facebook\.com/, "L'URL doit être une page Facebook valide.").optional().or(z.literal('')),
+  
+  // Legal & Tax Identifiers
+  rccm: z.string().optional(),
+  taxId: z.string().optional(),
+  natId: z.string().optional(),
+  
+  // Address
+  address: z.object({
+    street: z.string().optional(),
+    city: z.string().optional(),
+    commune: z.string().optional(),
+    province: z.string().optional(),
+    country: z.string().optional(),
+  }).optional(),
+  
+  // Locations
+  locations: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      type: z.enum(['headquarters', 'branch', 'store', 'warehouse', 'factory', 'other']),
+      address: z.string().optional(),
+      coordinates: z.object({
+        lat: z.number(),
+        lng: z.number(),
+      }),
+    })
+  ).optional(),
+  
+  // Contacts
+  contacts: z.object({
+    email: z.string().email("L'adresse email est invalide.").optional().or(z.literal('')),
+    phone: z.string().optional(),
+    altPhone: z.string().optional(),
+  }).optional(),
+  
+  // Owner
+  owner: z.object({
+    id: z.string().optional(),
+    name: z.string().min(1, "Le nom du dirigeant est requis."),
+    gender: z.enum(['male', 'female']).optional(),
+    email: z.string().email("L'email du dirigeant est invalide.").optional().or(z.literal('')),
+    phone: z.string().optional(),
+    hasOtherJob: z.boolean().optional(),
+    cv: z.string().url().optional().or(z.literal('')),
+    linkedin: z.string().url("L'URL LinkedIn est invalide.").regex(/linkedin\.com\/in\//, "L'URL LinkedIn doit être au format linkedin.com/in/...").optional().or(z.literal('')),
+    facebook: z.string().url("L'URL Facebook est invalide.").regex(/facebook\.com/, "L'URL doit être un profil Facebook valide.").optional().or(z.literal('')),
+  }).optional(),
+  
+  // Associates
+  associates: z.array(
+    z.object({
+      id: z.string().optional(),
+      name: z.string(),
+      gender: z.enum(['male', 'female']).optional(),
+      role: z.string().optional(),
+      shares: z.number().min(0).max(100).optional(),
+      email: z.string().email("L'email de l'associé est invalide.").optional().or(z.literal('')),
+      phone: z.string().optional(),
+    })
+  ).optional(),
+  
+  // Activities
+  activities: z.object({
+    primary: z.string().optional(),
+    secondary: z.array(z.string()).optional(),
+  }).optional(),
+  
+  // Capital
+  capital: z.object({
+    isApplicable: z.boolean().optional(),
+    amount: z.number().optional(),
+    currency: z.enum(['USD', 'CDF', 'EUR']).optional(),
+  }).optional(),
+  
+  // Affiliations
+  affiliations: z.object({
+    cnss: z.string().optional(),
+    inpp: z.string().optional(),
+    onem: z.string().optional(),
+    intraCoop: z.string().optional(),
+    interCoop: z.string().optional(),
+    partners: z.array(z.string()).optional(),
+  }).optional(),
+});
 
 // Clean up old, unused types
 // export interface Plan { ... }
