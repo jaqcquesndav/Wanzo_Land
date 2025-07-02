@@ -51,8 +51,21 @@ export interface FinancialInstitution {
   secondaryActivities?: string[];
 
   // Adresses et contacts
-  headquartersAddress?: Address; // Siège social
-  branches?: Address[]; // Succursales
+  headquartersAddress?: Address; // Siège social (format legacy)
+  branches?: Address[]; // Succursales (format legacy)
+  
+  // Nouveau format avec coordonnées géographiques
+  locations?: {
+    id: string;
+    name: string;
+    type: 'headquarters' | 'branch' | 'store' | 'warehouse' | 'factory' | 'other';
+    address?: string;
+    coordinates: {
+      lat: number;
+      lng: number;
+    };
+  }[];
+  
   contactPerson?: ContactPerson; // Personne de contact principale
   
   // Métadonnées

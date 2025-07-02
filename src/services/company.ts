@@ -137,4 +137,25 @@ export class CompanyService {
       }, 500);
     });
   }
+
+  async uploadOwnerCV(companyId: string, file: File): Promise<{ url: string }> {
+    console.log(`Uploading CV for company ${companyId} owner:`, file.name);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const cvUrl = reader.result as string;
+          const currentData = this.getCompanyData(companyId);
+          if (!currentData.owner) {
+            currentData.owner = { id: '', name: '', cv: cvUrl };
+          } else {
+            currentData.owner.cv = cvUrl;
+          }
+          this.saveCompanyData(currentData);
+          resolve({ url: cvUrl });
+        };
+        reader.readAsDataURL(file);
+      }, 500);
+    });
+  }
 }

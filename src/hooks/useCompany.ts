@@ -72,5 +72,28 @@ export function useCompany(companyId: string | undefined, options: UseCompanyOpt
     }
   };
 
-  return { company, loading, isUpdating, error, fetchCompany, updateCompany, uploadLogo };
+  const uploadOwnerCV = async (file: File) => {
+    if (!companyId) return null;
+    setIsUpdating(true);
+    setError(null);
+    try {
+      const result = await companyService.uploadOwnerCV(companyId, file);
+      setCompany(prev => {
+        if (!prev) return null;
+        return {
+          ...prev,
+          owner: prev.owner ? { ...prev.owner, cv: result.url } : { id: '', name: '', cv: result.url }
+        };
+      });
+      return result;
+    } catch (err) {
+      const error = err as Error;
+      setError(error);
+      throw err;
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  return { company, loading, isUpdating, error, fetchCompany, updateCompany, uploadLogo, uploadOwnerCV };
 }

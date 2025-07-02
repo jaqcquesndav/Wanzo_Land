@@ -197,6 +197,32 @@ export function RDCitiesMap() {
             )}
           </div>
         </div>
+        
+        {/* Bouton pour devenir partenaire local */}
+        <div className="mt-12">
+          <a 
+            href="#" 
+            className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-bold rounded-xl bg-gradient-to-r from-orange-500 to-warning text-white shadow-md transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1"
+            onClick={(e) => {
+              e.preventDefault();
+              // Le lien Google Forms sera ajouté manuellement plus tard
+              window.open('LIEN_GOOGLE_FORM_A_AJOUTER', '_blank');
+            }}
+          >
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-orange-600 to-warning opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+            <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-[200%] group-hover:h-[200%] opacity-5"></span>
+            <div className="relative flex items-center gap-3">
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5V6a.5.5 0 0 1 .5-.5ZM12 14a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/>
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z"/>
+              </svg>
+              <span className="relative text-lg">Devenir partenaire local</span>
+            </div>
+          </a>
+          <p className="text-sm text-gray-500 mt-3 text-center max-w-sm">
+            Rejoignez notre réseau et aidez-nous à développer les services Wanzo dans votre région
+          </p>
+        </div>
       </div>
     </section>
   );

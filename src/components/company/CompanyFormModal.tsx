@@ -2,6 +2,7 @@ import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { Company, Associate } from '../../types/user';
 import { useCompany } from '../../hooks/useCompany';
 import { Loader2 } from 'lucide-react';
+import { LocationMapSelector } from '../map/LocationMapSelector';
 
 interface CompanyFormModalProps {
   company: Company;
@@ -21,11 +22,15 @@ const initializeFormData = (company: Company) => ({
   industry: company.industry || '',
   size: company.size || '',
   website: company.website || '',
+  facebookPage: company.facebookPage || '',
   description: company.description || '',
   
   ownerName: company.owner?.name || '',
   ownerEmail: company.owner?.email || '',
   ownerPhone: company.owner?.phone || '',
+  ownerHasOtherJob: company.owner?.hasOtherJob ?? false,
+  ownerLinkedin: company.owner?.linkedin || '',
+  ownerFacebook: company.owner?.facebook || '',
   
   associates: company.associates || [],
   
@@ -36,11 +41,15 @@ const initializeFormData = (company: Company) => ({
   capitalAmount: company.capital?.amount || 0,
   capitalCurrency: company.capital?.currency || 'USD',
   
+  // Format d'adresse classique
   street: company.address?.street || '',
   commune: company.address?.commune || '',
   city: company.address?.city || '',
   province: company.address?.province || '',
   country: company.address?.country || 'République Démocratique du Congo',
+  
+  // Nouveau format d'emplacements avec coordonnées
+  locations: company.locations || [],
   
   email: company.contacts?.email || '',
   phone: company.contacts?.phone || '',
@@ -52,10 +61,12 @@ const initializeFormData = (company: Company) => ({
   
   logoFile: null as File | null,
   logoPreview: company.logo || '',
+  cvFile: null as File | null,
+  cvPreview: company.owner?.cv || '',
 });
 
 export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalProps) {
-  const { updateCompany, uploadLogo, isUpdating } = useCompany(company.id);
+  const { updateCompany, uploadLogo, uploadOwnerCV, isUpdating } = useCompany(company.id);
   
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(() => initializeFormData(company));
@@ -91,6 +102,40 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
           ...prev, 
           logoFile: file,
           logoPreview: reader.result as string 
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCVChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({ 
+          ...prev, 
+          cvFile: file,
+          cvPreview: reader.result as string 
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Pour le drag and drop du CV
+  const handleCVDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({ 
+          ...prev, 
+          cvFile: file,
+          cvPreview: reader.result as string 
         }));
       };
       reader.readAsDataURL(file);
@@ -143,13 +188,31 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
     const newErrors: Record<string, string> = {};
     if (currentStep === 1) {
       if (!formData.name.trim()) newErrors.name = "Le nom de l'entreprise est requis.";
+      
+      // Validation d'URL pour le site web
       if (formData.website && !/^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?$/.test(formData.website)) {
         newErrors.website = "L'URL du site web est invalide.";
       }
+      
+      // Validation d'URL pour la page Facebook
+      if (formData.facebookPage && !/^(https?:\/\/)?(www\.)?(facebook\.com)\/[a-zA-Z0-9.]+/.test(formData.facebookPage)) {
+        newErrors.facebookPage = "L'URL de la page Facebook est invalide. Elle doit être au format https://facebook.com/votrepage";
+      }
     }
+    
     if (currentStep === 2) {
       if (!formData.ownerName.trim()) newErrors.ownerName = "Le nom du propriétaire est requis.";
+      
+      // Validation des URL des réseaux sociaux du propriétaire
+      if (formData.ownerLinkedin && !/^(https?:\/\/)?(www\.)?(linkedin\.com)\/in\/[a-zA-Z0-9_-]+/.test(formData.ownerLinkedin)) {
+        newErrors.ownerLinkedin = "L'URL du profil LinkedIn est invalide. Elle doit être au format https://linkedin.com/in/username";
+      }
+      
+      if (formData.ownerFacebook && !/^(https?:\/\/)?(www\.)?(facebook\.com)\/[a-zA-Z0-9.]+/.test(formData.ownerFacebook)) {
+        newErrors.ownerFacebook = "L'URL du profil Facebook est invalide. Elle doit être au format https://facebook.com/username";
+      }
     }
+    
     if (currentStep === 3) {
         if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
             newErrors.email = "L'adresse email de contact est invalide.";
@@ -191,6 +254,14 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
         }
       }
 
+      let cvUrl = company.owner?.cv;
+      if (formData.cvFile) {
+        const uploadResult = await uploadOwnerCV(formData.cvFile);
+        if (uploadResult?.url) {
+          cvUrl = uploadResult.url;
+        }
+      }
+
       const companyDataToUpdate: Partial<Company> = {
         id: company.id,
         name: formData.name,
@@ -201,6 +272,7 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
         industry: formData.industry,
         size: formData.size,
         website: formData.website,
+        facebookPage: formData.facebookPage,
         description: formData.description,
         logo: logoUrl,
         owner: {
@@ -208,6 +280,10 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
           name: formData.ownerName,
           email: formData.ownerEmail,
           phone: formData.ownerPhone,
+          hasOtherJob: formData.ownerHasOtherJob,
+          linkedin: formData.ownerLinkedin,
+          facebook: formData.ownerFacebook,
+          cv: cvUrl,
         },
         associates: formData.associates,
         activities: {
@@ -433,6 +509,25 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
             </div>
             
             <div>
+              <label htmlFor="facebookPage" className="block text-sm font-medium text-gray-700">
+                Page Facebook
+              </label>
+              <input
+                type="text"
+                name="facebookPage"
+                id="facebookPage"
+                value={formData.facebookPage}
+                onChange={handleInputChange}
+                placeholder="https://facebook.com/votrepage"
+                className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm ${
+                  errors.facebookPage ? 'border-red-300' : ''
+                }`}
+              />
+              {errors.facebookPage && <p className="mt-1 text-sm text-red-600">{errors.facebookPage}</p>}
+              <p className="mt-1 text-xs text-gray-500">Si vous n'avez pas de site web, vous pouvez indiquer votre page Facebook</p>
+            </div>
+            
+            <div>
               <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                 Description
               </label>
@@ -500,6 +595,113 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
                     }`}
                   />
                   {errors.ownerEmail && <p className="mt-1 text-sm text-red-600">{errors.ownerEmail}</p>}
+                </div>
+                
+                {/* Réseaux sociaux du propriétaire */}
+                <div className="sm:col-span-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label htmlFor="ownerLinkedin" className="block text-sm font-medium text-gray-700">
+                      Profil LinkedIn
+                    </label>
+                    <input
+                      type="text"
+                      name="ownerLinkedin"
+                      id="ownerLinkedin"
+                      value={formData.ownerLinkedin}
+                      onChange={handleInputChange}
+                      placeholder="https://linkedin.com/in/username"
+                      className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm ${
+                        errors.ownerLinkedin ? 'border-red-300' : ''
+                      }`}
+                    />
+                    {errors.ownerLinkedin && <p className="mt-1 text-sm text-red-600">{errors.ownerLinkedin}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="ownerFacebook" className="block text-sm font-medium text-gray-700">
+                      Profil Facebook
+                    </label>
+                    <input
+                      type="text"
+                      name="ownerFacebook"
+                      id="ownerFacebook"
+                      value={formData.ownerFacebook}
+                      onChange={handleInputChange}
+                      placeholder="https://facebook.com/username"
+                      className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm ${
+                        errors.ownerFacebook ? 'border-red-300' : ''
+                      }`}
+                    />
+                    {errors.ownerFacebook && <p className="mt-1 text-sm text-red-600">{errors.ownerFacebook}</p>}
+                  </div>
+                </div>
+                
+                {/* CV upload */}
+                <div className="sm:col-span-3 border-t border-blue-100 pt-3 mt-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    CV du dirigeant (PDF)
+                  </label>
+                  
+                  <div 
+                    className="border-2 border-dashed border-gray-300 rounded-md p-4 relative cursor-pointer hover:border-primary-500 transition-colors min-h-[120px] flex flex-col sm:flex-row items-center justify-center"
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={handleCVDrop}
+                    onClick={() => document.getElementById('cv-upload')?.click()}
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Télécharger CV (PDF)"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        document.getElementById('cv-upload')?.click();
+                      }
+                    }}
+                  >
+                    {formData.cvPreview ? (
+                      <div className="flex flex-col sm:flex-row items-center text-center sm:text-left">
+                        <svg className="h-8 w-8 text-red-500 mb-2 sm:mb-0 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-sm text-gray-900">CV téléchargé - Cliquez ou déposez pour changer</span>
+                      </div>
+                    ) : (
+                      <div className="text-center">
+                        <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <p className="mt-1 text-sm text-gray-500">
+                          Cliquez pour sélectionner ou déposez un fichier PDF ici
+                        </p>
+                      </div>
+                    )}
+                    <input 
+                      id="cv-upload" 
+                      name="cv-upload" 
+                      type="file" 
+                      className="sr-only" 
+                      onChange={handleCVChange} 
+                      accept="application/pdf" 
+                    />
+                  </div>
+                  <p className="mt-1 text-xs text-gray-500">Format PDF uniquement, max 5MB.</p>
+                </div>
+                
+                {/* Autre emploi */}
+                <div className="sm:col-span-3 flex items-start mt-2">
+                  <div className="flex items-center h-5">
+                    <input
+                      id="ownerHasOtherJob"
+                      name="ownerHasOtherJob"
+                      type="checkbox"
+                      checked={formData.ownerHasOtherJob}
+                      onChange={handleCheckboxChange}
+                      className="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
+                    />
+                  </div>
+                  <div className="ml-3 text-sm">
+                    <label htmlFor="ownerHasOtherJob" className="font-medium text-gray-700">
+                      Le dirigeant a un autre emploi
+                    </label>
+                    <p className="text-gray-500">Cochez si le dirigeant exerce une autre activité professionnelle en parallèle</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -633,7 +835,7 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
                   <ul className="mt-2 divide-y divide-gray-100 border border-gray-200 rounded-md overflow-hidden">
                     {formData.secondaryActivities.map((activity: string, index: number) => (
                       <li key={index} className="flex justify-between items-center p-2 hover:bg-gray-50">
-                        <span className="text-sm">{activity}</span>
+                        <span className="text-sm text-gray-700">{activity}</span>
                         <button
                           type="button"
                           onClick={() => handleRemoveSecondaryActivity(index)}
@@ -794,6 +996,21 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
               </div>
             </div>
             
+            {/* Sélecteur d'emplacements géographiques */}
+            <div className="pt-5 border-t border-gray-200">
+              <h4 className="font-medium text-gray-900 mb-3">Emplacements géographiques</h4>
+              <p className="text-sm text-gray-500 mb-4">
+                Sélectionnez les emplacements de votre entreprise sur la carte. Cliquez sur la carte pour ajouter un emplacement.
+              </p>
+              
+              <LocationMapSelector 
+                locations={formData.locations}
+                onChange={(newLocations) => setFormData({ ...formData, locations: newLocations })}
+                showList={true}
+                singleLocation={false}
+              />
+            </div>
+            
             <div className="pt-3 border-t border-gray-200">
               <h4 className="font-medium text-gray-900 mb-3">Contacts</h4>
               
@@ -901,13 +1118,18 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div className="flex items-center justify-center min-h-screen pt-2 px-2 pb-10 text-center sm:pt-4 sm:px-4 sm:pb-20">
+        {/* Overlay de fond avec animation */}
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onClick={onClose}></div>
+        
+        {/* Centrage vertical pour les écrans moyens et grands */}
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         
-        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
-          <form onSubmit={handleSubmit}>
-            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        {/* Modal avec largeur responsive */}
+        <div className="inline-block align-bottom bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
+          <form onSubmit={handleSubmit} className="flex flex-col h-full max-h-[90vh] md:max-h-[85vh] rounded-lg overflow-hidden border border-gray-200">
+            {/* En-tête du modal */}
+            <div className="bg-white px-4 pt-5 pb-2 sm:p-6 sm:pb-2 sticky top-0 z-10 border-b">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
                   <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
@@ -926,50 +1148,61 @@ export function CompanyFormModal({ company, isOpen, onClose }: CompanyFormModalP
                       ></div>
                     </div>
                   </div>
-
-                  <div className="mt-4">
-                    {renderStepContent()}
-                  </div>
                 </div>
               </div>
             </div>
             
-            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse items-center">
-              {currentStep < TOTAL_STEPS && (
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Suivant
-                </button>
-              )}
+            {/* Contenu du formulaire avec scroll */}
+            <div className="px-4 sm:px-6 flex-grow overflow-y-auto max-h-[calc(90vh-15rem)] md:max-h-[calc(85vh-15rem)] bg-white">
+              <div className="py-4">
+                {renderStepContent()}
+              </div>
+            </div>
+            
+            {/* Barre d'actions en bas */}
+            <div className="bg-gray-50 px-4 py-3 sm:px-6 flex flex-col sm:flex-row-reverse items-center sticky bottom-0 z-10 border-t shadow-inner rounded-b-lg">
+              <div className="flex flex-col sm:flex-row w-full sm:w-auto space-y-2 sm:space-y-0">
+                {currentStep < TOTAL_STEPS && (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Suivant
+                  </button>
+                )}
+                
+                {currentStep === TOTAL_STEPS && (
+                  <button
+                    type="submit"
+                    disabled={isUpdating}
+                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50"
+                  >
+                    {isUpdating ? (
+                      <>
+                        <Loader2 className="animate-spin mr-2" /> 
+                        Enregistrement...
+                      </>
+                    ) : 'Enregistrer'}
+                  </button>
+                )}
+              </div>
               
-              {currentStep === TOTAL_STEPS && (
-                <button
-                  type="submit"
-                  disabled={isUpdating}
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50"
-                >
-                  {isUpdating ? <><Loader2 className="animate-spin mr-2" /> Enregistrement...</> : 'Enregistrer'}
-                </button>
-              )}
+              <div className="flex flex-col sm:flex-row w-full sm:w-auto mt-2 sm:mt-0 space-y-2 sm:space-y-0 order-first sm:order-none">
+                {currentStep > 1 && (
+                  <button
+                    type="button"
+                    onClick={handleBack}
+                    className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Précédent
+                  </button>
+                )}
 
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  onClick={handleBack}
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Précédent
-                </button>
-              )}
-
-              <div className="flex-grow sm:flex-grow-0">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   Annuler
                 </button>

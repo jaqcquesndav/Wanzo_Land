@@ -1,7 +1,7 @@
 export const testimonials = [
   {
     id: 1,
-    content: "Wanzo a simplifié notre gestion et accéléré l'accès au financement. L'automatisation des tâches nous fait gagner un temps précieux.",
+    content: "Wanzo a transformé notre travail quotidien. Grâce à ses outils d'analyse, nous identifions rapidement les PME éligibles, évaluons leurs dossiers en quelques clics, et suivons tout le cycle de financement sur une plateforme unique. Notre capacité de traitement a augmenté de 40% et la qualité de nos décisions s'est nettement améliorée.",
     author: "Mme Mupenda Candide",
     role: "Analyste des projets",
     company: "FPI-RDC",

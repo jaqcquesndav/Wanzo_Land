@@ -1,10 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { User } from '../types/user';
 import { userService } from '../services/user';
 
 // Constantes pour les tentatives de récupération
 const MAX_RETRIES = 2;
 const RETRY_DELAY = 3000; // 3 secondes
+
+// Créer un événement personnalisé pour notifier les changements d'authentification
+export const AUTH_EVENT = 'auth_state_changed';
+
+// Fonction utilitaire pour déclencher l'événement d'authentification
+export function notifyAuthChange() {
+  const event = new CustomEvent(AUTH_EVENT);
+  window.dispatchEvent(event);
+}
 
 export function useUser() {
   const [user, setUser] = useState<User | null>(null);
@@ -13,6 +22,7 @@ export function useUser() {
   const [error, setError] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [retryCount, setRetryCount] = useState(0);
+  const userInitialized = useRef(false);
 
   // Fonction pour initialiser l'utilisateur avec les données Auth0
   const initializeUserFromAuth0 = useCallback(() => {
@@ -51,8 +61,25 @@ export function useUser() {
     const userData = initializeUserFromAuth0();
     if (userData) {
       console.log('Utilisateur initialisé avec données Auth0:', userData.name);
+      userInitialized.current = true;
     }
   }, [initializeUserFromAuth0]);
+
+  // Écouter les changements d'authentification
+  useEffect(() => {
+    const handleAuthChange = () => {
+      console.log("Changement d'état d'authentification détecté");
+      syncProfileAfterLogin();
+    };
+    
+    // Ajouter l'écouteur d'événements
+    window.addEventListener(AUTH_EVENT, handleAuthChange);
+    
+    // Nettoyer
+    return () => {
+      window.removeEventListener(AUTH_EVENT, handleAuthChange);
+    };
+  }, []);
 
   // Fonction pour charger le profil utilisateur enrichi depuis le backend avec retry
   const loadUserProfile = useCallback(async (retry = false) => {
@@ -111,6 +138,24 @@ export function useUser() {
     }
   }, [error, retryCount, loadUserProfile]);
 
+  // Fonction pour synchroniser le profil après la connexion à Auth0
+  const syncProfileAfterLogin = useCallback(async () => {
+    console.log('Synchronisation du profil après connexion Auth0');
+    // Réinitialiser l'état d'authentification basé sur le token
+    const token = localStorage.getItem('auth0_token');
+    setIsAuthenticated(!!token);
+    
+    // Réinitialiser l'utilisateur à partir des données Auth0 locales
+    const auth0User = initializeUserFromAuth0();
+    
+    if (auth0User && token) {
+      // Forcer un chargement immédiat du profil depuis le backend
+      return await loadUserProfile();
+    }
+    
+    return auth0User;
+  }, [initializeUserFromAuth0, loadUserProfile]);
+
   // Fonction pour mettre à jour le profil utilisateur
   const updateUserProfile = async (userData: Partial<User>) => {
     setIsUpdating(true);
@@ -160,5 +205,6 @@ export function useUser() {
     loadUserProfile,
     updateUserProfile,
     uploadProfilePhoto,
+    syncProfileAfterLogin, // Exposer la nouvelle fonction
   };
 }

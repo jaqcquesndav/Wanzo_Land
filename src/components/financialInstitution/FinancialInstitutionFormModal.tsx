@@ -5,6 +5,7 @@ import * as z from 'zod';
 import { FinancialInstitution, financialInstitutionSchema } from '../../types/financialInstitution';
 import { useFinancialInstitution } from '../../hooks/useFinancialInstitution';
 import { Loader2 } from 'lucide-react';
+import { LocationMapSelector, Location } from '../map/LocationMapSelector';
 
 interface FinancialInstitutionFormModalProps {
   institution: FinancialInstitution;
@@ -25,6 +26,7 @@ export function FinancialInstitutionFormModal({ institution, isOpen, onClose }: 
   const [currentStep, setCurrentStep] = useState(1);
   const [logoPreview, setLogoPreview] = useState(institution?.logo || '');
   const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [locations, setLocations] = useState<Location[]>(institution?.locations || []);
   
   const { register, handleSubmit, formState: { errors }, reset, trigger } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -38,6 +40,7 @@ export function FinancialInstitutionFormModal({ institution, isOpen, onClose }: 
       setCurrentStep(1);
       setLogoPreview(institution?.logo || '');
       setLogoFile(null);
+      setLocations(institution?.locations || []);
     }
   }, [institution, isOpen, reset]);
 
@@ -104,12 +107,14 @@ export function FinancialInstitutionFormModal({ institution, isOpen, onClose }: 
       if (institution?.id && institution.id.trim() !== '') {
         await updateInstitutionData({
           ...data,
-          logo: logoUrl || institution.logo
+          logo: logoUrl || institution.logo,
+          locations: locations
         });
       } else {
         await createNewInstitution({
           ...creationData,
-          logo: logoUrl || undefined
+          logo: logoUrl || undefined,
+          locations: locations
         });
       }
       onClose();
@@ -306,54 +311,73 @@ export function FinancialInstitutionFormModal({ institution, isOpen, onClose }: 
         );
       case 3: // Siège Social
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="headquartersAddress.street" className="block text-sm font-medium text-gray-700">
-                Rue
-              </label>
-              <input
-                id="headquartersAddress.street"
-                type="text"
-                {...register('headquartersAddress.street')}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-              />
-              {errors.headquartersAddress?.street && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.street.message}</p>}
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-sm font-medium text-gray-700">Adresse légale</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="headquartersAddress.street" className="block text-sm font-medium text-gray-700">
+                    Rue
+                  </label>
+                  <input
+                    id="headquartersAddress.street"
+                    type="text"
+                    {...register('headquartersAddress.street')}
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                  />
+                  {errors.headquartersAddress?.street && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.street.message}</p>}
+                </div>
+                <div>
+                  <label htmlFor="headquartersAddress.city" className="block text-sm font-medium text-gray-700">
+                    Ville
+                  </label>
+                  <input
+                    id="headquartersAddress.city"
+                    type="text"
+                    {...register('headquartersAddress.city')}
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                  />
+                  {errors.headquartersAddress?.city && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.city.message}</p>}
+                </div>
+                <div>
+                  <label htmlFor="headquartersAddress.province" className="block text-sm font-medium text-gray-700">
+                    Province
+                  </label>
+                  <input
+                    id="headquartersAddress.province"
+                    type="text"
+                    {...register('headquartersAddress.province')}
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                  />
+                  {errors.headquartersAddress?.province && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.province.message}</p>}
+                </div>
+                <div>
+                  <label htmlFor="headquartersAddress.country" className="block text-sm font-medium text-gray-700">
+                    Pays
+                  </label>
+                  <input
+                    id="headquartersAddress.country"
+                    type="text"
+                    {...register('headquartersAddress.country')}
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                  />
+                  {errors.headquartersAddress?.country && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.country.message}</p>}
+                </div>
+              </div>
             </div>
-            <div>
-              <label htmlFor="headquartersAddress.city" className="block text-sm font-medium text-gray-700">
-                Ville
-              </label>
-              <input
-                id="headquartersAddress.city"
-                type="text"
-                {...register('headquartersAddress.city')}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+            
+            <div className="space-y-4 pt-4 border-t border-gray-200">
+              <h3 className="text-sm font-medium text-gray-700">Emplacements sur la carte</h3>
+              <p className="text-sm text-gray-500">
+                Ajoutez un ou plusieurs emplacements en cliquant sur la carte. Vous pouvez spécifier le type d'emplacement (siège social, succursale, etc.) et ajouter des détails complémentaires.
+              </p>
+              
+              <LocationMapSelector 
+                locations={locations} 
+                onChange={setLocations} 
+                defaultType="headquarters" 
+                defaultName="Siège social"
               />
-              {errors.headquartersAddress?.city && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.city.message}</p>}
-            </div>
-            <div>
-              <label htmlFor="headquartersAddress.province" className="block text-sm font-medium text-gray-700">
-                Province
-              </label>
-              <input
-                id="headquartersAddress.province"
-                type="text"
-                {...register('headquartersAddress.province')}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-              />
-              {errors.headquartersAddress?.province && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.province.message}</p>}
-            </div>
-            <div>
-              <label htmlFor="headquartersAddress.country" className="block text-sm font-medium text-gray-700">
-                Pays
-              </label>
-              <input
-                id="headquartersAddress.country"
-                type="text"
-                {...register('headquartersAddress.country')}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-              />
-              {errors.headquartersAddress?.country && <p className="mt-1 text-sm text-red-600">{errors.headquartersAddress.country.message}</p>}
             </div>
           </div>
         );

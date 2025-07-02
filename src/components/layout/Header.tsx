@@ -1,15 +1,14 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, Briefcase, BarChart2, DollarSign, Layers, ShoppingBag, UserCircle } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Container } from '../ui/Container';
 import { MobileNavigation } from './MobileNavigation';
-import React from 'react';
 import wanzoLogo from '../../assets/images/wanzo_logo.png';
 // Import de la config Auth0 centralisée
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CALLBACK_URL, AUTH0_LOGOUT_URL } from '../../config/auth0';
 import { startAuth0PKCE } from '../../utils/auth0pkce';
-import { useUser } from '../../hooks/useUser';
+import { useUser, AUTH_EVENT } from '../../hooks/useUser';
 
 const navigation = [
   { name: 'Accueil', href: '/' },
@@ -28,7 +27,7 @@ export function Header() {
   const profileBtnRef = useRef<HTMLDivElement>(null);
   
   // Utiliser le hook useUser pour récupérer les informations utilisateur enrichies
-  const { user: backendUser, isEnrichingData, isAuthenticated } = useUser();
+  const { user: backendUser, isEnrichingData, isAuthenticated, syncProfileAfterLogin } = useUser();
   
   // Fusionner les données Auth0 locales avec celles du backend
   const user = React.useMemo(() => {
@@ -44,6 +43,40 @@ export function Header() {
     // Sinon on utilise les données Auth0 locales
     return auth0User;
   }, [backendUser]);
+
+  // Écouter les événements d'authentification pour mettre à jour l'interface immédiatement
+  useEffect(() => {
+    const handleAuthEvent = () => {
+      console.log('Header: Événement d\'authentification détecté, mise à jour du profil');
+      // Vérifier s'il y a des données utilisateur dans le localStorage
+      const storedUser = localStorage.getItem('auth0_user');
+      if (storedUser) {
+        // Forcer la synchronisation du profil
+        syncProfileAfterLogin();
+      }
+    };
+
+    // Ajouter l'écouteur d'événements
+    window.addEventListener(AUTH_EVENT, handleAuthEvent);
+    
+    // Nettoyage à la destruction du composant
+    return () => {
+      window.removeEventListener(AUTH_EVENT, handleAuthEvent);
+    };
+  }, [syncProfileAfterLogin]);
+
+  // Vérifier également si l'utilisateur vient de se connecter via Auth0
+  useEffect(() => {
+    const justLoggedIn = sessionStorage.getItem('auth0_just_logged_in');
+    
+    if (justLoggedIn === 'true') {
+      console.log('Header: Détection d\'une connexion récente, mise à jour du profil');
+      sessionStorage.removeItem('auth0_just_logged_in'); // Nettoyer après utilisation
+      
+      // Synchroniser le profil utilisateur pour mettre à jour le header
+      syncProfileAfterLogin();
+    }
+  }, [syncProfileAfterLogin]);
 
   // Fonction de déconnexion
   function handleLogout() {
@@ -69,7 +102,7 @@ export function Header() {
   }
 
   // Fermer le menu si clic en dehors
-  React.useEffect(() => {
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (profileBtnRef.current && !profileBtnRef.current.contains(event.target as Node)) {
         setProfileMenuOpen(false);

@@ -36,11 +36,11 @@ export function TestimonialsCarousel({
 
   return (
     <div 
-      className="relative w-full max-w-6xl mx-auto"
+      className="relative w-full max-w-6xl mx-auto overflow-visible mt-8"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-hidden">
+      <div className="overflow-visible">
         <div className="flex gap-8 md:gap-12">
           <AnimatePresence mode="wait">
             {[0, 1].map((offset) => {

@@ -95,13 +95,14 @@ export interface Company {
   industry?: string;
   size?: string;
   website?: string;
+  facebookPage?: string;
 
   // Legal & Tax Identifiers
   rccm?: string;
   taxId?: string;
   natId?: string;
 
-  // Address
+  // Address (legacy format)
   address?: {
     street?: string;
     city?: string;
@@ -109,6 +110,18 @@ export interface Company {
     province?: string;
     country?: string;
   };
+  
+  // Locations (new format with coordinates)
+  locations?: {
+    id: string;
+    name: string;
+    type: 'headquarters' | 'branch' | 'store' | 'warehouse' | 'factory' | 'other';
+    address?: string;
+    coordinates: {
+      lat: number;
+      lng: number;
+    };
+  }[];
 
   // Contact Information
   contacts?: {
@@ -123,6 +136,10 @@ export interface Company {
     name: string;
     email?: string;
     phone?: string;
+    hasOtherJob?: boolean;
+    cv?: string; // URL du CV sur Cloudinary
+    linkedin?: string;
+    facebook?: string;
   };
   associates?: Associate[];
 

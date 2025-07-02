@@ -66,7 +66,7 @@ const floatingTags = [
   "Conseil financier & juridique",
   "Espace de Prospection",
   "Authentification numérique des documents",
-  "Location d'équipement de production",
+  "Gestion du crédit bail",
   "Conseils pratiques",
   "Gestion multi-établissements",
   "Gestion du patrimoine",

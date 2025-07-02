@@ -217,10 +217,9 @@ export default function Profile() {
   
   return (
     <PageContainer>
-      <div className="p-4 md:p-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Mon Profil</h1>
-
-        <div className="bg-white shadow-lg rounded-2xl p-6 md:p-10">
+      <div className="py-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-10">
             {/* En-tête simple avec titre et bouton d'édition */}
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-2xl font-bold text-gray-900">Profil Utilisateur</h1>
@@ -228,7 +227,7 @@ export default function Profile() {
                 <button
                   type="button"
                   onClick={() => setEditMode(true)}
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
                 >
                   <Edit3 className="-ml-0.5 mr-2 h-4 w-4" />
                   Modifier
@@ -237,11 +236,11 @@ export default function Profile() {
             </div>
               
             {/* Carte principale du profil - Inspirée de CompanySummary */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-6">
               <div className="h-32 bg-gradient-to-r from-primary to-primary-dark relative">
                 <div className="absolute bottom-0 left-8 transform translate-y-1/2">
                   <div className="relative group">
-                    <div className="w-20 h-20 rounded-full bg-white p-1 shadow-md">
+                    <div className="w-20 h-20 rounded-full bg-white p-1 border border-gray-200">
                       {photo ? (
                         <img 
                           src={photo} 
@@ -305,7 +304,7 @@ export default function Profile() {
             {!editMode ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Colonne gauche - Informations personnelles */}
-                <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
                     <UserCircle className="w-5 h-5 mr-2 text-primary-600" />
                     Informations personnelles
@@ -339,7 +338,7 @@ export default function Profile() {
                 </div>
                 
                 {/* Colonne droite - Identification et rôle */}
-                <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
                     <Shield className="w-5 h-5 mr-2 text-primary-600" />
                     Identification & Rôle
@@ -375,7 +374,7 @@ export default function Profile() {
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h2 className="text-lg font-medium text-gray-900 mb-4">Modifier votre profil</h2>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -469,7 +468,7 @@ export default function Profile() {
                     type="button"
                     onClick={handleSave}
                     disabled={isUpdating}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
                     {isUpdating ? (
                       <>
@@ -483,6 +482,7 @@ export default function Profile() {
                 </div>
               </div>
             )}
+          </div>
         </div>
       </div>
     </PageContainer>

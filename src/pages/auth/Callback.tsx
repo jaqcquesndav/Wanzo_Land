@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CALLBACK_URL } from '../../config/auth0';
+import { useUser, notifyAuthChange } from '../../hooks/useUser';
 
 export function Callback() {
   const navigate = useNavigate();
+  const { syncProfileAfterLogin } = useUser();
 
   useEffect(() => {
     // Méthode de secours : rediriger après 15 secondes quoi qu'il arrive
@@ -51,7 +53,7 @@ export function Callback() {
         }
         return res.json();
       })
-      .then(data => {
+      .then(async data => {
         console.log('[Auth0 Callback] Réponse /oauth/token:', data);
         
         // Vérifier si nous avons reçu une erreur de l'API
@@ -88,6 +90,13 @@ export function Callback() {
             
             // Définir une variable pour indiquer que l'utilisateur vient de se connecter
             sessionStorage.setItem('auth0_just_logged_in', 'true');
+            
+            // Forcer la mise à jour du profil utilisateur pour rafraîchir le header
+            await syncProfileAfterLogin();
+            
+            // Déclencher l'événement personnalisé pour informer toute l'application 
+            // du changement d'authentification
+            notifyAuthChange();
             
             // Redirection vers la page d'origine ou l'accueil
             const redirectPath = sessionStorage.getItem('auth0_redirect_after_login');
@@ -131,7 +140,7 @@ export function Callback() {
       
     // Nettoyer le timeout quand le composant est démonté
     return () => clearTimeout(timeoutId);
-  }, [navigate]);
+  }, [navigate, syncProfileAfterLogin]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">

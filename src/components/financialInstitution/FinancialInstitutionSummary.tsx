@@ -1,6 +1,7 @@
 import React from 'react';
 import { FinancialInstitution } from '../../types/financialInstitution';
-import { Building2, Globe, MapPin, Phone, Mail, Calendar, FileText, CreditCard } from 'lucide-react';
+import { Building2, Globe, MapPin, Phone, Mail, FileText } from 'lucide-react';
+import { LocationsSummary } from '../map/LocationsSummary';
 
 interface FinancialInstitutionSummaryProps {
   institution: FinancialInstitution;
@@ -156,7 +157,7 @@ const FinancialInstitutionSummary: React.FC<FinancialInstitutionSummaryProps> = 
       </div>
       
       {/* Adresse et contacts */}
-      <div className="bg-white rounded-lg shadow-sm p-6">
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
         <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
           <MapPin className="w-5 h-5 mr-2 text-primary-600" />
           Adresse et contacts
@@ -193,7 +194,7 @@ const FinancialInstitutionSummary: React.FC<FinancialInstitutionSummaryProps> = 
                     </a>
                   </p>
                 )}
-                {institution.contactPerson.phone && (
+                {institution.contactPerson?.phone && (
                   <p className="text-sm text-gray-900 flex items-center">
                     <Phone className="w-4 h-4 mr-1 text-gray-400" />
                     <a href={`tel:${institution.contactPerson.phone}`} className="text-primary-600 hover:text-primary-700">
@@ -208,6 +209,17 @@ const FinancialInstitutionSummary: React.FC<FinancialInstitutionSummaryProps> = 
           </div>
         </div>
       </div>
+      
+      {/* Emplacements géographiques */}
+      {institution.locations && institution.locations.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+            <MapPin className="w-5 h-5 mr-2 text-primary-600" />
+            Emplacements géographiques
+          </h2>
+          <LocationsSummary locations={institution.locations} />
+        </div>
+      )}
     </div>
   );
 };
