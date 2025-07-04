@@ -16,48 +16,91 @@ export function TestimonialsCarousel({
 }: TestimonialsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Détecter les changements de taille d'écran
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((current) => (current + 2) % testimonials.length);
-  }, [testimonials.length]);
+    if (isMobile) {
+      setCurrentIndex((current) => (current + 1) % testimonials.length);
+    } else {
+      setCurrentIndex((current) => {
+        // Assurez-vous que currentIndex + 2 ne dépasse pas testimonials.length
+        const nextIndex = (current + 2) % testimonials.length;
+        // Si nous avons un nombre impair de témoignages et que nous sommes au dernier,
+        // retourner à 0 pour éviter un index hors limites
+        return nextIndex + 1 > testimonials.length ? 0 : nextIndex;
+      });
+    }
+  }, [testimonials.length, isMobile]);
 
   const previousSlide = useCallback(() => {
-    setCurrentIndex((current) => 
-      current === 0 ? testimonials.length - 2 : current - 2
-    );
-  }, [testimonials.length]);
+    if (isMobile) {
+      setCurrentIndex((current) => 
+        current === 0 ? testimonials.length - 1 : current - 1
+      );
+    } else {
+      setCurrentIndex((current) => {
+        if (current === 0) {
+          // Si le nombre de témoignages est impair, ajuster l'index
+          return testimonials.length % 2 === 1 
+            ? testimonials.length - 2 
+            : testimonials.length - 2;
+        }
+        return current - 2;
+      });
+    }
+  }, [testimonials.length, isMobile]);
 
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(nextSlide, autoPlayInterval);
     return () => clearInterval(timer);
-  }, [nextSlide, autoPlayInterval, isPaused]);
+  }, [nextSlide, autoPlayInterval, isPaused, isMobile]);
+
+  // Calculer les témoignages à afficher
+  const visibleTestimonials = isMobile 
+    ? [testimonials[currentIndex]] 
+    : [
+        testimonials[currentIndex],
+        testimonials[(currentIndex + 1) % testimonials.length]
+      ];
 
   return (
     <div 
-      className="relative w-full max-w-6xl mx-auto overflow-visible mt-8"
+      className="relative w-full max-w-6xl mx-auto mt-8 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-visible">
-        <div className="flex gap-8 md:gap-12">
+      <div className="overflow-hidden">
+        <div className="w-full">
           <AnimatePresence mode="wait">
-            {[0, 1].map((offset) => {
-              const index = (currentIndex + offset) % testimonials.length;
-              return (
-                <motion.div
-                  key={`testimonial-${index}`}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 1.2 }}
-                  className="w-full md:w-1/2 flex-shrink-0"
+            <motion.div
+              key={`testimonials-slide-${currentIndex}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-8 md:gap-12 w-full`}
+            >
+              {visibleTestimonials.map((testimonial, idx) => (
+                <div 
+                  key={`testimonial-${testimonial.id}`}
+                  className={`${isMobile ? 'w-full' : 'w-1/2'} flex-shrink-0`}
                 >
-                  <TestimonialCard testimonial={testimonials[index]} />
-                </motion.div>
-              );
-            })}
+                  <TestimonialCard testimonial={testimonial} />
+                </div>
+              ))}
+            </motion.div>
           </AnimatePresence>
         </div>
       </div>
@@ -69,6 +112,7 @@ export function TestimonialsCarousel({
             "p-2 rounded-full bg-white shadow-lg text-primary hover:text-primary-hover pointer-events-auto transition-colors",
             "hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           )}
+          aria-label="Témoignage précédent"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
@@ -78,22 +122,33 @@ export function TestimonialsCarousel({
             "p-2 rounded-full bg-white shadow-lg text-primary hover:text-primary-hover pointer-events-auto transition-colors",
             "hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           )}
+          aria-label="Témoignage suivant"
         >
           <ChevronRight className="h-6 w-6" />
         </button>
       </div>
 
       <div className="mt-8 flex justify-center gap-2">
-        {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index * 2)}
-            className={cn(
-              "w-2 h-2 rounded-full transition-colors",
-              index * 2 === currentIndex ? 'bg-primary' : 'bg-gray-300'
-            )}
-          />
-        ))}
+        {Array.from({ 
+          // Sur mobile, un indicateur par témoignage. Sur desktop, un indicateur pour deux témoignages
+          length: isMobile ? testimonials.length : Math.ceil(testimonials.length / 2) 
+        }).map((_, index) => {
+          const isActive = isMobile 
+            ? index === currentIndex
+            : index * 2 === currentIndex || (index * 2 === testimonials.length - 1 && currentIndex === 0);
+          
+          return (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(isMobile ? index : index * 2)}
+              className={cn(
+                "w-2 h-2 rounded-full transition-colors",
+                isActive ? 'bg-primary' : 'bg-gray-300'
+              )}
+              aria-label={`Aller au témoignage ${index + 1}`}
+            />
+          );
+        })}
       </div>
     </div>
   );

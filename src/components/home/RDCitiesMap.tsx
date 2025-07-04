@@ -201,13 +201,10 @@ export function RDCitiesMap() {
         {/* Bouton pour devenir partenaire local */}
         <div className="mt-12">
           <a 
-            href="#" 
+            href="https://forms.gle/KXSCsbgDmK1ZzzuWA" 
             className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-bold rounded-xl bg-gradient-to-r from-orange-500 to-warning text-white shadow-md transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1"
-            onClick={(e) => {
-              e.preventDefault();
-              // Le lien Google Forms sera ajouté manuellement plus tard
-              window.open('LIEN_GOOGLE_FORM_A_AJOUTER', '_blank');
-            }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-orange-600 to-warning opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
             <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-[200%] group-hover:h-[200%] opacity-5"></span>

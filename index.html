@@ -3,8 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>Wanzo</title>
+    <script>
+      // Empêcher uniquement le zoom par pincement tout en préservant le défilement
+      document.addEventListener('gesturestart', function(e) {
+        // Empêcher uniquement les gestes de zoom, pas le défilement
+        if (e.scale !== 1) {
+          e.preventDefault();
+        }
+      });
+      
+      // Ne bloquer que les mouvements de zoom multi-touch, pas le défilement normal
+      document.addEventListener('touchmove', function(e) {
+        // Ne bloquer que si c'est un geste de pincement (zoom)
+        if (e.scale !== undefined && e.scale !== 1) { 
+          e.preventDefault(); 
+        }
+      }, { passive: false });
+      
+      // Configurer le viewport pour limiter le zoom mais permettre le défilement
+      var metaViewport = document.querySelector('meta[name=viewport]');
+      function fixViewport() {
+        metaViewport.setAttribute('content', 
+          'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+      }
+      window.addEventListener('resize', fixViewport);
+      window.addEventListener('orientationchange', fixViewport);
+    </script>
   </head>
   <body>
     <div id="root"></div>

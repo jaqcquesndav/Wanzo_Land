@@ -13,16 +13,16 @@ export function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const isLeasingStorePage = location.pathname.startsWith('/leasing-store');
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative overflow-x-hidden">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow relative">
         {children}
       </main>
-      <div className="fixed bottom-4 right-4 z-50 space-y-4">
+      <div className="floating-container space-y-4 items-end">
         {!isLeasingStorePage && <LeasingStoreShortcut />}
         <Chatbot />
       </div>
-      <Footer />
+      <Footer className="relative z-10 w-full footer-container" />
     </div>
   );
 }

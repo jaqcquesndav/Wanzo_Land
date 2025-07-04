@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom';
 import { Container } from '../ui/Container';
 import { Facebook, Twitter, Linkedin, Instagram, MapPin, Phone, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { useState, HTMLAttributes } from 'react';
 import { Button } from '../ui/Button';
 
 const navigation = {
   solutions: [
-    { name: 'ERP', href: 'auth/apps/sme' },
-    { name: 'Gestion de portefeuille IF', href: '/auth/apps/financial_institution' },
+    { name: 'Gestion des PME', href: './' },
+    { name: 'Gestion de portefeuille', href: './' },
     { name: 'Wanzo Store', href: '/leasing-store' },
-    { name: 'Tarification', href: '/under-development' },
+    { name: 'Tarification', href: '/tarification' },
   ],
   support: [
     { name: 'Documentation', href: '/under-development' },
     { name: 'Apprendre', href: '/under-development' },
-    { name: 'FAQ', href: '/under-development' },
+    { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/under-development' },
   ],
   company: [
@@ -26,7 +26,6 @@ const navigation = {
   ],
   legal: [
     { name: 'Confidentialité', href: '/under-development' },
-    { name: 'CGU', href: '/under-development' },
   ],
   social: [
     { name: 'Facebook', href: '#', icon: Facebook },
@@ -36,7 +35,7 @@ const navigation = {
   ],
 };
 
-export function Footer() {
+export function Footer({ className = '', ...props }: HTMLAttributes<HTMLElement>) {
   const [email, setEmail] = useState('');
   const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -54,7 +53,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900" aria-labelledby="footer-heading">
+    <footer className={`bg-gray-900 ${className}`} aria-labelledby="footer-heading" {...props}>
       <h2 id="footer-heading" className="sr-only">Footer</h2>
       <Container className="pb-8 pt-16 sm:pt-24">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">

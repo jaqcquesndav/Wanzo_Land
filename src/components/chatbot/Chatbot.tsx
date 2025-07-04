@@ -183,11 +183,25 @@ export function Chatbot() {
     setIsWebSearchEnabled(!isWebSearchEnabled);
   };
 
+  // Ajout d'un useEffect pour détecter les écrans mobiles
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const containerClass = cn(
-    "fixed z-50 transition-all duration-300",
+    "transform-gpu transition-all duration-300",
     isFullscreen 
-      ? "inset-0 bg-white" 
-      : "bottom-4 right-4 w-96 rounded-lg shadow-xl bg-white"
+      ? "fixed inset-0 bg-white z-50" 
+      : isMobile
+        ? "w-full max-w-[calc(100vw-32px)] rounded-lg shadow-xl bg-white"
+        : "w-96 rounded-lg shadow-xl bg-white"
   );
 
   return (
@@ -263,7 +277,7 @@ export function Chatbot() {
         <button
           onClick={() => setIsOpen(true)}
           className={cn(
-            "fixed bottom-4 right-4 z-50",
+            "transform-gpu",
             "bg-primary text-white rounded-full p-3 shadow-lg",
             "hover:bg-primary-hover transition-colors",
             "flex items-center gap-2"

@@ -1,13 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Store, X, ShoppingCart } from 'lucide-react'; // Added ShoppingCart icon
+import { Store, X, ShoppingCart } from 'lucide-react';
 import { cn } from '../../utils/cn';
-import { mockProducts } from '../../pages/leasing-store/data/mockProducts'; // Import mock data
+import { mockProducts } from '../../pages/leasing-store/data/mockProducts';
 
 export function LeasingStoreShortcut() {
   const [isOpen, setIsOpen] = useState(true);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  // Détection des écrans mobiles
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     // Fetch equipment images from mock data with valid images
@@ -32,13 +43,17 @@ export function LeasingStoreShortcut() {
   ];
 
   return (
-    <div className="fixed bottom-20 right-4 z-50">
-      {isOpen && (
-        <div className="bg-white rounded-lg shadow-xl p-4 w-64 animate-fade-in">
+    <div className="flex flex-col transform-gpu max-w-full">
+      {isOpen ? (
+        <div className={cn(
+          "bg-white rounded-lg shadow-xl p-4 animate-fade-in",
+          // Adaptation de la largeur selon la taille d'écran
+          isMobile ? "w-full max-w-[280px]" : "w-64"
+        )}>
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               Wanzo Store
-              <ShoppingCart className="h-4 w-4 text-gray-500" /> {/* Added cart icon */}
+              <ShoppingCart className="h-4 w-4 text-gray-500" />
             </h3>
             <button
               onClick={() => setIsOpen(false)}
@@ -80,6 +95,18 @@ export function LeasingStoreShortcut() {
             Visiter la boutique
           </Link>
         </div>
+      ) : (
+        // Bouton flottant compact pour réouvrir le widget
+        <button 
+          onClick={() => setIsOpen(true)}
+          className={cn(
+            "bg-primary text-white rounded-full p-3 shadow-lg",
+            "hover:bg-primary-hover transition-colors"
+          )}
+          aria-label="Ouvrir Wanzo Store"
+        >
+          <Store className="h-5 w-5" />
+        </button>
       )}
     </div>
   );

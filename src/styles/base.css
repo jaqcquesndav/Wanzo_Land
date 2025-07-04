@@ -50,10 +50,39 @@
   .container {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
+  
+  .footer-container {
+    position: relative;
+    width: 100%;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .floating-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 50;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    /* Ensure floating elements stay aligned with the screen edges */
+    max-width: calc(100vw - 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    pointer-events: none; /* Le conteneur lui-même ne capture pas les événements */
+  }
+  
+  .floating-container > * {
+    pointer-events: auto; /* Mais ses enfants oui */
+    max-width: 100%;
   }
 }
